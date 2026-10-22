@@ -1,5 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Свечи в бетоне и гипсе ручной работы от Юлии Смирновой, Казань. Свадебные комплименты, новогодние наборы, декор и 3D-печать. Бесплатная доставка по России.">
+<meta name="theme-color" content="#2B1E15">
+<meta property="og:title" content="Beton Svechi · свечи в бетоне ручной работы">
+<meta property="og:description" content="Авторские свечи и декор из бетона и гипса. Казань, доставка по России.">
+<meta property="og:image" content="https://betonsvechi.ru/img/szhigai-mosty.jpg">
+<meta property="og:type" content="website">
+<style>
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+html,body{overflow-x:hidden}
+</style>
 <title>Beton Svechi</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Marck+Script&family=Inter:wght@400;500;600&display=swap">
 <style>
@@ -210,15 +228,86 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   .fgrid{grid-template-columns:1fr}
   .courses,.nf-list{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){.tile img{transition:none}}
-</style>
 
-<div class="strip band"><div class="wrap">Бесплатная доставка по России при заказе <b id="stripFree"></b> · заказ собирается на сайте, подтверждаем в мессенджере</div></div>
+/* burger (hidden on desktop) */
+.burger{display:none;appearance:none;border:1px solid var(--line);background:transparent;width:42px;height:42px;border-radius:999px;cursor:pointer;padding:0;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.burger span{display:block;width:18px;height:2px;background:var(--fg);border-radius:2px;transition:transform .2s,opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ===== MOBILE VERSION ===== */
+@media (max-width:760px){
+  body{font-size:15px}
+  .strip-more{display:none}
+  .strip .wrap{padding-block:7px;font-size:12px}
+  header.top .wrap{flex-wrap:nowrap;gap:8px;padding-block:10px}
+  .logo b{font-size:16px;letter-spacing:.16em}
+  .logo span{font-size:9px;letter-spacing:.18em}
+  .basket{margin-left:auto;padding:8px 12px}
+  .burger{display:inline-flex}
+  nav.menu{display:none;position:absolute;left:0;right:0;top:100%;margin:0;width:auto;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(26,19,16,.12);
+    padding:6px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+  nav.menu.open{display:flex}
+  nav.menu a{padding:14px 4px;border-radius:0;border-bottom:1px solid var(--line);font-size:16px}
+  nav.menu a:last-child{border-bottom:0}
+  header.top{position:sticky}
+  header.top .wrap{position:relative}
+  section{padding-block:28px}
+  .hero{margin-top:14px;gap:0}
+  .hero .pic{min-height:0;height:240px;order:-1}
+  .hero .txt{padding:22px 18px 24px}
+  .hero .script{font-size:30px}
+  .hero h1{font-size:28px}
+  .hero p{font-size:15px}
+  .hero .acts .btn{flex:1;justify-content:center;white-space:nowrap;padding:12px 10px;font-size:13px}
+  .tiles{grid-template-columns:repeat(2,1fr);gap:8px}
+  .tile{aspect-ratio:1/0.82}
+  .tile .t b{font-size:15px}
+  .toolbar{flex-direction:column;align-items:flex-start}
+  .chips{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{white-space:nowrap;flex:none}
+  .trust{grid-template-columns:1fr 1fr;gap:8px}
+  .trust div{padding:14px}
+  .trust .ico{font-size:24px;margin-bottom:6px}
+  .trust b{font-size:15px}
+  .trust div:last-child{grid-column:1/-1}
+  .story .txt{padding:22px 18px}
+  .story img{min-height:0;height:300px}
+  .nf .box{padding:22px 18px}
+  .rating{flex-wrap:wrap;border-radius:14px}
+  .tray .wrap{flex-wrap:nowrap;gap:8px}
+  .tray .names{display:none}
+  .tray .free{display:none}
+  .tray #clearBtn{display:none}
+  .tray .sum{font-size:16px;flex:1;min-width:0}
+  .tray .btn{padding:11px 16px}
+  .cookie{padding:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  .cookie p{font-size:12px;min-width:0}
+  .cookie .btn{width:100%;justify-content:center}
+  dialog{max-width:calc(100vw - 20px)}
+  .dlg{padding:18px}
+  .dlg .acts .btn{flex:1;justify-content:center}
+}
+@media (max-width:380px){
+  .grid{grid-template-columns:1fr 1fr;gap:8px}
+  .card h3{font-size:14px}
+  .add{width:100%}
+  .trust{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.tile img,.burger span{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div class="strip band"><div class="wrap">Бесплатная доставка по России при заказе <b id="stripFree"></b><span class="strip-more"> · заказ собирается на сайте, подтверждаем в мессенджере</span></div></div>
 
 <header class="top band">
   <div class="wrap">
     <a class="logo" href="#top"><b>Beton Svechi</b><span>by Юлия Смирнова · Казань</span></a>
-    <nav class="menu" aria-label="Разделы">
+    <nav class="menu" id="mainMenu" aria-label="Разделы">
       <a href="#catalog">Каталог</a>
       <a href="#ny">Новый год</a>
       <a href="#wedding">Свадьбы и опт</a>
@@ -227,6 +316,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
       <a href="#about">О мастере</a>
     </nav>
     <button class="basket" type="button" id="basketBtn">Заказ <span class="n" id="basketN">0</span></button>
+    <button class="burger" type="button" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mainMenu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -548,6 +638,7 @@ document.addEventListener("click",e=>{
       k==="wedding"?"Здравствуйте! Нужна партия для события.\nДата: \nКоличество гостей: \nЧто нужно (комплименты, свечи на стол, подсвечники): \nЦвета праздника: \nГород: ":"Здравствуйте! Хочу заказать печать на 3D-принтере.\nЧто нужно: \nРазмер: \nЦвет: \n(картинку пришлю в переписке)");
     return}
 });
+(()=>{const b=$("#burger"),m=$("#mainMenu");b.onclick=()=>{const o=!m.classList.contains("open");m.classList.toggle("open",o);b.setAttribute("aria-expanded",o);b.setAttribute("aria-label",o?"Закрыть меню":"Открыть меню")};m.addEventListener("click",e=>{if(e.target.closest("a")){m.classList.remove("open");b.setAttribute("aria-expanded","false")}})})();
 $("#sendBtn").onclick=$("#basketBtn").onclick=()=>{if(!picked.size){document.getElementById("catalog").scrollIntoView({behavior:"smooth"});return}
   const list=[...picked.values()].map(q=>{const it=ITEMS.find(i=>i.id===q.id);return `<div><span>${it.name} × ${q.qty}</span><b>${it.price==null?"по запросу":rub(it.price*q.qty)}</b></div>`}).join("");
   openDialog("Ваш заказ",orderText(),list)};
@@ -564,3 +655,6 @@ try{JSON.parse(localStorage.getItem("bs-order")||"[]").forEach(q=>{if(ITEMS.some
 renderTiles();renderGrid();renderTray();
 if(/nitiforma/.test(location.hostname)||location.hash==="#nitiforma"){setTimeout(()=>document.getElementById("nitiforma").scrollIntoView({behavior:"smooth"}),300)}
 </script>
+
+</body>
+</html>
