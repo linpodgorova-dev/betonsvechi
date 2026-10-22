@@ -552,4 +552,5 @@ $("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span 
 try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
 try{JSON.parse(localStorage.getItem("bs-order")||"[]").forEach(q=>{if(ITEMS.some(i=>i.id===q.id))picked.set(q.id,q)})}catch(_){}
 renderTiles();renderGrid();renderTray();
+if(/nitiforma/.test(location.hostname)||location.hash==="#nitiforma"){setTimeout(()=>document.getElementById("nitiforma").scrollIntoView({behavior:"smooth"}),300)}
 </script>
