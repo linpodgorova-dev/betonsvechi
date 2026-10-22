@@ -510,7 +510,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 /* ===== НАСТРОЙКИ: заполняются один раз ===== */
 const CONFIG = {
   freeFrom: 3000,          // порог бесплатной доставки, ₽
-  whatsapp: "",            // рабочий номер Юли, только цифры: "79XXXXXXXXX"
+  whatsapp: "79270305366", // рабочий номер Юли, только цифры
   telegram: "",            // ник без @
   instagram: "betonsvechi",
   requisites: "Самозанятая Смирнова Юлия (ИНН добавим перед запуском)"
@@ -650,7 +650,7 @@ $("#cookieOk").onclick=()=>{$("#cookie").hidden=true;try{localStorage.setItem("b
 
 $("#stripFree").textContent="от "+rub(CONFIG.freeFrom);
 $("#freeText").textContent="от "+rub(CONFIG.freeFrom);
-$("#fWa").innerHTML=CONFIG.whatsapp?`WhatsApp: <span class="copy">+${CONFIG.whatsapp}</span>`:"WhatsApp: номер для заказов появится перед запуском";
+$("#fWa").innerHTML=CONFIG.whatsapp?`WhatsApp: <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener">+7 927 030-53-66</a>`:"WhatsApp: номер для заказов появится перед запуском";
 $("#fTg").innerHTML=CONFIG.telegram?`Telegram: @${CONFIG.telegram}`:"";
 $("#reviewsEmpty").hidden=REVIEWS.length>0;$("#facts").hidden=REVIEWS.length>0;$("#ratingBox").hidden=REVIEWS.length===0;$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
 try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
