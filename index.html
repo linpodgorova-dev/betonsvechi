@@ -351,6 +351,17 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   .trust .ico{font-size:22px}
 }
 @media (max-width:380px){.aromas{grid-template-columns:1fr}}
+
+.feat{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.feat-ph{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;min-width:0;padding-bottom:6px;scrollbar-width:thin}
+.feat-ph img{flex:0 0 62%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;scroll-snap-align:start;display:block}
+.feat-txt{min-width:0}
+.feat-quote{font-family:var(--f-serif);font-style:italic;font-size:18px;line-height:1.45;margin:0 0 12px}
+.feat-txt p{color:var(--muted)}
+.feat-meta{font-size:13px}
+.feat-buy{display:flex;align-items:center;gap:14px;margin-top:6px}
+.feat-buy .add{margin:0}
+@media (max-width:760px){.feat{grid-template-columns:minmax(0,1fr);padding:12px;gap:14px}.feat-ph img{flex-basis:80%}.feat-quote{font-size:16px}}
 @media (prefers-reduced-motion:reduce){.tile img,.burger span{transition:none}}
 </style>
 </head>
@@ -405,6 +416,27 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     <div class="chips" id="chips"></div>
   </div>
   <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="irisy-new" style="padding-top:0"><div class="wrap">
+  <div class="feat">
+    <div class="feat-ph" tabindex="0" aria-label="Фото свечи Ирисы">
+      <img src="img/irisy-1.jpg" alt="Три свечи Ирисы в бетоне разных оттенков рядом с цветами ирисов" loading="lazy">
+      <img src="img/irisy-3.jpg" alt="Свеча Ирисы в руке на фоне леса" loading="lazy">
+      <img src="img/irisy-2.jpg" alt="Стопки бетонных стаканов с рельефом ирисов" loading="lazy">
+      <img src="img/irisy-6.jpg" alt="Чёрная свеча Ирисы" loading="lazy">
+      <img src="img/irisy-4.jpg" alt="Светлый бетонный стакан с ирисами крупным планом" loading="lazy">
+      <img src="img/irisy-5.jpg" alt="Стаканы Ирисы как кашпо с цветами на полке" loading="lazy">
+    </div>
+    <div class="feat-txt">
+      <span class="badge hit" style="position:static;display:inline-block">Новинка</span>
+      <h2 class="h2" style="margin-top:10px">Свеча «Ирисы»</h2>
+      <p class="feat-quote">«Я живу в лесу. И эта свеча мой бетонный дневник. 520 мл и три огня. Холодная банка и тёплый свет внутри. Как я. Как мой лес».</p>
+      <p>Огонь в ней не дрожит, он дышит, глубоко и ровно. Она стоит на столе и молчит, но каждый, кто её видит, тянется рукой провести по этим ирисам. Это не просто большая свеча на три фитиля, это частичка дома Юлии, которая согреет ваш.</p>
+      <p class="feat-meta">520 мл · 3 фитиля · бетон, ручная заливка · после свечи стакан служит кашпо</p>
+      <div class="feat-buy"><span class="price" style="margin:0">2 300 ₽</span><button class="add" type="button" data-id="irisy" aria-pressed="false">В заказ</button></div>
+    </div>
+  </div>
 </div></section>
 
 <section id="aromas" class="band bg2"><div class="wrap">
@@ -626,6 +658,7 @@ const ITEMS = [
   {id:"shar-bant",cat:"ny",name:"Свеча-шар с бантом",d:"Рифлёный шар с атласным бантом.",price:null},
   {id:"banka-ny",cat:"ny",name:"Свеча в банке, зимний аромат",d:"Соевая свеча в тёмной банке с новогодней этикеткой.",price:null},
   {id:"olen-zelenyi",cat:"ny",name:"Подсвечник «Олень»",d:"Плоский олень под чайную свечу.",price:null},
+  {id:"irisy",cat:"beton",name:"Свеча «Ирисы»",d:"Большая свеча в бетоне с рельефом ирисов, 520 мл, три фитиля.",price:2300,badges:["Новинка"]},
   {id:"szhigai-mosty",cat:"beton",name:"«Сжигай мосты»",d:"Авторская форма с надписью, свеча в бетонном стакане.",price:null,badges:["Хит","Авторская"]},
   {id:"stakan-beton",cat:"beton",name:"Свеча в стакане Beton Svechi",d:"Классический бетонный стакан с соевой свечой.",price:null},
   {id:"serdce-beton",cat:"beton",name:"Сердце в бетоне",d:"Тёмное бетонное сердце со свечой.",price:null},
@@ -710,7 +743,8 @@ function renderAromas(){
   $("#aromaChips").innerHTML=AROMA_FAM.map(([k,l])=>`<button class="chip" type="button" data-afam="${k}" aria-pressed="${aFam===k}">${l}</button>`).join("");
   $("#aromaGrid").innerHTML=AROMAS.filter(a=>aFam==="all"||a.f===aFam).map(a=>`<div class="aroma"><b>${a.n}</b><span>${a.t}</span></div>`).join("");
 }
-function renderMagic(){
+function renderFeat(){const b=document.querySelector('#irisy-new .add'); if(b){const on=picked.has("irisy"); b.setAttribute("aria-pressed",on); b.textContent=on?"В заказе ✓":"В заказ";}}
+function renderMagic(){renderFeat();
   $("#magicList").innerHTML=ITEMS.filter(i=>i.cat==="magic").map(it=>`<div class="mg${it.id==="m-clean"?" first":""}">${it.img?`<img class="mg-img" src="img/${it.img}.jpg" alt="${it.name}" loading="lazy">`:""}<div class="mg-t"><b>${it.name}</b>${it.d?`<span>${it.d}</span>`:""}${it.long?`<details class="mg-more"><summary>Подробнее</summary><p>${it.long}</p></details>`:""}</div><button class="add" type="button" data-id="${it.id}" aria-pressed="${picked.has(it.id)}">${picked.has(it.id)?"В заказе ✓":"999 ₽ · В заказ"}</button></div>`).join("");
 }
 function renderTray(){
