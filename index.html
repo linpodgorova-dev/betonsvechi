@@ -325,7 +325,12 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 .magic-list{display:grid;gap:8px}
 .mg{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(247,240,228,.07);border:1px solid rgba(247,240,228,.18);border-radius:10px;padding:10px 12px}
 .mg.first{border-color:var(--flame)}
-.mg-t{min-width:0}
+.mg-t{min-width:0;flex:1}
+.mg-img{width:56px;height:56px;border-radius:8px;object-fit:cover;flex:none}
+.mg-more summary{cursor:pointer;font-size:12px;color:var(--flame);margin-top:4px}
+.mg-more p{font-size:13px;color:var(--wax);margin:6px 0 0;line-height:1.5}
+.magic-ph{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.magic-ph img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:10px;max-width:100%}
 .mg-t b{display:block;font-size:14px;font-weight:600}
 .mg-t span{font-size:12px;color:var(--wax);opacity:.85}
 .mg .add{margin:0;flex:none;background:var(--flame);color:var(--dark)}
@@ -464,6 +469,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
       <h2 class="h2">Наборы для ритуалов</h2>
       <p class="lead">В набор входят 18 свечей с травами, камни, подставка и описание полной работы. Юлия советует начинать с очистки: там целый ритуал.</p>
       <p class="magic-price">Каждый набор 999 ₽</p>
+      <div class="magic-ph"><img src="img/magic-1.jpg" alt="Набор зелёных магических свечей с травами в коробке"><img src="img/magic-2.jpg" alt="Коробка Beton Svechi для набора магических свечей"><img src="img/magic-3.jpg" alt="Набор коричневых свечей для медитации с травами и подставкой"></div>
     </div>
     <div class="magic-list" id="magicList"></div>
   </div>
@@ -631,10 +637,10 @@ const ITEMS = [
   {id:"m-love",cat:"magic",name:"Привлечение любви и жизненной энергии",d:"",price:999,badges:[]},
   {id:"m-wish",cat:"magic",name:"Исполнение желания и дружба",d:"",price:999,badges:[]},
   {id:"m-eye",cat:"magic",name:"Защита от сглаза",d:"",price:999,badges:[]},
-  {id:"m-money",cat:"magic",name:"Привлечение денег и удачи",d:"",price:999,badges:[]},
+  {id:"m-money",cat:"magic",name:"Привлечение денег и удачи",d:"зелёные свечи",img:"magic-1",price:999,badges:[]},
   {id:"m-clean",cat:"magic",name:"Очистка пространства от негатива",d:"с неё Юлия советует начинать",price:999,badges:["Начать с него"]},
-  {id:"m-meditate",cat:"magic",name:"Медитация и гармония успокоения",d:"лимитированная серия",price:999,badges:["Лимит"]},
-  {id:"m-rod",cat:"magic",name:"Сила рода",d:"лимитированная серия",price:999,badges:["Лимит"]},
+  {id:"m-meditate",cat:"magic",name:"Медитация и гармония успокоения",d:"лимитированная серия",img:"magic-3",price:999,badges:["Лимит"],long:"Пожалуй, самая востребованная свеча в наше динамичное время. Всем нужно уметь остановиться, выдохнуть и насладиться моментом. Свеча вылита из пчелиного воска с травами и лавандой. Лучше всего зажигать вечером, перед сном, чтобы успокоить мысли и расслабиться после трудового дня."},
+  {id:"m-rod",cat:"magic",name:"Сила рода",d:"лимитированная серия · пламя, объединяющее поколения",price:999,badges:["Лимит"],long:"В суете дней мы часто забываем о главном источнике силы, о своём Роде. Предки это корни, которые питают, защищают и направляют. Зажжение родовой свечи это древний ритуал, который помогает почувствовать связь со своим родом и опору. Зачем: чувство защиты и того, что ты не один; прилив сил и уверенности; помощь в самореализации, ведь таланты часто подарок рода; возможность разорвать повторяющиеся трудные семейные сценарии."},
   {id:"m-balance",cat:"magic",name:"Набор «Баланс»",d:"все базовые наборы по 3 свечи, для пробы и знакомства",price:999,badges:[]},
   {id:"blagovonia",cat:"decor",name:"Подставка для благовоний",d:"Гипс, округлые формы.",price:null},
   {id:"ladoni",cat:"decor",name:"Подставки-ладони",d:"Для колец и мелочей.",price:null},
@@ -693,7 +699,7 @@ function renderAromas(){
   $("#aromaGrid").innerHTML=AROMAS.filter(a=>aFam==="all"||a.f===aFam).map(a=>`<div class="aroma"><b>${a.n}</b><span>${a.t}</span></div>`).join("");
 }
 function renderMagic(){
-  $("#magicList").innerHTML=ITEMS.filter(i=>i.cat==="magic").map(it=>`<div class="mg${it.id==="m-clean"?" first":""}"><div class="mg-t"><b>${it.name}</b>${it.d?`<span>${it.d}</span>`:""}</div><button class="add" type="button" data-id="${it.id}" aria-pressed="${picked.has(it.id)}">${picked.has(it.id)?"В заказе ✓":"999 ₽ · В заказ"}</button></div>`).join("");
+  $("#magicList").innerHTML=ITEMS.filter(i=>i.cat==="magic").map(it=>`<div class="mg${it.id==="m-clean"?" first":""}">${it.img?`<img class="mg-img" src="img/${it.img}.jpg" alt="${it.name}" loading="lazy">`:""}<div class="mg-t"><b>${it.name}</b>${it.d?`<span>${it.d}</span>`:""}${it.long?`<details class="mg-more"><summary>Подробнее</summary><p>${it.long}</p></details>`:""}</div><button class="add" type="button" data-id="${it.id}" aria-pressed="${picked.has(it.id)}">${picked.has(it.id)?"В заказе ✓":"999 ₽ · В заказ"}</button></div>`).join("");
 }
 function renderTray(){
   $("#tray").hidden=picked.size===0; $("#basketN").textContent=picked.size;
