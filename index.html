@@ -514,7 +514,7 @@ const CONFIG = {
   freeFrom: 3000,          // порог бесплатной доставки, ₽
   whatsapp: "79270305366", // рабочий номер Юли, только цифры
   telegram: "+79270305366", // ник без @ или номер с плюсом
-  max: "",                // ссылка на профиль MAX вида https://max.ru/u/... (из приложения: Настройки → Пригласить друзей)
+  max: "https://max.ru/u/f9LHodD0cOJWSwLeEifZkTKCYafrt1Ot6b02UwBvpQJVuqPtiF9GdDWKGpQ",                // ссылка на профиль MAX вида https://max.ru/u/... (из приложения: Настройки → Пригласить друзей)
   maxPhone: "+7 906 328-00-58",
   instagram: "betonsvechi",
   requisites: "Самозанятая Смирнова Юлия (ИНН добавим перед запуском)"
@@ -627,7 +627,7 @@ function openDialog(title,text,list){
   if(CONFIG.max)acts.push(`<a class="btn ink" href="${CONFIG.max}" target="_blank" rel="noopener">Открыть MAX</a>`);
   acts.push(`<button class="btn ghost" type="button" id="copyBtn">Скопировать текст</button>`);
   $("#dlgActs").innerHTML=acts.join("");
-  $("#dlgNote").textContent=CONFIG.whatsapp||CONFIG.telegram?"В Telegram текст не подставится сам: скопируйте и вставьте его в чат."+(CONFIG.maxPhone?" Удобнее MAX? Напишите на номер "+CONFIG.maxPhone+" (только сообщения, звонки по основному номеру +7 927 030-53-66).":""):"Номер для заказов появится здесь перед запуском. Пока скопируйте текст и отправьте в директ @"+CONFIG.instagram+".";
+  $("#dlgNote").textContent=CONFIG.whatsapp||CONFIG.telegram?"В Telegram текст не подставится сам: скопируйте и вставьте его в чат."+(CONFIG.maxPhone?" В MAX тоже: скопируйте текст и вставьте в чат. MAX только для сообщений, звонки по номеру +7 927 030-53-66.":""):"Номер для заказов появится здесь перед запуском. Пока скопируйте текст и отправьте в директ @"+CONFIG.instagram+".";
   const wa=$("#waLink"); if(wa){const upd=()=>{wa.href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent($("#msg").value)};upd();$("#msg").oninput=upd;
     wa.onclick=e=>{if(!$("#agree").checked){e.preventDefault();toast("Поставьте галочку согласия")}}}
   $("#copyBtn").onclick=()=>{const v=$("#msg").value;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast("Скопировано"),()=>{$("#msg").select();toast("Выделите и скопируйте текст")})};
