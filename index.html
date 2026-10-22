@@ -299,19 +299,64 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   .add{width:100%}
   .trust{grid-template-columns:1fr}
 }
+
+/* opt details */
+.opt{margin:0 0 20px;border:1px solid var(--flame);border-radius:12px;background:rgba(216,154,78,.1)}
+.opt summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px}
+.opt summary::-webkit-details-marker{display:none}
+.opt-t{font-family:var(--f-serif);font-size:20px}
+.opt-t b{color:var(--flame);font-weight:500}
+.opt-i{font-size:22px;color:var(--flame);transition:transform .2s}
+.opt[open] .opt-i{transform:rotate(45deg)}
+.opt-b{padding:0 16px 14px;font-size:14px;color:var(--wax)}
+.opt-b p{margin:0 0 8px}
+.opt-free{background:rgba(247,240,228,.08);border-radius:8px;padding:10px 12px}
+.opt-free b{color:var(--flame)}
+/* aromas */
+.aromas{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.aroma{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+.aroma b{display:block;font-family:var(--f-serif);font-weight:500;font-size:17px;margin-bottom:4px}
+.aroma span{font-size:13px;color:var(--muted)}
+/* magic */
+.magic{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start;background:var(--brown);color:var(--cream);border-radius:var(--r);padding:32px}
+.magic .lead{color:var(--wax)}
+.script-h{font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px}
+.magic-price{font-family:var(--f-serif);font-size:26px;color:var(--flame);margin:0}
+.magic-list{display:grid;gap:8px}
+.mg{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(247,240,228,.07);border:1px solid rgba(247,240,228,.18);border-radius:10px;padding:10px 12px}
+.mg.first{border-color:var(--flame)}
+.mg-t{min-width:0}
+.mg-t b{display:block;font-size:14px;font-weight:600}
+.mg-t span{font-size:12px;color:var(--wax);opacity:.85}
+.mg .add{margin:0;flex:none;background:var(--flame);color:var(--dark)}
+.mg .add[aria-pressed="true"]{background:var(--cream);color:var(--dark)}
+@media (max-width:760px){
+  .magic{grid-template-columns:1fr;padding:22px 16px}
+  .mg{flex-direction:column;align-items:flex-start}
+  .mg .add{width:100%}
+  #aromaChips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .aromas{grid-template-columns:1fr 1fr;gap:8px}
+  .aroma{padding:10px}
+  .aroma b{font-size:15px}
+  .aroma span{font-size:12px}
+  .trust .ico{font-size:22px}
+}
+@media (max-width:380px){.aromas{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.tile img,.burger span{transition:none}}
 </style>
 </head>
 <body>
 
 
-<div class="strip band"><div class="wrap">Бесплатная доставка по России при заказе <b id="stripFree"></b><span class="strip-more"> · заказ собирается на сайте, подтверждаем в мессенджере</span></div></div>
+<div class="strip band"><div class="wrap">Бесплатная доставка в пункт Ozon при заказе <b id="stripFree"></b><span class="strip-more"> · заказ собирается на сайте, подтверждаем в мессенджере</span></div></div>
 
 <header class="top band">
   <div class="wrap">
     <a class="logo" href="#top"><b>Beton Svechi</b><span>by Юлия Смирнова · Казань</span></a>
     <nav class="menu" id="mainMenu" aria-label="Разделы">
       <a href="#catalog">Каталог</a>
+      <a href="#aromas">Ароматы</a>
+      <a href="#magic">Магические свечи</a>
       <a href="#ny">Новый год</a>
       <a href="#wedding">Свадьбы и опт</a>
       <a href="#delivery">Доставка</a>
@@ -329,7 +374,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     <div class="txt">
       <p class="script">ручная работа</p>
       <h1>Свечи в бетоне и гипсе с характером</h1>
-      <p>Юлия сама рисует формы, заливает бетон и гипс и варит свечи. Каждую позицию можно повторить в вашем цвете. Выберите изделия, соберите заказ и отправьте одним сообщением.</p>
+      <p>Юлия сама изготавливает формы, заливает бетон и гипс и варит свечи. Каждую позицию можно повторить в вашем цвете. Выберите изделия, соберите заказ и отправьте одним сообщением.</p>
       <div class="acts">
         <a class="btn primary" href="#catalog">Смотреть каталог</a>
         <a class="btn ghost" href="#ny">Новогодние наборы</a>
@@ -353,13 +398,20 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   <div class="grid" id="grid"></div>
 </div></section>
 
-<section class="band bg2"><div class="wrap">
+<section id="aromas" class="band bg2"><div class="wrap">
+  <h2 class="h2">Ароматы <span class="arrow">›</span></h2>
+  <p class="lead">Любую ароматическую свечу можно заказать в любом из <span id="aromaN"></span> ароматов. Напишите название аромата в заказе.</p>
+  <div class="chips" id="aromaChips" style="margin-bottom:16px"></div>
+  <div class="aromas" id="aromaGrid"></div>
+</div></section>
+
+<section class="band"><div class="wrap">
   <div class="trust">
-    <div><div class="ico">формы</div><b>Авторские формы</b><p>Юлия рисует их сама и печатает на 3D-принтере, поэтому таких свечей больше ни у кого нет.</p></div>
+    <div><div class="ico">формы</div><b>Авторские формы</b><p>Юлия изготавливает их сама и печатает на 3D-принтере, поэтому таких свечей больше ни у кого нет.</p></div>
     <div><div class="ico">цвет</div><b>Любой цвет под заказ</b><p>Бетон, гипс и воск красятся на этапе заливки. Назовите оттенок, подберём под интерьер или свадьбу.</p></div>
-    <div><div class="ico">руки</div><b>Ручная заливка</b><p>Каждое изделие заливается и шлифуется вручную в мастерской в Казани.</p></div>
-    <div><div class="ico">воск</div><b>Чистый состав</b><p>Соевый воск и хлопковый фитиль. Горит ровно, без копоти и резкого запаха.</p></div>
-    <div><div class="ico">гости</div><b>Партии для событий</b><p>Свадебные комплименты и корпоративные подарки от 45 ₽ за штуку.</p></div>
+    <div><div class="ico">вручную</div><b>Ручная заливка</b><p>Каждое изделие заливается и шлифуется вручную в мастерской в Казани.</p></div>
+    <div><div class="ico">воск</div><b>Чистый состав</b><p>Соевый и пчелиный воск, хлопковый или деревянный фитиль. Горит ровно, без копоти и резкого запаха.</p></div>
+    <div><div class="ico">для гостей на торжество</div><b>Партии для событий</b><p>Свадебные комплименты и корпоративные подарки от 45 ₽ за штуку.</p></div>
   </div>
 </div></section>
 
@@ -367,12 +419,13 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   <div class="delivery">
     <div>
       <h2 class="h2">Доставка <span class="arrow">›</span></h2>
-      <p class="big">Бесплатно по России при заказе <em id="freeText"></em></p>
-      <p class="lead">Ниже порога доставка считается по тарифу СДЭК или Почты России и добавляется к заказу после подтверждения.</p>
+      <p class="big">Бесплатно в пункт выдачи Ozon при заказе <em id="freeText"></em></p>
+      <p class="lead">Ниже порога и другими службами доставка оплачивается по тарифу службы и добавляется к заказу после подтверждения.</p>
     </div>
     <ul class="dl">
       <li><b>Казань</b><span>Самовывоз из мастерской или курьер по договорённости.</span></li>
-      <li><b>Россия</b><span>СДЭК, Почта России, Boxberry. Срок 2–7 дней после отправки.</span></li>
+      <li><b>Россия</b><span>Яндекс Доставка, Ozon или 5Post. СДЭК по желанию, по отдельному тарифу.</span></li>
+      <li><b>Бесплатно</b><span>В пункт выдачи Ozon при заказе от порога выше.</span></li>
       <li><b>Упаковка</b><span>Бетон и гипс хрупкие, поэтому каждое изделие едет в плотной коробке с наполнителем.</span></li>
       <li><b>Сроки</b><span>Наличие отправляем за 1–2 дня. Под заказ и в вашем цвете: 5–10 дней.</span></li>
     </ul>
@@ -384,16 +437,35 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     <div class="txt">
       <p class="script" style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">для событий</p>
       <h2 class="h2">Свадьбы, корпоративы, опт</h2>
-      <p style="color:var(--wax);max-width:56ch">Комплименты гостям от 45 ₽ за штуку, свечи и бонбоньерки в цвете вашего праздника, подсвечники на столы. Собираем партию под дату и палитру. Для магазинов и студий есть оптовые условия.</p>
+      <p style="color:var(--wax);max-width:56ch">Комплименты гостям от 45 ₽ за штуку, свечи в цвете вашего праздника, подсвечники на столы. Собираем партию под дату и палитру. Для бизнеса есть оптовые условия и бесплатные наклейки с вашим логотипом.</p>
       <ul class="nf-list" style="margin-top:14px">
-        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Свадебные комплименты</b>сердечки, кубики, бонбоньерки</li>
+        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Свадебные комплименты</b>сердечки, кубики</li>
         <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Сервировка</b>столовые свечи и подсвечники</li>
-        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Корпоративные подарки</b>наборы с вашей открыткой</li>
-        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Опт</b>для магазинов и флористов</li>
+        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Корпоративные подарки</b>наборы с вашим логотипом, дизайнерские наклейки под вас</li>
       </ul>
+      <details class="opt" open>
+        <summary><span class="opt-t">Опт <b>от 50 штук</b></span><span class="opt-i" aria-hidden="true">+</span></summary>
+        <div class="opt-b">
+          <p>Небольшие и средние партии от 50 штук по оптовой цене. Крупный опт, количество и сроки обсуждаем отдельно.</p>
+          <p class="opt-free"><b>Бесплатно для опта:</b> дизайнер изготовит брендированные наклейки индивидуально под вас. Логотип, пожелание, текст, аббревиатура, ваш сленг, что угодно.</p>
+          <p class="opt-who">Для кого: магазины и флористы, турагентства, косметологи, парикмахеры и визажисты, врачи и клиники, салоны и студии.</p>
+        </div>
+      </details>
       <button class="btn primary" type="button" data-custom="wedding">Рассчитать партию</button>
     </div>
-    <img src="img/bonboniery.jpg" alt="Бонбоньерки в рифлёных гипсовых стаканах с золотыми крышками" style="width:100%;border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;max-width:100%">
+    <img src="img/bonboniery.jpg" alt="Свечи в рифлёных гипсовых стаканах с золотыми крышками" style="width:100%;border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;max-width:100%">
+  </div>
+</div></section>
+
+<section id="magic"><div class="wrap">
+  <div class="magic">
+    <div class="magic-txt">
+      <p class="script-h">магические свечи</p>
+      <h2 class="h2">Наборы для ритуалов</h2>
+      <p class="lead">В набор входят 18 свечей с травами, камни, подставка и описание полной работы. Юлия советует начинать с очистки: там целый ритуал.</p>
+      <p class="magic-price">Каждый набор 999 ₽</p>
+    </div>
+    <div class="magic-list" id="magicList"></div>
   </div>
 </div></section>
 
@@ -402,8 +474,8 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     <div class="txt">
       <p style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">история</p>
       <h2 class="h2">Мастерская Юлии Смирновой</h2>
-      <p>Всё началось с одной формы, нарисованной для себя. Сейчас в мастерской больше двух тысяч позиций и цветов: стаканы из бетона, фигурные свечи, гипсовый декор и свечи с надписями, которые хочется подарить с намёком.</p>
-      <p>Я рисую формы сама и печатаю их на 3D-принтере, а бетон, гипс и воск заливаю вручную. Поэтому любую свечу можно повторить в другом цвете, а свадебную партию собрать под вашу палитру.</p>
+      <p>Всё началось с одной формы, сделанной для себя. Сейчас в мастерской больше двух тысяч позиций и цветов: стаканы из бетона, формовые свечи, гипсовый декор и свечи с надписями, которые хочется подарить с намёком.</p>
+      <p>Я сама изготавливаю формы и печатаю их на 3D-принтере, а бетон, гипс и воск заливаю вручную. Поэтому любую свечу можно повторить в другом цвете, а свадебную партию собрать под вашу палитру.</p>
       <div class="courses">
         <div><b>Курс по свечеварению</b>как варить и заливать свечи дома</div>
         <div><b>Курс по гипсу и бетону</b>формы, заливка, обработка</div>
@@ -431,11 +503,9 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     <div class="txt">
       <p style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">нитиформа</p>
       <h2 class="h2">Декор на 3D-принтере</h2>
-      <p class="lead" style="margin-bottom:0">Подсвечники, подставки, фигурки и детали интерьера, которых нет в магазинах. Каталог наполняется, а сделать что-то своё можно уже сейчас.</p>
+      <p class="lead" style="margin-bottom:0">Предметы интерьера, которых нет в магазинах. Каталог наполняется, а сделать что-то своё можно уже сейчас.</p>
       <ul class="nf-list">
-        <li><b>Грибочки</b>подсвечники и фигурки</li>
-        <li><b>Знаки зодиака</b>подставки под свечу и камень</li>
-        <li><b>Пожухлые цветы</b>сухоцветы, которые не осыпаются</li>
+        <li><b>Предметы интерьера</b>различный декор для дома</li>
         <li><b>Лампы и рамки</b>абажуры, ночники, рамки</li>
       </ul>
     </div>
@@ -524,10 +594,10 @@ const CONFIG = {
 const CATS = [
   ["ny","Новый год","nabor-ded-moroz","наборы, ёлки, снежинки"],
   ["beton","Свечи в бетоне","szhigai-mosty","стаканы и надписи"],
-  ["figure","Фигурные свечи","narcissy","цветы, фрукты, торсы"],
+  ["figure","Формовые свечи","narcissy","цветы, фрукты, фигуры"],
   ["table","Столовые свечи","vitye-bant","витые и конусы"],
   ["wedding","Свадьба и гости","serdechki","комплименты от 45 ₽"],
-  ["decor","Декор из бетона","lico-podsvechnik","подсвечники, подставки"]
+  ["decor","Декор из бетона","ladoni","подставки"]
 ];
 const ITEMS = [
   {id:"nabor-ded-moroz",cat:"ny",name:"Набор «Дед Мороз»",d:"Гипсовый Дед Мороз, свечи-снежинки и пряник в крафтовой коробке с бантом.",price:null,badges:["Новинка","Набор"]},
@@ -556,13 +626,22 @@ const ITEMS = [
   {id:"konusnye",cat:"table",name:"Свечи-конусы",d:"Разные цвета под сервировку.",price:null},
   {id:"serdechki",cat:"wedding",name:"Сердечки для гостей",d:"Мини-свечи в индивидуальной упаковке.",price:45,from:true,badges:["Опт"]},
   {id:"kubiki",cat:"wedding",name:"Свечи-кубики",d:"Комплименты гостям под цвет праздника.",price:null},
-  {id:"bonboniery",cat:"wedding",name:"Бонбоньерки",d:"Рифлёные гипсовые стаканы с золотой крышкой.",price:null,badges:["Хит"]},
+  {id:"bonboniery",cat:"wedding",name:"Свечи в рифлёных стаканах",d:"Гипсовые стаканы со свечой и золотой крышкой.",price:null,badges:["Хит"]},
+  {id:"m-calm",cat:"magic",name:"Умиротворение и внутренняя духовность",d:"спокойствие, которого нам так не хватает",price:999,badges:[]},
+  {id:"m-love",cat:"magic",name:"Привлечение любви и жизненной энергии",d:"",price:999,badges:[]},
+  {id:"m-wish",cat:"magic",name:"Исполнение желания и дружба",d:"",price:999,badges:[]},
+  {id:"m-eye",cat:"magic",name:"Защита от сглаза",d:"",price:999,badges:[]},
+  {id:"m-money",cat:"magic",name:"Привлечение денег и удачи",d:"",price:999,badges:[]},
+  {id:"m-clean",cat:"magic",name:"Очистка пространства от негатива",d:"с неё Юлия советует начинать",price:999,badges:["Начать с него"]},
+  {id:"m-meditate",cat:"magic",name:"Медитация и гармония успокоения",d:"лимитированная серия",price:999,badges:["Лимит"]},
+  {id:"m-rod",cat:"magic",name:"Сила рода",d:"лимитированная серия",price:999,badges:["Лимит"]},
+  {id:"m-balance",cat:"magic",name:"Набор «Баланс»",d:"все базовые наборы по 3 свечи, для пробы и знакомства",price:999,badges:[]},
   {id:"blagovonia",cat:"decor",name:"Подставка для благовоний",d:"Гипс, округлые формы.",price:null},
   {id:"ladoni",cat:"decor",name:"Подставки-ладони",d:"Для колец и мелочей.",price:null},
-  {id:"lico-podsvechnik",cat:"decor",name:"Подсвечник «Лицо»",d:"Бетонное лицо с рожками.",price:null},
-  {id:"utka",cat:"decor",name:"Уточка со свечой",d:"Бетон, воск внутри.",price:null},
-  {id:"tulen",cat:"decor",name:"Тюлень со свечой",d:"Серый бетон.",price:null},
-  {id:"olen-belyi",cat:"decor",name:"Олень белый",d:"Гипсовая фигурка.",price:null}
+  {id:"lico-podsvechnik",cat:"figure",name:"Лесная фея-берегиня",d:"Формовая свеча.",price:null},
+  {id:"utka",cat:"figure",name:"Уточка",d:"Формовая свеча.",price:null},
+  {id:"tulen",cat:"figure",name:"Тюлень",d:"Формовая свеча.",price:null},
+  {id:"olen-belyi",cat:"figure",name:"Олень белый",d:"Формовая свеча.",price:null}
 ];
 /* Отзывы: примеры формата. Заменить на реальные из переписок. */
 /* Реальные отзывы из сторис и директа @betonsvechi. Формат: {n:"Имя", t:"текст", s:"источник"} */
@@ -581,7 +660,7 @@ const picked=new Map(); let cat="all";
 const POL={
   privacy:`<h3>Политика конфиденциальности</h3><p>Сайт не собирает персональные данные автоматически. Файлы cookie используются только для работы сайта и запоминания выбранных товаров в вашем браузере. Имя и контакт вы передаёте сами, когда отправляете заказ в мессенджер, и они используются только для связи по этому заказу. Данные не передаются третьим лицам, кроме служб доставки для отправки посылки.</p><p>Оператор: ${CONFIG.requisites}. Запрос на удаление данных можно отправить в любой из контактов внизу сайта.</p>`,
   consent:`<h3>Согласие на обработку персональных данных</h3><p>Отправляя заказ, вы даёте согласие на обработку имени, номера телефона или ника в мессенджере и адреса доставки для выполнения заказа. Согласие действует до его отзыва; отозвать его можно сообщением в любой из контактов внизу сайта.</p>`,
-  offer:`<h3>Условия заказа</h3><p>Заказ считается принятым после подтверждения в мессенджере. Изделия под заказ и в индивидуальном цвете изготавливаются 5–10 дней, предоплата 50%. Бетон и гипс являются натуральными материалами: небольшие поры, оттенки и неровности это особенность ручной работы, а не брак. Бесплатная доставка по России при заказе от ${rub(CONFIG.freeFrom)}.</p>`,
+  offer:`<h3>Условия заказа</h3><p>Заказ считается принятым после подтверждения в мессенджере. Изделия под заказ и в индивидуальном цвете изготавливаются 5–10 дней, предоплата 50%. Бетон и гипс являются натуральными материалами: небольшие поры, оттенки и неровности это особенность ручной работы, а не брак. Бесплатная доставка в пункт выдачи Ozon при заказе от ${rub(CONFIG.freeFrom)}. Доставка Яндексом, Ozon, 5Post; СДЭК по отдельному тарифу.</p>`,
   requisites:`<h3>Реквизиты</h3><p>${CONFIG.requisites}. Город: Казань.</p>`,
   care:`<h3>Как ухаживать за свечой</h3><p>Перед первым зажиганием дайте свече постоять сутки после доставки. Первый раз жгите, пока воск не расплавится по всей поверхности, тогда не будет туннеля. Подрезайте фитиль до 5–7 мм. Тушите, накрывая пламя, а не задувая. Бетонный стакан после свечи можно отмыть и использовать под кашпо или карандашницу.</p>`
 };
@@ -595,7 +674,7 @@ function renderTiles(){
   $("#fCats").innerHTML=CATS.map(c=>`<li><a href="#catalog" data-cat="${c[0]}">${c[1]}</a></li>`).join("");
 }
 function renderGrid(){
-  $("#grid").innerHTML=ITEMS.filter(i=>cat==="all"||i.cat===cat).map(it=>`
+  $("#grid").innerHTML=ITEMS.filter(i=>i.cat!=="magic"&&(cat==="all"||i.cat===cat)).map(it=>`
    <article class="card">
      <div class="ph"><img src="img/${it.id}.jpg" alt="${it.name}" loading="lazy">${badges(it)}</div>
      ${price(it)}
@@ -605,6 +684,17 @@ function renderGrid(){
    </article>`).join("");
 }
 function total(){let s=0,unk=0;picked.forEach(q=>{const it=ITEMS.find(i=>i.id===q.id);if(it.price==null)unk++;else s+=it.price*q.qty});return{s,unk}}
+const AROMA_FAM=[["all","Все"],["winter","Зимние"],["gourmand","Сладкие"],["fruit","Фрукты и цветы"],["fresh","Свежие"],["wood","Древесные и пряные"]];
+const AROMAS=[{"f": "winter", "n": "Вечер у камина", "t": "пачули, мёд, амбра, ладан, гвоздика, кедр, шафран, мускатный орех"}, {"f": "winter", "n": "Рождественский вечер", "t": "эвкалипт, шалфей, дым, пачули, сандал, можжевельник, карамель"}, {"f": "winter", "n": "Имбирный пряник", "t": "имбирь, ваниль, корица, гвоздика, мускат, карамель, гречишный мёд, сливочное масло"}, {"f": "winter", "n": "Пряный глинтвейн", "t": "сицилийский апельсин, мускатный орех, ливанский кедр, корица, гвоздика, бадьян"}, {"f": "winter", "n": "Новогодняя ёлочка", "t": "цедра лимона, сибирская пихта, еловые шишки, мох, ладан, кедр, пачули"}, {"f": "winter", "n": "Лесной снег", "t": "камфора, озон, мята, шалфей, кипарис, эвкалипт, можжевельник, ладан, кедр"}, {"f": "winter", "n": "Мандарин", "t": "цитрусовая цедра, мандарин, тропические фрукты, ваниль"}, {"f": "gourmand", "n": "Груша в карамели", "t": "ванильный сахар, груша дюшес, красное яблоко, мята, жасмин, карамель"}, {"f": "gourmand", "n": "Тыквенное суфле", "t": "цедра лимона, тростниковый сахар, тыква, кленовый сироп, корица, ваниль"}, {"f": "gourmand", "n": "Сливочная солёная ириска", "t": "ваниль, морская соль, топлёное молоко, ириска, макадамия, мёд, сливки"}, {"f": "gourmand", "n": "Карамельный попкорн", "t": "сливочное масло, морская соль, попкорн, кокос, ваниль, карамель"}, {"f": "gourmand", "n": "Мамино какао", "t": "шоколадный пломбир, марципан, маршмеллоу, сливки, ваниль, брауни"}, {"f": "gourmand", "n": "Абрикосовый конфитюр", "t": "розовая вода, табачный лист, тутовник, белая слива, абрикос, липа"}, {"f": "gourmand", "n": "Лимонный тарт", "t": "цедра лимона, лайм, цукаты, дамасская роза, карамель, сливки"}, {"f": "gourmand", "n": "Bubble gum", "t": "клубника, персик, дюшес, ананас, жасмин, карибская ваниль"}, {"f": "gourmand", "n": "Горячий хлеб", "t": "кумин, корочка хлеба, роза, хлеб на гриле, прожаренный тост"}, {"f": "gourmand", "n": "Булочка с корицей", "t": "свежая булочка, молоко, ваниль, тростниковый сахар, корица"}, {"f": "gourmand", "n": "Кленовый пекан", "t": "жареный пекан, кленовый сироп, сливочное масло, ирис, морская соль, пало санто"}, {"f": "gourmand", "n": "Карамельный сникерс", "t": "топлёная карамель, молочный шоколад, ваниль, арахисовая паста, бобы тонка"}, {"f": "gourmand", "n": "Клубничная жвачка со сливками", "t": "алоэ вера, липа, клубника, сахарная вата, бурбонская ваниль, сливки"}, {"f": "gourmand", "n": "Vanila", "t": "бурбонская ваниль, заварной крем, маршмеллоу, кокосовое молоко, сливки, сандал"}, {"f": "gourmand", "n": "Бобы тонка и ваниль", "t": "бурбонская ваниль, сандал, кокосовая вода, ветивер, бобы тонка, сливки"}, {"f": "gourmand", "n": "Кола и вишня", "t": "лайм, десертная вишня, ваниль, листья коки, мускатный орех"}, {"f": "fruit", "n": "Розовое шампанское", "t": "бергамот, дамасская роза, фиалка, гвоздика, кедр"}, {"f": "fruit", "n": "Сочное манго", "t": "белый персик, лимон, манго, чернослив, плюмерия, гвоздика, ваниль"}, {"f": "fruit", "n": "Белый персик", "t": "белый персик, лимонная цедра, манго, груша, морская соль, ванильный сахар"}, {"f": "fruit", "n": "Ванильный персик", "t": "бергамот, чёрная смородина, цветы, миндаль, персик, мускус, ваниль"}, {"f": "fruit", "n": "Просекко и гуава", "t": "гуава, ананас, грейпфрут, просекко, цветы акации, малина, мускус"}, {"f": "fruit", "n": "Малина", "t": "спелая малина"}, {"f": "fruit", "n": "Тосканский виноградник", "t": "яблочный сок, изабелла, мускат, табачный лист, кора"}, {"f": "fruit", "n": "Просто хочу тюльпанов", "t": "цедра лимона, герань, тюльпановые поля, ландыш, элеми, бадьян"}, {"f": "fruit", "n": "Сирень", "t": "листья фиалки, сирень, мёд, глициния, бадьян"}, {"f": "fruit", "n": "Мокрые цветы", "t": "цветочный магазин, тюльпан, мокрая трава, полевые цветы"}, {"f": "fruit", "n": "Дикая жимолость", "t": "зелёные листья, бергамот, жимолость, жасмин, амирис, сандал"}, {"f": "fresh", "n": "Дыня и огурец", "t": "огуречная вода, мята, нектарин, меловая дыня, ваниль, морская соль"}, {"f": "fresh", "n": "Мох и папоротник", "t": "кипарисовый мох, мята, папоротник, бамбук, огурец, морская соль, кедр"}, {"f": "fresh", "n": "Шалфей и морская соль", "t": "грейпфрут, эвкалипт, бергамот, шалфей, можжевельник, амбра, морская соль"}, {"f": "fresh", "n": "Свежескошенная трава", "t": "трава, огурец, алоэ, мох, кактус, лемонграсс, сено, кипрей"}, {"f": "fresh", "n": "Томатный лист", "t": "цедра лимона, сельдерей, томатный лист, ветвь лаванды"}, {"f": "fresh", "n": "Чистый хлопок", "t": "лайм, липа, лаванда, сандал, огуречная вода, морская соль, хлопок"}, {"f": "fresh", "n": "Сладкая соль Босфора", "t": "цедра бергамота, морская соль, йод, амбра, мох"}, {"f": "fresh", "n": "Бергамот", "t": "бергамот, лист инжира, фрезия, зелёный мох, амирис"}, {"f": "fresh", "n": "Лондонский дождь", "t": "базилик, зелёные листья, озон, лилия, роза, жасмин, сандал, бобы тонка"}, {"f": "fresh", "n": "Пляжное бельё", "t": "озон, хлопковый цветок, лён, апельсиновый цвет, ваниль, пудра, сандал"}, {"f": "fresh", "n": "Земля в тумане", "t": "озон, влажная земля, полынь, одуванчики, мокрый асфальт, сухая листва"}, {"f": "wood", "n": "Чёрный перец и кожа", "t": "горький апельсин, чёрный перец, морская соль, розмарин, лаванда, кожа"}, {"f": "wood", "n": "Кожа и сандал", "t": "бергамот, кедровая ветвь, элеми, сандал, кожа"}, {"f": "wood", "n": "Кожа и гранат", "t": "красная смородина, мята, кожура граната, табачный лист, кедр, кожа"}, {"f": "wood", "n": "Антикварная библиотека", "t": "ягоды можжевельника, пачули, табачный лист, роза, сандал, кожа"}, {"f": "wood", "n": "Parfumerie", "t": "мох, бергамот, розовый перец, пачули, ландыш, кожа, ладан, шалфей"}, {"f": "wood", "n": "Сумеречный лес", "t": "влажный лес, ветивер, амбра, сандал, уд, шафран, кардамон, розмарин"}, {"f": "wood", "n": "Ветивер", "t": "бергамот, цедра лимона, кедр, конопля, ветивер, тёмный мускус, амбра"}];
+let aFam="all";
+function renderAromas(){
+  $("#aromaN").textContent=AROMAS.length;
+  $("#aromaChips").innerHTML=AROMA_FAM.map(([k,l])=>`<button class="chip" type="button" data-afam="${k}" aria-pressed="${aFam===k}">${l}</button>`).join("");
+  $("#aromaGrid").innerHTML=AROMAS.filter(a=>aFam==="all"||a.f===aFam).map(a=>`<div class="aroma"><b>${a.n}</b><span>${a.t}</span></div>`).join("");
+}
+function renderMagic(){
+  $("#magicList").innerHTML=ITEMS.filter(i=>i.cat==="magic").map(it=>`<div class="mg${it.id==="m-clean"?" first":""}"><div class="mg-t"><b>${it.name}</b>${it.d?`<span>${it.d}</span>`:""}</div><button class="add" type="button" data-id="${it.id}" aria-pressed="${picked.has(it.id)}">${picked.has(it.id)?"В заказе ✓":"999 ₽ · В заказ"}</button></div>`).join("");
+}
 function renderTray(){
   $("#tray").hidden=picked.size===0; $("#basketN").textContent=picked.size;
   const {s,unk}=total();
@@ -614,7 +704,7 @@ function renderTray(){
   try{localStorage.setItem("bs-order",JSON.stringify([...picked.values()]))}catch(_){}
 }
 function orderText(){
-  const lines=[...picked.values()].map((q,n)=>{const it=ITEMS.find(i=>i.id===q.id);return `${n+1}. ${it.name}, ${q.qty} шт., цвет: базовый${it.price!=null?", "+rub(it.price*q.qty):""}`});
+  const lines=[...picked.values()].map((q,n)=>{const it=ITEMS.find(i=>i.id===q.id);return `${n+1}. ${it.name}, ${q.qty} шт., цвет: базовый, аромат: ${it.cat==="magic"?"по набору":"на выбор"}${it.price!=null?", "+rub(it.price*q.qty):""}`});
   const {s}=total();
   return `Здравствуйте! Хочу заказать:\n${lines.join("\n")}\n${s?"Итого по прайсу: "+rub(s)+"\n":""}Город доставки: \nИмя: `;
 }
@@ -637,10 +727,11 @@ function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTim
 function showPol(k){$("#polBody").innerHTML=POL[k]+'<p style="margin-top:16px"><button class="btn ink" type="button" onclick="document.getElementById(\'pol\').close()">Закрыть</button></p>';try{$("#pol").showModal()}catch(e){$("#pol").setAttribute("open","")}}
 
 document.addEventListener("click",e=>{
+  const af=e.target.closest("[data-afam]"); if(af){aFam=af.dataset.afam;renderAromas();return}
   const cp=e.target.closest("[data-copy]"); if(cp){const v=cp.dataset.copy;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast("Скопировано"),()=>toast(v));return}
   const p=e.target.closest("[data-pol]"); if(p){e.preventDefault();showPol(p.dataset.pol);return}
   const c=e.target.closest("[data-cat]"); if(c){cat=c.dataset.cat;renderTiles();renderGrid();if(c.classList.contains("tile")||c.tagName==="A")document.getElementById("gridTitle").scrollIntoView({behavior:"smooth",block:"start"});return}
-  const a=e.target.closest(".add"); if(a){const id=a.dataset.id;picked.has(id)?picked.delete(id):picked.set(id,{id,qty:1});renderGrid();renderTray();return}
+  const a=e.target.closest(".add"); if(a){const id=a.dataset.id;picked.has(id)?picked.delete(id):picked.set(id,{id,qty:1});renderGrid();renderMagic();renderTray();return}
   const cu=e.target.closest("[data-custom]"); if(cu){
     const k=cu.dataset.custom;
     openDialog(k==="wedding"?"Расчёт партии":"Индивидуальный заказ",
@@ -651,7 +742,7 @@ document.addEventListener("click",e=>{
 $("#sendBtn").onclick=$("#basketBtn").onclick=()=>{if(!picked.size){document.getElementById("catalog").scrollIntoView({behavior:"smooth"});return}
   const list=[...picked.values()].map(q=>{const it=ITEMS.find(i=>i.id===q.id);return `<div><span>${it.name} × ${q.qty}</span><b>${it.price==null?"по запросу":rub(it.price*q.qty)}</b></div>`}).join("");
   openDialog("Ваш заказ",orderText(),list)};
-$("#clearBtn").onclick=()=>{picked.clear();renderGrid();renderTray()};
+$("#clearBtn").onclick=()=>{picked.clear();renderGrid();renderMagic();renderTray()};
 $("#cookieOk").onclick=()=>{$("#cookie").hidden=true;try{localStorage.setItem("bs-cookie","1")}catch(_){}};
 
 $("#stripFree").textContent="от "+rub(CONFIG.freeFrom);
@@ -662,7 +753,7 @@ $("#fTg").innerHTML=CONFIG.telegram?`Telegram: <a href="https://t.me/${CONFIG.te
 $("#reviewsEmpty").hidden=REVIEWS.length>0;$("#facts").hidden=REVIEWS.length>0;$("#ratingBox").hidden=REVIEWS.length===0;$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
 try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
 try{JSON.parse(localStorage.getItem("bs-order")||"[]").forEach(q=>{if(ITEMS.some(i=>i.id===q.id))picked.set(q.id,q)})}catch(_){}
-renderTiles();renderGrid();renderTray();
+renderTiles();renderGrid();renderAromas();renderMagic();renderTray();
 if(/nitiforma/.test(location.hostname)||location.hash==="#nitiforma"){setTimeout(()=>document.getElementById("nitiforma").scrollIntoView({behavior:"smooth"}),300)}
 </script>
 
