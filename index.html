@@ -318,7 +318,8 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 .aroma b{display:block;font-family:var(--f-serif);font-weight:500;font-size:17px;margin-bottom:4px}
 .aroma span{font-size:13px;color:var(--muted)}
 /* magic */
-.magic{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start;background:var(--brown);color:var(--cream);border-radius:var(--r);padding:32px}
+.magic-txt,.magic-list{min-width:0}
+.magic{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px;align-items:start;background:var(--brown);color:var(--cream);border-radius:var(--r);padding:32px}
 .magic .lead{color:var(--wax)}
 .script-h{font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px}
 .magic-price{font-family:var(--f-serif);font-size:26px;color:var(--flame);margin:0}
@@ -329,14 +330,17 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 .mg-img{width:56px;height:56px;border-radius:8px;object-fit:cover;flex:none}
 .mg-more summary{cursor:pointer;font-size:12px;color:var(--flame);margin-top:4px}
 .mg-more p{font-size:13px;color:var(--wax);margin:6px 0 0;line-height:1.5}
-.magic-ph{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
-.magic-ph img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:10px;max-width:100%}
+.magic-ph{display:flex;gap:8px;margin-top:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin}
+.magic-ph figure{margin:0;flex:0 0 46%;scroll-snap-align:start}
+.magic-ph img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:10px;display:block}
+.magic-ph figcaption{font-size:12px;color:var(--wax);margin-top:4px}
 .mg-t b{display:block;font-size:14px;font-weight:600}
 .mg-t span{font-size:12px;color:var(--wax);opacity:.85}
 .mg .add{margin:0;flex:none;background:var(--flame);color:var(--dark)}
 .mg .add[aria-pressed="true"]{background:var(--cream);color:var(--dark)}
 @media (max-width:760px){
-  .magic{grid-template-columns:1fr;padding:22px 16px}
+  .magic{grid-template-columns:minmax(0,1fr);padding:22px 16px}
+  .magic-ph figure{flex-basis:62%}
   .mg{flex-direction:column;align-items:flex-start}
   .mg .add{width:100%}
   #aromaChips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
@@ -469,7 +473,15 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
       <h2 class="h2">Наборы для ритуалов</h2>
       <p class="lead">В набор входят 18 свечей с травами, камни, подставка и описание полной работы. Юлия советует начинать с очистки: там целый ритуал.</p>
       <p class="magic-price">Каждый набор 999 ₽</p>
-      <div class="magic-ph"><img src="img/magic-1.jpg" alt="Набор зелёных магических свечей с травами в коробке"><img src="img/magic-2.jpg" alt="Коробка Beton Svechi для набора магических свечей"><img src="img/magic-3.jpg" alt="Набор коричневых свечей для медитации с травами и подставкой"></div>
+      <div class="magic-ph" tabindex="0" aria-label="Фото наборов">
+        <figure><img src="img/magic2-8.jpg" alt="Сплетённая из двух свечей ритуальная свеча Сила рода горит на зелёной подставке" loading="lazy"><figcaption>Сила рода: две свечи, сплетённые вручную</figcaption></figure>
+        <figure><img src="img/magic2-9.jpg" alt="Набор Сила рода: сиреневые свечи с травами, камень и подставка в коробке" loading="lazy"><figcaption>Набор «Сила рода»</figcaption></figure>
+        <figure><img src="img/magic2-6.jpg" alt="Набор зелёных свечей для привлечения денег и удачи" loading="lazy"><figcaption>Деньги и удача</figcaption></figure>
+        <figure><img src="img/magic-3.jpg" alt="Набор коричневых свечей для медитации с травами и подставкой" loading="lazy"><figcaption>Медитация</figcaption></figure>
+        <figure><img src="img/magic2-1.jpg" alt="Микс-набор разноцветных свечей с подставками и открыткой" loading="lazy"><figcaption>Микс-набор</figcaption></figure>
+        <figure><img src="img/magic2-4.jpg" alt="Гипсовые подставки для магических свечей и тонкие свечи" loading="lazy"><figcaption>Подставки к свечам</figcaption></figure>
+        <figure><img src="img/magic2-2.jpg" alt="Подписанные коробки наборов: деньги и удача, защита от сглаза, очищение" loading="lazy"><figcaption>Каждый набор подписан</figcaption></figure>
+      </div>
     </div>
     <div class="magic-list" id="magicList"></div>
   </div>
@@ -637,10 +649,10 @@ const ITEMS = [
   {id:"m-love",cat:"magic",name:"Привлечение любви и жизненной энергии",d:"",price:999,badges:[]},
   {id:"m-wish",cat:"magic",name:"Исполнение желания и дружба",d:"",price:999,badges:[]},
   {id:"m-eye",cat:"magic",name:"Защита от сглаза",d:"",price:999,badges:[]},
-  {id:"m-money",cat:"magic",name:"Привлечение денег и удачи",d:"зелёные свечи",img:"magic-1",price:999,badges:[]},
+  {id:"m-money",cat:"magic",name:"Привлечение денег и удачи",d:"зелёные свечи",img:"magic2-6",price:999,badges:[]},
   {id:"m-clean",cat:"magic",name:"Очистка пространства от негатива",d:"с неё Юлия советует начинать",price:999,badges:["Начать с него"]},
   {id:"m-meditate",cat:"magic",name:"Медитация и гармония успокоения",d:"лимитированная серия",img:"magic-3",price:999,badges:["Лимит"],long:"Пожалуй, самая востребованная свеча в наше динамичное время. Всем нужно уметь остановиться, выдохнуть и насладиться моментом. Свеча вылита из пчелиного воска с травами и лавандой. Лучше всего зажигать вечером, перед сном, чтобы успокоить мысли и расслабиться после трудового дня."},
-  {id:"m-rod",cat:"magic",name:"Сила рода",d:"лимитированная серия · пламя, объединяющее поколения",price:999,badges:["Лимит"],long:"В суете дней мы часто забываем о главном источнике силы, о своём Роде. Предки это корни, которые питают, защищают и направляют. Зажжение родовой свечи это древний ритуал, который помогает почувствовать связь со своим родом и опору. Зачем: чувство защиты и того, что ты не один; прилив сил и уверенности; помощь в самореализации, ведь таланты часто подарок рода; возможность разорвать повторяющиеся трудные семейные сценарии."},
+  {id:"m-rod",cat:"magic",name:"Сила рода",d:"лимитированная серия · сиреневые свечи, пламя, объединяющее поколения",img:"magic2-9",price:999,badges:["Лимит"],long:"В суете дней мы часто забываем о главном источнике силы, о своём Роде. Предки это корни, которые питают, защищают и направляют. Зажжение родовой свечи это древний ритуал, который помогает почувствовать связь со своим родом и опору. Зачем: чувство защиты и того, что ты не один; прилив сил и уверенности; помощь в самореализации, ведь таланты часто подарок рода; возможность разорвать повторяющиеся трудные семейные сценарии."},
   {id:"m-balance",cat:"magic",name:"Набор «Баланс»",d:"все базовые наборы по 3 свечи, для пробы и знакомства",price:999,badges:[]},
   {id:"blagovonia",cat:"decor",name:"Подставка для благовоний",d:"Гипс, округлые формы.",price:null},
   {id:"ladoni",cat:"decor",name:"Подставки-ладони",d:"Для колец и мелочей.",price:null},
