@@ -1,0 +1,555 @@
+<title>Beton Svechi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Marck+Script&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: Ucandles structure (top strip, header, category tiles, product grid, trust blocks, story, reviews, footer) in the Beton Svechi brand palette from the carousels */
+:root{
+  --cream:#F7F0E4; --wax:#E8D5B8; --flame:#D89A4E; --brown-mid:#6E4A28; --brown:#2B1E15; --dark:#1a1310;
+  --bg:var(--cream); --bg2:#efe5d4; --card:#fffaf2; --fg:var(--brown); --muted:#7a6553; --line:#dccbb0;
+  --ink-btn:var(--brown); --ink-btn-fg:var(--cream); --ok:#3e7a3a;
+  --f-serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --f-script:"Marck Script",cursive;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:var(--dark); --bg2:#241a14; --card:#2b2019; --fg:var(--cream); --muted:#c9b59a; --line:#3f3128;
+  --ink-btn:var(--flame); --ink-btn-fg:var(--dark); --ok:#9ad08f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:var(--dark); --bg2:#241a14; --card:#2b2019; --fg:var(--cream); --muted:#c9b59a; --line:#3f3128;
+  --ink-btn:var(--flame); --ink-btn-fg:var(--dark); --ok:#9ad08f; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--brown)}
+.wrap{max-width:1240px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--flame);outline-offset:2px}
+h1,h2,h3{text-wrap:balance}
+.serif{font-family:var(--f-serif);font-weight:500}
+.h2{font-family:var(--f-serif);font-weight:500;font-size:clamp(26px,3.2vw,38px);line-height:1.12;margin:0 0 8px}
+.h2 .arrow{color:var(--muted);font-size:.6em;vertical-align:middle;margin-left:6px}
+.lead{color:var(--muted);max-width:62ch;margin:0 0 24px}
+.band{margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:40px}
+.band.bg2{background:var(--bg2)}
+.band.brown{background:var(--brown);color:var(--cream)}
+
+/* top strip + header */
+.strip{background:var(--brown);color:var(--wax);text-align:center;font-size:13px;letter-spacing:.02em}
+.strip .wrap{padding-block:8px}
+.strip b{color:var(--flame);font-weight:600}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-block:12px}
+.logo{text-decoration:none;line-height:1}
+.logo b{display:block;font-family:var(--f-serif);font-weight:500;letter-spacing:.22em;font-size:20px;text-transform:uppercase}
+.logo span{display:block;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+nav.menu{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav.menu a{text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:999px}
+nav.menu a:hover{background:var(--bg2)}
+nav.menu a.cta{background:var(--ink-btn);color:var(--ink-btn-fg)}
+.basket{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;background:transparent;border:1px solid var(--line);
+  border-radius:999px;padding:8px 14px;cursor:pointer;color:var(--fg);font-family:inherit}
+.basket .n{background:var(--flame);color:var(--dark);min-width:22px;height:22px;border-radius:999px;display:inline-grid;place-items:center;font-size:12px;font-weight:600}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;background:var(--brown);color:var(--cream);border-radius:var(--r);overflow:hidden;margin-top:24px}
+.hero .txt{padding:44px 40px}
+.hero .script{font-family:var(--f-script);color:var(--flame);font-size:clamp(34px,4.6vw,56px);line-height:1;margin:0 0 6px}
+.hero h1{font-family:var(--f-serif);font-weight:700;font-size:clamp(30px,4.4vw,52px);line-height:1.05;margin:0 0 16px}
+.hero p{color:var(--wax);max-width:46ch;margin:0 0 22px;font-size:16px}
+.hero .acts{display:flex;gap:10px;flex-wrap:wrap}
+.btn{appearance:none;border:0;font:600 14px var(--f-body);padding:12px 20px;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--flame);color:var(--dark)}
+.btn.ink{background:var(--ink-btn);color:var(--ink-btn-fg)}
+.btn.ghost{background:transparent;border:1px solid currentColor}
+.hero .pic{height:100%;min-height:360px}
+.hero .pic img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* category tiles */
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.tile{position:relative;aspect-ratio:1/1.1;border-radius:var(--r);overflow:hidden;cursor:pointer;border:0;padding:0;background:var(--bg2);text-align:left;font-family:inherit;color:#fff}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.tile:hover img{transform:scale(1.04)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(26,19,16,.85),rgba(26,19,16,.05) 60%)}
+.tile .t{position:absolute;left:14px;right:14px;bottom:12px;z-index:1}
+.tile .t b{display:block;font-family:var(--f-serif);font-weight:500;font-size:17px;line-height:1.15}
+.tile .t span{font-size:12px;opacity:.8}
+.tile[aria-pressed="true"]{outline:3px solid var(--flame);outline-offset:2px}
+
+/* product grid */
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 16px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{appearance:none;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 13px var(--f-body);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--brown);border-color:var(--brown);color:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--card);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0;border:1px solid var(--line)}
+.ph{position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:var(--bg2)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.badges{position:absolute;left:8px;top:8px;display:flex;gap:4px;flex-wrap:wrap}
+.badge{background:rgba(43,30,21,.82);color:var(--cream);font-size:11px;font-weight:500;padding:3px 8px;border-radius:6px}
+.badge.hit{background:var(--flame);color:var(--dark)}
+.price{font-family:var(--f-serif);font-size:20px;font-weight:500;margin-top:4px}
+.price small{font-family:var(--f-body);font-size:12px;color:var(--muted);font-weight:400;margin-left:4px}
+.price.tbd{font-family:var(--f-body);font-size:13px;color:var(--muted)}
+.card h3{font-size:15px;font-weight:500;margin:0;line-height:1.3}
+.card .d{font-size:13px;color:var(--muted);margin:0}
+.stock{font-size:12px;color:var(--ok);display:flex;align-items:center;gap:5px}
+.stock::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.add{appearance:none;margin-top:auto;border:0;background:var(--ink-btn);color:var(--ink-btn-fg);font:600 13px var(--f-body);padding:10px 14px;border-radius:999px;cursor:pointer;align-self:flex-start}
+.add[aria-pressed="true"]{background:var(--flame);color:var(--dark)}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.trust div{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;min-width:0}
+.trust .ico{font-family:var(--f-script);color:var(--flame);font-size:30px;line-height:1;margin-bottom:10px}
+.trust b{display:block;font-family:var(--f-serif);font-weight:500;font-size:17px;margin-bottom:6px;line-height:1.2}
+.trust p{margin:0;font-size:13px;color:var(--muted)}
+
+/* delivery */
+.delivery{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center}
+.delivery .big{font-family:var(--f-serif);font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.15;margin:0 0 10px}
+.delivery .big em{font-style:normal;color:var(--flame)}
+.dl{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.dl li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;display:flex;gap:12px;align-items:flex-start}
+.dl li b{white-space:nowrap}
+
+/* story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.story .txt{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px}
+.story .txt p{color:var(--muted);max-width:58ch}
+.story img{width:100%;height:100%;min-height:320px;object-fit:cover;border-radius:var(--r);max-width:100%}
+.courses{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.courses div{border:1px dashed var(--line);border-radius:10px;padding:12px 14px;font-size:13px}
+.courses b{display:block;font-size:14px;margin-bottom:2px}
+
+/* reviews */
+.rating{display:inline-flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:10px 18px;margin:0 0 20px}
+.rating b{font-family:var(--f-serif);font-size:26px;font-weight:500}
+.rating .stars{color:var(--flame);letter-spacing:2px}
+.rating span{font-size:12px;color:var(--muted)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0}
+.rev .who{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.rev .av{width:36px;height:36px;border-radius:50%;background:var(--flame);color:var(--dark);display:grid;place-items:center;font-weight:600}
+.rev .stars{color:var(--flame);font-size:12px;letter-spacing:1px}
+.rev p{margin:0;font-size:14px;color:var(--muted)}
+.rev .src{font-size:11px;color:var(--muted);margin-top:8px;opacity:.8}
+
+/* nitiforma */
+.nf{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.nf .txt h2{margin-bottom:12px}
+.nf-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 20px;padding:0;list-style:none}
+.nf-list li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px}
+.nf-list b{display:block;font-size:14px}
+.nf .box{background:var(--brown);color:var(--cream);border-radius:var(--r);padding:32px}
+.nf .box .script{font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 8px}
+.nf .box h3{font-family:var(--f-serif);font-weight:500;font-size:26px;margin:0 0 10px}
+.nf .box p{color:var(--wax);margin:0 0 18px;font-size:14px}
+
+/* footer */
+footer{padding-block:36px 110px}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:24px}
+.fgrid h4{font-size:13px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14px}
+.fgrid a{text-decoration:none}
+.fgrid a:hover{text-decoration:underline}
+.legal{border-top:1px solid var(--line);margin-top:28px;padding-top:16px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+.legal .links{display:flex;gap:16px;flex-wrap:wrap}
+.copy{display:inline-flex;gap:6px;align-items:center}
+.copy button{appearance:none;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:6px;font:12px var(--f-body);padding:2px 8px;cursor:pointer}
+
+/* cookie + tray + dialogs */
+.cookie{position:fixed;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;
+  background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;box-shadow:0 10px 30px rgba(26,19,16,.25);max-width:1240px;margin:0 auto}
+.cookie p{margin:0;flex:1;min-width:240px;font-size:13px}
+.cookie .pd{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.cookie a{color:var(--flame)}
+.tray{position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--brown);color:var(--cream);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.tray .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tray .sum{font-family:var(--f-serif);font-size:18px}
+.tray .names{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.75;font-size:13px}
+.tray .free{font-size:12px;color:var(--flame)}
+dialog{border:0;border-radius:var(--r);padding:0;max-width:min(560px,calc(100vw - 32px));width:100%;background:var(--card);color:var(--fg)}
+dialog::backdrop{background:rgba(26,19,16,.6)}
+.dlg{padding:24px;display:flex;flex-direction:column;gap:12px}
+.dlg h3{font-family:var(--f-serif);font-weight:500;font-size:24px;margin:0}
+.dlg .list{display:grid;gap:6px;font-size:14px}
+.dlg .list div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:4px 0}
+.dlg textarea{width:100%;min-height:150px;font:13px/1.5 ui-monospace,Menlo,monospace;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);resize:vertical}
+.dlg label.chk{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--muted)}
+.dlg .acts{display:flex;flex-wrap:wrap;gap:8px}
+.dlg .note{font-size:12px;color:var(--muted);margin:0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(90px + env(safe-area-inset-bottom,0px));background:var(--flame);color:var(--dark);padding:8px 14px;border-radius:999px;font-size:13px;z-index:60}
+.pol{padding:24px;max-height:70vh;overflow:auto;font-size:14px}
+.pol h3{font-family:var(--f-serif);font-weight:500;font-size:22px;margin:0 0 12px}
+.pol p{color:var(--muted)}
+
+@media (max-width:980px){
+  .tiles{grid-template-columns:repeat(3,1fr)}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .reviews{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .hero,.delivery,.story,.nf{grid-template-columns:1fr}
+  .hero .txt{padding:28px 20px}
+  .hero .pic{min-height:240px}
+  nav.menu{margin-left:0;width:100%}
+  .trust{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .card{padding:8px}
+  .card .d{display:none}
+  .fgrid{grid-template-columns:1fr}
+  .courses,.nf-list{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.tile img{transition:none}}
+</style>
+
+<div class="strip band"><div class="wrap">Бесплатная доставка по России при заказе <b id="stripFree"></b> · заказ собирается на сайте, подтверждаем в мессенджере</div></div>
+
+<header class="top band">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>Beton Svechi</b><span>by Юлия · Казань</span></a>
+    <nav class="menu" aria-label="Разделы">
+      <a href="#catalog">Каталог</a>
+      <a href="#ny">Новый год</a>
+      <a href="#wedding">Свадьбы и опт</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#nitiforma">Нитиформа 3D</a>
+      <a href="#about">О мастере</a>
+    </nav>
+    <button class="basket" type="button" id="basketBtn">Заказ <span class="n" id="basketN">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap">
+  <div class="hero">
+    <div class="txt">
+      <p class="script">ручная работа</p>
+      <h1>Свечи в бетоне и гипсе с характером</h1>
+      <p>Юлия сама рисует формы, заливает бетон и гипс и варит свечи. Каждую позицию можно повторить в вашем цвете. Выберите изделия, соберите заказ и отправьте одним сообщением.</p>
+      <div class="acts">
+        <a class="btn primary" href="#catalog">Смотреть каталог</a>
+        <a class="btn ghost" href="#ny">Новогодние наборы</a>
+      </div>
+    </div>
+    <div class="pic"><img src="img/szhigai-mosty.jpg" alt="Свеча в бетонном стакане с надписью «Сжигай мосты» в руке"></div>
+  </div>
+</div>
+
+<section id="catalog"><div class="wrap">
+  <h2 class="h2">Каталог <span class="arrow">›</span></h2>
+  <p class="lead">Нажмите на раздел, чтобы отфильтровать. Цена указана за одно изделие в базовом цвете.</p>
+  <div class="tiles" id="tiles"></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="toolbar">
+    <h2 class="h2" id="gridTitle" style="margin:0">Все изделия</h2>
+    <div class="chips" id="chips"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="band bg2"><div class="wrap">
+  <div class="trust">
+    <div><div class="ico">формы</div><b>Авторские формы</b><p>Юлия рисует их сама и печатает на 3D-принтере, поэтому таких свечей больше ни у кого нет.</p></div>
+    <div><div class="ico">цвет</div><b>Любой цвет под заказ</b><p>Бетон, гипс и воск красятся на этапе заливки. Назовите оттенок, подберём под интерьер или свадьбу.</p></div>
+    <div><div class="ico">руки</div><b>Ручная заливка</b><p>Каждое изделие заливается и шлифуется вручную в мастерской в Казани.</p></div>
+    <div><div class="ico">воск</div><b>Чистый состав</b><p>Соевый воск и хлопковый фитиль. Горит ровно, без копоти и резкого запаха.</p></div>
+    <div><div class="ico">гости</div><b>Партии для событий</b><p>Свадебные комплименты и корпоративные подарки от 45 ₽ за штуку.</p></div>
+  </div>
+</div></section>
+
+<section id="delivery"><div class="wrap">
+  <div class="delivery">
+    <div>
+      <h2 class="h2">Доставка <span class="arrow">›</span></h2>
+      <p class="big">Бесплатно по России при заказе <em id="freeText"></em></p>
+      <p class="lead">Ниже порога доставка считается по тарифу СДЭК или Почты России и добавляется к заказу после подтверждения.</p>
+    </div>
+    <ul class="dl">
+      <li><b>Казань</b><span>Самовывоз из мастерской или курьер по договорённости.</span></li>
+      <li><b>Россия</b><span>СДЭК, Почта России, Boxberry. Срок 2–7 дней после отправки.</span></li>
+      <li><b>Упаковка</b><span>Бетон и гипс хрупкие, поэтому каждое изделие едет в плотной коробке с наполнителем.</span></li>
+      <li><b>Сроки</b><span>Наличие отправляем за 1–2 дня. Под заказ и в вашем цвете: 5–10 дней.</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="wedding" class="band brown"><div class="wrap">
+  <div class="nf">
+    <div class="txt">
+      <p class="script" style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">для событий</p>
+      <h2 class="h2">Свадьбы, корпоративы, опт</h2>
+      <p style="color:var(--wax);max-width:56ch">Комплименты гостям от 45 ₽ за штуку, свечи и бонбоньерки в цвете вашего праздника, подсвечники на столы. Собираем партию под дату и палитру. Для магазинов и студий есть оптовые условия.</p>
+      <ul class="nf-list" style="margin-top:14px">
+        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Свадебные комплименты</b>сердечки, кубики, бонбоньерки</li>
+        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Сервировка</b>столовые свечи и подсвечники</li>
+        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Корпоративные подарки</b>наборы с вашей открыткой</li>
+        <li style="background:rgba(247,240,228,.08);border-color:rgba(247,240,228,.2)"><b>Опт</b>для магазинов и флористов</li>
+      </ul>
+      <button class="btn primary" type="button" data-custom="wedding">Рассчитать партию</button>
+    </div>
+    <img src="img/bonboniery.jpg" alt="Бонбоньерки в рифлёных гипсовых стаканах с золотыми крышками" style="width:100%;border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;max-width:100%">
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap">
+  <div class="story">
+    <div class="txt">
+      <p style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">история</p>
+      <h2 class="h2">Мастерская Юлии</h2>
+      <p>Всё началось с одной формы, нарисованной для себя. Сейчас в мастерской больше двух тысяч позиций и цветов: стаканы из бетона, фигурные свечи, гипсовый декор и свечи с надписями, которые хочется подарить с намёком.</p>
+      <p>Я рисую формы сама и печатаю их на 3D-принтере, а бетон, гипс и воск заливаю вручную. Поэтому любую свечу можно повторить в другом цвете, а свадебную партию собрать под вашу палитру.</p>
+      <div class="courses">
+        <div><b>Курс по свечеварению</b>как варить и заливать свечи дома</div>
+        <div><b>Курс по гипсу и бетону</b>формы, заливка, обработка</div>
+      </div>
+    </div>
+    <img src="img/master.jpg" alt="Юлия за рабочим столом со свечами">
+  </div>
+</div></section>
+
+<section class="band bg2"><div class="wrap">
+  <h2 class="h2">Нас выбирают за свечи, которые запоминают</h2>
+  <p class="lead">Отзывы покупателей из переписок и соцсетей. Когда появится карточка на Яндекс Картах, рейтинг подтянется сюда.</p>
+  <div class="rating"><b>5,0</b><span class="stars">★★★★★</span><span>по отзывам в Instagram</span></div>
+  <div class="reviews" id="reviews"></div>
+</div></section>
+
+<section id="nitiforma"><div class="wrap">
+  <div class="nf">
+    <div class="txt">
+      <p style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">нитиформа</p>
+      <h2 class="h2">Декор на 3D-принтере</h2>
+      <p class="lead" style="margin-bottom:0">Подсвечники, подставки, фигурки и детали интерьера, которых нет в магазинах. Каталог наполняется, а сделать что-то своё можно уже сейчас.</p>
+      <ul class="nf-list">
+        <li><b>Грибочки</b>подсвечники и фигурки</li>
+        <li><b>Знаки зодиака</b>подставки под свечу и камень</li>
+        <li><b>Пожухлые цветы</b>сухоцветы, которые не осыпаются</li>
+        <li><b>Лампы и рамки</b>абажуры, ночники, рамки</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p class="script">индивидуальный заказ</p>
+      <h3>Пришлите картинку или идею</h3>
+      <p>Юлия скажет, получится ли напечатать, в каком цвете и сколько это будет стоить.</p>
+      <button class="btn primary" type="button" data-custom="3d">Обсудить идею</button>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="band bg2"><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="#top" style="margin-bottom:10px;display:block"><b>Beton Svechi</b><span>by Юлия · Казань</span></a>
+      <ul>
+        <li id="fWa"></li>
+        <li id="fTg"></li>
+        <li>Instagram: <span class="copy">@betonsvechi</span></li>
+        <li>Мастерская: Казань</li>
+      </ul>
+    </div>
+    <div><h4>Каталог</h4><ul id="fCats"></ul></div>
+    <div><h4>Покупателям</h4><ul>
+      <li><a href="#delivery">Доставка и оплата</a></li>
+      <li><a href="#wedding">Свадьбы и опт</a></li>
+      <li><a href="#" data-pol="care">Как ухаживать за свечой</a></li>
+      <li><a href="#about">Курсы</a></li>
+    </ul></div>
+    <div><h4>Информация</h4><ul>
+      <li><a href="#" data-pol="privacy">Политика конфиденциальности</a></li>
+      <li><a href="#" data-pol="consent">Согласие на обработку данных</a></li>
+      <li><a href="#" data-pol="offer">Условия заказа</a></li>
+      <li><a href="#" data-pol="requisites">Реквизиты</a></li>
+    </ul></div>
+  </div>
+  <div class="legal">
+    <span>© 2026 Beton Svechi. Все изображения и формы авторские, копирование без разрешения запрещено.</span>
+    <span class="links"><a href="#" data-pol="privacy">Конфиденциальность</a><a href="#" data-pol="consent">Персональные данные</a><a href="#" data-pol="offer">Оферта</a></span>
+  </div>
+</div></footer>
+
+<div class="cookie" id="cookie" hidden>
+  <p>Мы используем файлы cookie, чтобы сайт работал корректно и запоминал ваш заказ. Продолжая пользоваться сайтом, вы соглашаетесь с <a href="#" data-pol="privacy">Политикой конфиденциальности</a> и даёте <a href="#" data-pol="consent">согласие на обработку персональных данных</a>.</p>
+  <button class="btn ink" type="button" id="cookieOk">Принять</button>
+</div>
+
+<div class="tray" id="tray" hidden><div class="wrap">
+  <span class="sum" id="traySum"></span>
+  <span class="names" id="trayNames"></span>
+  <span class="free" id="trayFree"></span>
+  <button class="btn ghost" type="button" id="clearBtn" style="color:var(--cream)">Очистить</button>
+  <button class="btn primary" type="button" id="sendBtn">Оформить заказ</button>
+</div></div>
+
+<dialog id="dlg"><form class="dlg" method="dialog" id="dlgForm">
+  <h3 id="dlgTitle">Ваш заказ</h3>
+  <div class="list" id="dlgList"></div>
+  <label class="note" for="msg">Текст сообщения, можно поправить перед отправкой</label>
+  <textarea id="msg"></textarea>
+  <label class="chk"><input type="checkbox" id="agree" checked> Отправляя заказ, я соглашаюсь на обработку персональных данных (имя и контакт) для связи по заказу.</label>
+  <div class="acts" id="dlgActs"></div>
+  <p class="note" id="dlgNote"></p>
+  <button class="btn ghost" value="close" type="submit">Закрыть</button>
+</form></dialog>
+<dialog id="pol"><div class="pol" id="polBody"></div></dialog>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ===== НАСТРОЙКИ: заполняются один раз ===== */
+const CONFIG = {
+  freeFrom: 3000,          // порог бесплатной доставки, ₽
+  whatsapp: "",            // рабочий номер Юли, только цифры: "79XXXXXXXXX"
+  telegram: "",            // ник без @
+  instagram: "betonsvechi",
+  requisites: "Самозанятая Юлия (ФИО и ИНН добавим перед запуском)"
+};
+
+/* ===== КАТАЛОГ. price: число в ₽ или null, пока не указана ===== */
+const CATS = [
+  ["ny","Новый год","nabor-ded-moroz","наборы, ёлки, снежинки"],
+  ["beton","Свечи в бетоне","szhigai-mosty","стаканы и надписи"],
+  ["figure","Фигурные свечи","narcissy","цветы, фрукты, торсы"],
+  ["table","Столовые свечи","vitye-bant","витые и конусы"],
+  ["wedding","Свадьба и гости","serdechki","комплименты от 45 ₽"],
+  ["decor","Декор из бетона","lico-podsvechnik","подсвечники, подставки"]
+];
+const ITEMS = [
+  {id:"nabor-ded-moroz",cat:"ny",name:"Набор «Дед Мороз»",d:"Гипсовый Дед Мороз, свечи-снежинки и пряник в крафтовой коробке с бантом.",price:null,badges:["Новинка","Набор"]},
+  {id:"ded-moroz-krasnyi",cat:"ny",name:"Дед Мороз в красной шапке",d:"Гипс, ручная роспись.",price:null,badges:["Хит"]},
+  {id:"ded-moroz-belyi",cat:"ny",name:"Дед Мороз белый",d:"Гипс без росписи.",price:null},
+  {id:"elki",cat:"ny",name:"Свечи-ёлки",d:"Высокие свечи-ёлки, зелёные и белые с золотом.",price:null,badges:["Хит"]},
+  {id:"snezhinki",cat:"ny",name:"Свечи-снежинки",d:"Плоские снежинки для стола и наборов.",price:null},
+  {id:"shar-bant",cat:"ny",name:"Свеча-шар с бантом",d:"Рифлёный шар с атласным бантом.",price:null},
+  {id:"banka-ny",cat:"ny",name:"Свеча в банке, зимний аромат",d:"Соевая свеча в тёмной банке с новогодней этикеткой.",price:null},
+  {id:"olen-zelenyi",cat:"ny",name:"Подсвечник «Олень»",d:"Плоский олень под чайную свечу.",price:null},
+  {id:"szhigai-mosty",cat:"beton",name:"«Сжигай мосты»",d:"Авторская форма с надписью, свеча в бетонном стакане.",price:null,badges:["Хит","Авторская"]},
+  {id:"stakan-beton",cat:"beton",name:"Свеча в стакане Beton Svechi",d:"Классический бетонный стакан с соевой свечой.",price:null},
+  {id:"serdce-beton",cat:"beton",name:"Сердце в бетоне",d:"Тёмное бетонное сердце со свечой.",price:null},
+  {id:"rakushka",cat:"beton",name:"Ракушка",d:"Бетонная ракушка с воском.",price:null},
+  {id:"torsy",cat:"figure",name:"Свечи-торсы",d:"Шоколадные и молочные оттенки.",price:null,badges:["Хит"]},
+  {id:"narcissy",cat:"figure",name:"Нарциссы",d:"Свечи-цветы, горят как фонарики.",price:null},
+  {id:"rozy",cat:"figure",name:"Розы",d:"Пудровые оттенки.",price:null},
+  {id:"popkorn",cat:"figure",name:"Попкорн",d:"Свеча в полосатом стаканчике.",price:null,badges:["Новинка"]},
+  {id:"chesnok",cat:"figure",name:"Чеснок",d:"Головки чеснока, очень похожие.",price:null},
+  {id:"klubnika",cat:"figure",name:"Клубника",d:"Ягоды для летнего стола.",price:null},
+  {id:"yabloki",cat:"figure",name:"Яблоки",d:"Красиво горят группой.",price:null},
+  {id:"grushi",cat:"figure",name:"Груши",d:"Зелёные свечи-груши.",price:null},
+  {id:"vitye-bant",cat:"table",name:"Витые свечи с бантом",d:"Молочные столовые свечи с бантами.",price:null,badges:["Хит"]},
+  {id:"vitye",cat:"table",name:"Витые столовые",d:"Спокойные оттенки под любой подсвечник.",price:null},
+  {id:"krasnye-stolovye",cat:"table",name:"Красные волнистые",d:"Акцент для праздничного стола.",price:null},
+  {id:"konusnye",cat:"table",name:"Свечи-конусы",d:"Разные цвета под сервировку.",price:null},
+  {id:"serdechki",cat:"wedding",name:"Сердечки для гостей",d:"Мини-свечи в индивидуальной упаковке.",price:45,from:true,badges:["Опт"]},
+  {id:"kubiki",cat:"wedding",name:"Свечи-кубики",d:"Комплименты гостям под цвет праздника.",price:null},
+  {id:"bonboniery",cat:"wedding",name:"Бонбоньерки",d:"Рифлёные гипсовые стаканы с золотой крышкой.",price:null,badges:["Хит"]},
+  {id:"blagovonia",cat:"decor",name:"Подставка для благовоний",d:"Гипс, округлые формы.",price:null},
+  {id:"ladoni",cat:"decor",name:"Подставки-ладони",d:"Для колец и мелочей.",price:null},
+  {id:"lico-podsvechnik",cat:"decor",name:"Подсвечник «Лицо»",d:"Бетонное лицо с рожками.",price:null},
+  {id:"utka",cat:"decor",name:"Уточка со свечой",d:"Бетон, воск внутри.",price:null},
+  {id:"tulen",cat:"decor",name:"Тюлень со свечой",d:"Серый бетон.",price:null},
+  {id:"olen-belyi",cat:"decor",name:"Олень белый",d:"Гипсовая фигурка.",price:null}
+];
+/* Отзывы: примеры формата. Заменить на реальные из переписок. */
+const REVIEWS = [
+  {n:"Пример отзыва",t:"Сюда вставим реальный отзыв из директа: пара предложений о свече, цвете и упаковке.",s:"Instagram"},
+  {n:"Пример отзыва",t:"Второй отзыв, лучше про свадебную партию или новогодний набор.",s:"WhatsApp"},
+  {n:"Пример отзыва",t:"Третий отзыв, например про «Сжигай мосты» как подарок.",s:"Instagram"}
+];
+
+const $=s=>document.querySelector(s);
+const rub=n=>n.toLocaleString("ru-RU")+" ₽";
+const picked=new Map(); let cat="all";
+const POL={
+  privacy:`<h3>Политика конфиденциальности</h3><p>Сайт не собирает персональные данные автоматически. Файлы cookie используются только для работы сайта и запоминания выбранных товаров в вашем браузере. Имя и контакт вы передаёте сами, когда отправляете заказ в мессенджер, и они используются только для связи по этому заказу. Данные не передаются третьим лицам, кроме служб доставки для отправки посылки.</p><p>Оператор: ${CONFIG.requisites}. Запрос на удаление данных можно отправить в любой из контактов внизу сайта.</p>`,
+  consent:`<h3>Согласие на обработку персональных данных</h3><p>Отправляя заказ, вы даёте согласие на обработку имени, номера телефона или ника в мессенджере и адреса доставки для выполнения заказа. Согласие действует до его отзыва; отозвать его можно сообщением в любой из контактов внизу сайта.</p>`,
+  offer:`<h3>Условия заказа</h3><p>Заказ считается принятым после подтверждения в мессенджере. Изделия под заказ и в индивидуальном цвете изготавливаются 5–10 дней, предоплата 50%. Бетон и гипс являются натуральными материалами: небольшие поры, оттенки и неровности это особенность ручной работы, а не брак. Бесплатная доставка по России при заказе от ${rub(CONFIG.freeFrom)}.</p>`,
+  requisites:`<h3>Реквизиты</h3><p>${CONFIG.requisites}. Город: Казань.</p>`,
+  care:`<h3>Как ухаживать за свечой</h3><p>Перед первым зажиганием дайте свече постоять сутки после доставки. Первый раз жгите, пока воск не расплавится по всей поверхности, тогда не будет туннеля. Подрезайте фитиль до 5–7 мм. Тушите, накрывая пламя, а не задувая. Бетонный стакан после свечи можно отмыть и использовать под кашпо или карандашницу.</p>`
+};
+
+function badges(it){return it.badges?`<div class="badges">${it.badges.map(b=>`<span class="badge ${b==="Хит"?"hit":""}">${b}</span>`).join("")}</div>`:""}
+function price(it){return it.price==null?'<div class="price tbd">цена по запросу</div>':`<div class="price">${it.from?"от ":""}${rub(it.price)}<small>за шт.</small></div>`}
+function renderTiles(){
+  $("#tiles").innerHTML=CATS.map(([k,l,img,sub])=>`<button class="tile" type="button" data-cat="${k}" aria-pressed="${cat===k}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub}</span></div></button>`).join("");
+  $("#chips").innerHTML=[["all","Всё"],...CATS.map(c=>[c[0],c[1]])].map(([k,l])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${cat===k}">${l}</button>`).join("");
+  $("#gridTitle").textContent=cat==="all"?"Все изделия":CATS.find(c=>c[0]===cat)[1];
+  $("#fCats").innerHTML=CATS.map(c=>`<li><a href="#catalog" data-cat="${c[0]}">${c[1]}</a></li>`).join("");
+}
+function renderGrid(){
+  $("#grid").innerHTML=ITEMS.filter(i=>cat==="all"||i.cat===cat).map(it=>`
+   <article class="card">
+     <div class="ph"><img src="img/${it.id}.jpg" alt="${it.name}" loading="lazy">${badges(it)}</div>
+     ${price(it)}
+     <h3>${it.name}</h3><p class="d">${it.d}</p>
+     <span class="stock">${it.price==null?"под заказ, 5–10 дней":"в наличии и под заказ"}</span>
+     <button class="add" type="button" data-id="${it.id}" aria-pressed="${picked.has(it.id)}">${picked.has(it.id)?"В заказе ✓":"В заказ"}</button>
+   </article>`).join("");
+}
+function total(){let s=0,unk=0;picked.forEach(q=>{const it=ITEMS.find(i=>i.id===q.id);if(it.price==null)unk++;else s+=it.price*q.qty});return{s,unk}}
+function renderTray(){
+  $("#tray").hidden=picked.size===0; $("#basketN").textContent=picked.size;
+  const {s,unk}=total();
+  $("#traySum").textContent=(s?rub(s):"")+(unk?(s?" + ":"")+unk+" поз. по запросу":"");
+  $("#trayNames").textContent=[...picked.values()].map(q=>ITEMS.find(i=>i.id===q.id).name).join(", ");
+  $("#trayFree").textContent=s>=CONFIG.freeFrom?"доставка бесплатно":"до бесплатной доставки "+rub(Math.max(0,CONFIG.freeFrom-s));
+  try{localStorage.setItem("bs-order",JSON.stringify([...picked.values()]))}catch(_){}
+}
+function orderText(){
+  const lines=[...picked.values()].map((q,n)=>{const it=ITEMS.find(i=>i.id===q.id);return `${n+1}. ${it.name}, ${q.qty} шт., цвет: базовый${it.price!=null?", "+rub(it.price*q.qty):""}`});
+  const {s}=total();
+  return `Здравствуйте! Хочу заказать:\n${lines.join("\n")}\n${s?"Итого по прайсу: "+rub(s)+"\n":""}Город доставки: \nИмя: `;
+}
+function openDialog(title,text,list){
+  $("#dlgTitle").textContent=title; $("#msg").value=text;
+  $("#dlgList").innerHTML=list||"";
+  const acts=[];
+  if(CONFIG.whatsapp)acts.push(`<a class="btn primary" id="waLink" href="#" target="_blank" rel="noopener">Отправить в WhatsApp</a>`);
+  if(CONFIG.telegram)acts.push(`<a class="btn ink" href="https://t.me/${CONFIG.telegram}" target="_blank" rel="noopener">Открыть Telegram</a>`);
+  acts.push(`<button class="btn ghost" type="button" id="copyBtn">Скопировать текст</button>`);
+  $("#dlgActs").innerHTML=acts.join("");
+  $("#dlgNote").textContent=CONFIG.whatsapp||CONFIG.telegram?"В Telegram текст не подставится сам: скопируйте и вставьте его в чат.":"Номер для заказов появится здесь перед запуском. Пока скопируйте текст и отправьте в директ @"+CONFIG.instagram+".";
+  const wa=$("#waLink"); if(wa){const upd=()=>{wa.href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent($("#msg").value)};upd();$("#msg").oninput=upd;
+    wa.onclick=e=>{if(!$("#agree").checked){e.preventDefault();toast("Поставьте галочку согласия")}}}
+  $("#copyBtn").onclick=()=>{const v=$("#msg").value;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast("Скопировано"),()=>{$("#msg").select();toast("Выделите и скопируйте текст")})};
+  try{$("#dlg").showModal()}catch(e){$("#dlg").setAttribute("open","")}
+}
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+function showPol(k){$("#polBody").innerHTML=POL[k]+'<p style="margin-top:16px"><button class="btn ink" type="button" onclick="document.getElementById(\'pol\').close()">Закрыть</button></p>';try{$("#pol").showModal()}catch(e){$("#pol").setAttribute("open","")}}
+
+document.addEventListener("click",e=>{
+  const p=e.target.closest("[data-pol]"); if(p){e.preventDefault();showPol(p.dataset.pol);return}
+  const c=e.target.closest("[data-cat]"); if(c){cat=c.dataset.cat;renderTiles();renderGrid();if(c.classList.contains("tile")||c.tagName==="A")document.getElementById("gridTitle").scrollIntoView({behavior:"smooth",block:"start"});return}
+  const a=e.target.closest(".add"); if(a){const id=a.dataset.id;picked.has(id)?picked.delete(id):picked.set(id,{id,qty:1});renderGrid();renderTray();return}
+  const cu=e.target.closest("[data-custom]"); if(cu){
+    const k=cu.dataset.custom;
+    openDialog(k==="wedding"?"Расчёт партии":"Индивидуальный заказ",
+      k==="wedding"?"Здравствуйте! Нужна партия для события.\nДата: \nКоличество гостей: \nЧто нужно (комплименты, свечи на стол, подсвечники): \nЦвета праздника: \nГород: ":"Здравствуйте! Хочу заказать печать на 3D-принтере.\nЧто нужно: \nРазмер: \nЦвет: \n(картинку пришлю в переписке)");
+    return}
+});
+$("#sendBtn").onclick=$("#basketBtn").onclick=()=>{if(!picked.size){document.getElementById("catalog").scrollIntoView({behavior:"smooth"});return}
+  const list=[...picked.values()].map(q=>{const it=ITEMS.find(i=>i.id===q.id);return `<div><span>${it.name} × ${q.qty}</span><b>${it.price==null?"по запросу":rub(it.price*q.qty)}</b></div>`}).join("");
+  openDialog("Ваш заказ",orderText(),list)};
+$("#clearBtn").onclick=()=>{picked.clear();renderGrid();renderTray()};
+$("#cookieOk").onclick=()=>{$("#cookie").hidden=true;try{localStorage.setItem("bs-cookie","1")}catch(_){}};
+
+$("#stripFree").textContent="от "+rub(CONFIG.freeFrom);
+$("#freeText").textContent="от "+rub(CONFIG.freeFrom);
+$("#fWa").innerHTML=CONFIG.whatsapp?`WhatsApp: <span class="copy">+${CONFIG.whatsapp}</span>`:"WhatsApp: номер для заказов появится перед запуском";
+$("#fTg").innerHTML=CONFIG.telegram?`Telegram: @${CONFIG.telegram}`:"";
+$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
+try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
+try{JSON.parse(localStorage.getItem("bs-order")||"[]").forEach(q=>{if(ITEMS.some(i=>i.id===q.id))picked.set(q.id,q)})}catch(_){}
+renderTiles();renderGrid();renderTray();
+</script>
