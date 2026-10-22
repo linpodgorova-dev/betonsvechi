@@ -217,7 +217,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 
 <header class="top band">
   <div class="wrap">
-    <a class="logo" href="#top"><b>Beton Svechi</b><span>by Юлия · Казань</span></a>
+    <a class="logo" href="#top"><b>Beton Svechi</b><span>by Юлия Смирнова · Казань</span></a>
     <nav class="menu" aria-label="Разделы">
       <a href="#catalog">Каталог</a>
       <a href="#ny">Новый год</a>
@@ -308,7 +308,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   <div class="story">
     <div class="txt">
       <p style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">история</p>
-      <h2 class="h2">Мастерская Юлии</h2>
+      <h2 class="h2">Мастерская Юлии Смирновой</h2>
       <p>Всё началось с одной формы, нарисованной для себя. Сейчас в мастерской больше двух тысяч позиций и цветов: стаканы из бетона, фигурные свечи, гипсовый декор и свечи с надписями, которые хочется подарить с намёком.</p>
       <p>Я рисую формы сама и печатаю их на 3D-принтере, а бетон, гипс и воск заливаю вручную. Поэтому любую свечу можно повторить в другом цвете, а свадебную партию собрать под вашу палитру.</p>
       <div class="courses">
@@ -320,11 +320,12 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   </div>
 </div></section>
 
-<section class="band bg2"><div class="wrap">
+<section class="band bg2" id="reviewsSec"><div class="wrap">
   <h2 class="h2">Нас выбирают за свечи, которые запоминают</h2>
   <p class="lead">Отзывы покупателей из переписок и соцсетей. Когда появится карточка на Яндекс Картах, рейтинг подтянется сюда.</p>
-  <div class="rating"><b>5,0</b><span class="stars">★★★★★</span><span>по отзывам в Instagram</span></div>
+  <div class="rating" id="ratingBox"><b>5,0</b><span class="stars">★★★★★</span><span>по отзывам в Instagram</span></div>
   <div class="reviews" id="reviews"></div>
+  <p class="lead" id="reviewsEmpty" hidden>Отзывы покупателей скоро появятся здесь. Пока их можно почитать в Instagram <b>@betonsvechi</b>.</p>
 </div></section>
 
 <section id="nitiforma"><div class="wrap">
@@ -353,7 +354,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 <footer class="band bg2"><div class="wrap">
   <div class="fgrid">
     <div>
-      <a class="logo" href="#top" style="margin-bottom:10px;display:block"><b>Beton Svechi</b><span>by Юлия · Казань</span></a>
+      <a class="logo" href="#top" style="margin-bottom:10px;display:block"><b>Beton Svechi</b><span>by Юлия Смирнова · Казань</span></a>
       <ul>
         <li id="fWa"></li>
         <li id="fTg"></li>
@@ -414,7 +415,7 @@ const CONFIG = {
   whatsapp: "",            // рабочий номер Юли, только цифры: "79XXXXXXXXX"
   telegram: "",            // ник без @
   instagram: "betonsvechi",
-  requisites: "Самозанятая Юлия (ФИО и ИНН добавим перед запуском)"
+  requisites: "Самозанятая Смирнова Юлия (ИНН добавим перед запуском)"
 };
 
 /* ===== КАТАЛОГ. price: число в ₽ или null, пока не указана ===== */
@@ -462,11 +463,8 @@ const ITEMS = [
   {id:"olen-belyi",cat:"decor",name:"Олень белый",d:"Гипсовая фигурка.",price:null}
 ];
 /* Отзывы: примеры формата. Заменить на реальные из переписок. */
-const REVIEWS = [
-  {n:"Пример отзыва",t:"Сюда вставим реальный отзыв из директа: пара предложений о свече, цвете и упаковке.",s:"Instagram"},
-  {n:"Пример отзыва",t:"Второй отзыв, лучше про свадебную партию или новогодний набор.",s:"WhatsApp"},
-  {n:"Пример отзыва",t:"Третий отзыв, например про «Сжигай мосты» как подарок.",s:"Instagram"}
-];
+/* Формат: {n:"Имя", t:"текст отзыва", s:"Instagram"}. Пока пусто, блок показывает заглушку. */
+const REVIEWS = [];
 
 const $=s=>document.querySelector(s);
 const rub=n=>n.toLocaleString("ru-RU")+" ₽";
@@ -548,7 +546,7 @@ $("#stripFree").textContent="от "+rub(CONFIG.freeFrom);
 $("#freeText").textContent="от "+rub(CONFIG.freeFrom);
 $("#fWa").innerHTML=CONFIG.whatsapp?`WhatsApp: <span class="copy">+${CONFIG.whatsapp}</span>`:"WhatsApp: номер для заказов появится перед запуском";
 $("#fTg").innerHTML=CONFIG.telegram?`Telegram: @${CONFIG.telegram}`:"";
-$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
+$("#reviewsEmpty").hidden=REVIEWS.length>0;$("#ratingBox").hidden=REVIEWS.length===0;$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
 try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
 try{JSON.parse(localStorage.getItem("bs-order")||"[]").forEach(q=>{if(ITEMS.some(i=>i.id===q.id))picked.set(q.id,q)})}catch(_){}
 renderTiles();renderGrid();renderTray();
