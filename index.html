@@ -312,11 +312,6 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 .opt-b p{margin:0 0 8px}
 .opt-free{background:rgba(247,240,228,.08);border-radius:8px;padding:10px 12px}
 .opt-free b{color:var(--flame)}
-/* aromas */
-.aromas{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.aroma{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
-.aroma b{display:block;font-family:var(--f-serif);font-weight:500;font-size:17px;margin-bottom:4px}
-.aroma span{font-size:13px;color:var(--muted)}
 /* magic */
 .magic-txt,.magic-list{min-width:0}
 .magic{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px;align-items:start;background:var(--brown);color:var(--cream);border-radius:var(--r);padding:32px}
@@ -344,13 +339,8 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   .mg{flex-direction:column;align-items:flex-start}
   .mg .add{width:100%}
   #aromaChips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-  .aromas{grid-template-columns:1fr 1fr;gap:8px}
-  .aroma{padding:10px}
-  .aroma b{font-size:15px}
-  .aroma span{font-size:12px}
   .trust .ico{font-size:22px}
 }
-@media (max-width:380px){.aromas{grid-template-columns:1fr}}
 
 .feat{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .feat-ph{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;min-width:0;padding-bottom:6px;scrollbar-width:thin}
@@ -362,6 +352,39 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 .feat-buy{display:flex;align-items:center;gap:14px;margin-top:6px}
 .feat-buy .add{margin:0}
 @media (max-width:760px){.feat{grid-template-columns:minmax(0,1fr);padding:12px;gap:14px}.feat-ph img{flex-basis:80%}.feat-quote{font-size:16px}}
+
+/* aromas: teaser strip + room */
+.a-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
+.a-strip .a-card{flex:0 0 170px}
+.a-card{appearance:none;border:0;padding:0;background:transparent;cursor:pointer;text-align:left;scroll-snap-align:start;position:relative;font-family:inherit;color:var(--fg)}
+.a-card img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;display:block;box-shadow:0 4px 14px rgba(26,19,16,.15);transition:transform .25s}
+.a-card:hover img{transform:translateY(-3px)}
+.a-card .a-name{display:block;font-size:13px;font-weight:500;margin-top:6px}
+.a-card.on img{outline:3px solid var(--flame);outline-offset:2px}
+.a-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.a-chosen{font-size:14px;color:var(--fg);background:var(--card);border:1px solid var(--flame);border-radius:999px;padding:8px 14px}
+.aroom{position:fixed;inset:0;z-index:70;background:var(--bg);overflow-y:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+.aroom-head{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)))}
+.aroom-head .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.aroom-bar{display:flex;align-items:center;gap:12px;padding-block:12px 8px}
+.aroom-bar h2{font-family:var(--f-serif);font-weight:500;font-size:26px;margin:0}
+.aroom-n{margin-left:auto;font-size:13px;color:var(--muted)}
+.aroom-x{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--fg);width:42px;height:42px;border-radius:999px;font-size:20px;cursor:pointer}
+.aroom-head .chips{padding-bottom:12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.aroom-body{padding-top:18px}
+.a-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px 12px}
+.aview{background:transparent;border:0;padding:0;max-width:min(460px,calc(100vw - 24px));max-height:calc(100vh - 24px)}
+.aview::backdrop{background:rgba(26,19,16,.85)}
+.aview-in{display:flex;flex-direction:column;gap:10px}
+.aview img{width:100%;max-height:calc(100vh - 110px);object-fit:contain;border-radius:12px;display:block}
+.aview-acts{display:flex;gap:8px}
+.aview-acts .btn{flex:1;justify-content:center}
+.aview-acts .btn.ghost{color:var(--cream)}
+@media (max-width:760px){
+  .a-strip .a-card{flex-basis:42%}
+  .a-grid{grid-template-columns:1fr 1fr;gap:12px 8px}
+  .aroom-bar h2{font-size:22px}
+}
 @media (prefers-reduced-motion:reduce){.tile img,.burger span{transition:none}}
 </style>
 </head>
@@ -421,6 +444,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 <section id="irisy-new" style="padding-top:0"><div class="wrap">
   <div class="feat">
     <div class="feat-ph" tabindex="0" aria-label="Фото свечи Ирисы">
+      <img src="img/irisy-main.jpg" alt="Чёрная и светлая свечи Ирисы с тремя фитилями в интерьере">
       <img src="img/irisy-1.jpg" alt="Три свечи Ирисы в бетоне разных оттенков рядом с цветами ирисов" loading="lazy">
       <img src="img/irisy-3.jpg" alt="Свеча Ирисы в руке на фоне леса" loading="lazy">
       <img src="img/irisy-2.jpg" alt="Стопки бетонных стаканов с рельефом ирисов" loading="lazy">
@@ -441,9 +465,9 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 
 <section id="aromas" class="band bg2"><div class="wrap">
   <h2 class="h2">Ароматы <span class="arrow">›</span></h2>
-  <p class="lead">Любую ароматическую свечу можно заказать в любом из <span id="aromaN"></span> ароматов. Напишите название аромата в заказе.</p>
-  <div class="chips" id="aromaChips" style="margin-bottom:16px"></div>
-  <div class="aromas" id="aromaGrid"></div>
+  <p class="lead">Любую ароматическую свечу можно заказать в любом из <span id="aromaN"></span> ароматов. Откройте каталог ароматов, выберите свой, и он добавится в заказ.</p>
+  <div class="a-strip" id="aromaStrip"></div>
+  <div class="a-cta"><button class="btn ink" type="button" id="openAromas">Все ароматы <span id="aromaN2"></span> →</button><span class="a-chosen" id="aromaChosen" hidden></span></div>
 </div></section>
 
 <section class="band"><div class="wrap">
@@ -627,6 +651,22 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 </form></dialog>
 <dialog id="pol"><div class="pol" id="polBody"></div></dialog>
 <div class="toast" id="toast" hidden></div>
+<div class="aroom" id="aromaRoom" hidden role="dialog" aria-modal="true" aria-labelledby="aroomTitle">
+  <div class="aroom-head">
+    <div class="aroom-bar wrap">
+      <button class="aroom-x" type="button" id="closeAromas" aria-label="Закрыть каталог ароматов">←</button>
+      <h2 id="aroomTitle">Ароматы</h2>
+      <span class="aroom-n" id="aromaN3"></span>
+    </div>
+    <div class="wrap"><div class="chips" id="aromaChips"></div></div>
+  </div>
+  <div class="wrap aroom-body"><div class="a-grid" id="aromaGrid"></div></div>
+</div>
+<dialog id="aromaView" class="aview"><div class="aview-in">
+  <img id="aviewImg" alt="">
+  <div class="aview-acts"><button class="btn primary" type="button" id="aviewPick">Выбрать этот аромат</button><button class="btn ghost" type="button" id="aviewClose">Закрыть</button></div>
+</div></dialog>
+
 
 <script>
 /* ===== НАСТРОЙКИ: заполняются один раз ===== */
@@ -736,13 +776,20 @@ function renderGrid(){
 }
 function total(){let s=0,unk=0;picked.forEach(q=>{const it=ITEMS.find(i=>i.id===q.id);if(it.price==null)unk++;else s+=it.price*q.qty});return{s,unk}}
 const AROMA_FAM=[["all","Все"],["winter","Зимние"],["gourmand","Сладкие"],["fruit","Фрукты и цветы"],["fresh","Свежие"],["wood","Древесные и пряные"]];
-const AROMAS=[{"f": "winter", "n": "Вечер у камина", "t": "пачули, мёд, амбра, ладан, гвоздика, кедр, шафран, мускатный орех"}, {"f": "winter", "n": "Рождественский вечер", "t": "эвкалипт, шалфей, дым, пачули, сандал, можжевельник, карамель"}, {"f": "winter", "n": "Имбирный пряник", "t": "имбирь, ваниль, корица, гвоздика, мускат, карамель, гречишный мёд, сливочное масло"}, {"f": "winter", "n": "Пряный глинтвейн", "t": "сицилийский апельсин, мускатный орех, ливанский кедр, корица, гвоздика, бадьян"}, {"f": "winter", "n": "Новогодняя ёлочка", "t": "цедра лимона, сибирская пихта, еловые шишки, мох, ладан, кедр, пачули"}, {"f": "winter", "n": "Лесной снег", "t": "камфора, озон, мята, шалфей, кипарис, эвкалипт, можжевельник, ладан, кедр"}, {"f": "winter", "n": "Мандарин", "t": "цитрусовая цедра, мандарин, тропические фрукты, ваниль"}, {"f": "gourmand", "n": "Груша в карамели", "t": "ванильный сахар, груша дюшес, красное яблоко, мята, жасмин, карамель"}, {"f": "gourmand", "n": "Тыквенное суфле", "t": "цедра лимона, тростниковый сахар, тыква, кленовый сироп, корица, ваниль"}, {"f": "gourmand", "n": "Сливочная солёная ириска", "t": "ваниль, морская соль, топлёное молоко, ириска, макадамия, мёд, сливки"}, {"f": "gourmand", "n": "Карамельный попкорн", "t": "сливочное масло, морская соль, попкорн, кокос, ваниль, карамель"}, {"f": "gourmand", "n": "Мамино какао", "t": "шоколадный пломбир, марципан, маршмеллоу, сливки, ваниль, брауни"}, {"f": "gourmand", "n": "Абрикосовый конфитюр", "t": "розовая вода, табачный лист, тутовник, белая слива, абрикос, липа"}, {"f": "gourmand", "n": "Лимонный тарт", "t": "цедра лимона, лайм, цукаты, дамасская роза, карамель, сливки"}, {"f": "gourmand", "n": "Bubble gum", "t": "клубника, персик, дюшес, ананас, жасмин, карибская ваниль"}, {"f": "gourmand", "n": "Горячий хлеб", "t": "кумин, корочка хлеба, роза, хлеб на гриле, прожаренный тост"}, {"f": "gourmand", "n": "Булочка с корицей", "t": "свежая булочка, молоко, ваниль, тростниковый сахар, корица"}, {"f": "gourmand", "n": "Кленовый пекан", "t": "жареный пекан, кленовый сироп, сливочное масло, ирис, морская соль, пало санто"}, {"f": "gourmand", "n": "Карамельный сникерс", "t": "топлёная карамель, молочный шоколад, ваниль, арахисовая паста, бобы тонка"}, {"f": "gourmand", "n": "Клубничная жвачка со сливками", "t": "алоэ вера, липа, клубника, сахарная вата, бурбонская ваниль, сливки"}, {"f": "gourmand", "n": "Vanila", "t": "бурбонская ваниль, заварной крем, маршмеллоу, кокосовое молоко, сливки, сандал"}, {"f": "gourmand", "n": "Бобы тонка и ваниль", "t": "бурбонская ваниль, сандал, кокосовая вода, ветивер, бобы тонка, сливки"}, {"f": "gourmand", "n": "Кола и вишня", "t": "лайм, десертная вишня, ваниль, листья коки, мускатный орех"}, {"f": "fruit", "n": "Розовое шампанское", "t": "бергамот, дамасская роза, фиалка, гвоздика, кедр"}, {"f": "fruit", "n": "Сочное манго", "t": "белый персик, лимон, манго, чернослив, плюмерия, гвоздика, ваниль"}, {"f": "fruit", "n": "Белый персик", "t": "белый персик, лимонная цедра, манго, груша, морская соль, ванильный сахар"}, {"f": "fruit", "n": "Ванильный персик", "t": "бергамот, чёрная смородина, цветы, миндаль, персик, мускус, ваниль"}, {"f": "fruit", "n": "Просекко и гуава", "t": "гуава, ананас, грейпфрут, просекко, цветы акации, малина, мускус"}, {"f": "fruit", "n": "Малина", "t": "спелая малина"}, {"f": "fruit", "n": "Тосканский виноградник", "t": "яблочный сок, изабелла, мускат, табачный лист, кора"}, {"f": "fruit", "n": "Просто хочу тюльпанов", "t": "цедра лимона, герань, тюльпановые поля, ландыш, элеми, бадьян"}, {"f": "fruit", "n": "Сирень", "t": "листья фиалки, сирень, мёд, глициния, бадьян"}, {"f": "fruit", "n": "Мокрые цветы", "t": "цветочный магазин, тюльпан, мокрая трава, полевые цветы"}, {"f": "fruit", "n": "Дикая жимолость", "t": "зелёные листья, бергамот, жимолость, жасмин, амирис, сандал"}, {"f": "fresh", "n": "Дыня и огурец", "t": "огуречная вода, мята, нектарин, меловая дыня, ваниль, морская соль"}, {"f": "fresh", "n": "Мох и папоротник", "t": "кипарисовый мох, мята, папоротник, бамбук, огурец, морская соль, кедр"}, {"f": "fresh", "n": "Шалфей и морская соль", "t": "грейпфрут, эвкалипт, бергамот, шалфей, можжевельник, амбра, морская соль"}, {"f": "fresh", "n": "Свежескошенная трава", "t": "трава, огурец, алоэ, мох, кактус, лемонграсс, сено, кипрей"}, {"f": "fresh", "n": "Томатный лист", "t": "цедра лимона, сельдерей, томатный лист, ветвь лаванды"}, {"f": "fresh", "n": "Чистый хлопок", "t": "лайм, липа, лаванда, сандал, огуречная вода, морская соль, хлопок"}, {"f": "fresh", "n": "Сладкая соль Босфора", "t": "цедра бергамота, морская соль, йод, амбра, мох"}, {"f": "fresh", "n": "Бергамот", "t": "бергамот, лист инжира, фрезия, зелёный мох, амирис"}, {"f": "fresh", "n": "Лондонский дождь", "t": "базилик, зелёные листья, озон, лилия, роза, жасмин, сандал, бобы тонка"}, {"f": "fresh", "n": "Пляжное бельё", "t": "озон, хлопковый цветок, лён, апельсиновый цвет, ваниль, пудра, сандал"}, {"f": "fresh", "n": "Земля в тумане", "t": "озон, влажная земля, полынь, одуванчики, мокрый асфальт, сухая листва"}, {"f": "wood", "n": "Чёрный перец и кожа", "t": "горький апельсин, чёрный перец, морская соль, розмарин, лаванда, кожа"}, {"f": "wood", "n": "Кожа и сандал", "t": "бергамот, кедровая ветвь, элеми, сандал, кожа"}, {"f": "wood", "n": "Кожа и гранат", "t": "красная смородина, мята, кожура граната, табачный лист, кедр, кожа"}, {"f": "wood", "n": "Антикварная библиотека", "t": "ягоды можжевельника, пачули, табачный лист, роза, сандал, кожа"}, {"f": "wood", "n": "Parfumerie", "t": "мох, бергамот, розовый перец, пачули, ландыш, кожа, ладан, шалфей"}, {"f": "wood", "n": "Сумеречный лес", "t": "влажный лес, ветивер, амбра, сандал, уд, шафран, кардамон, розмарин"}, {"f": "wood", "n": "Ветивер", "t": "бергамот, цедра лимона, кедр, конопля, ветивер, тёмный мускус, амбра"}];
-let aFam="all";
+const AROMAS=[{"f": "winter", "n": "Вечер у камина", "t": "пачули, мёд, амбра, ладан, гвоздика, кедр, шафран, мускатный орех", "i": "a01"}, {"f": "winter", "n": "Рождественский вечер", "t": "эвкалипт, шалфей, дым, пачули, сандал, можжевельник, карамель", "i": "a09"}, {"f": "winter", "n": "Имбирный пряник", "t": "имбирь, ваниль, корица, гвоздика, мускат, карамель, гречишный мёд, сливочное масло", "i": "a11"}, {"f": "winter", "n": "Пряный глинтвейн", "t": "сицилийский апельсин, мускатный орех, ливанский кедр, корица, гвоздика, бадьян", "i": "a16"}, {"f": "winter", "n": "Новогодняя ёлочка", "t": "цедра лимона, сибирская пихта, еловые шишки, мох, ладан, кедр, пачули", "i": "a19"}, {"f": "winter", "n": "Лесной снег", "t": "камфора, озон, мята, шалфей, кипарис, эвкалипт, можжевельник, ладан, кедр", "i": "a40"}, {"f": "winter", "n": "Мандарин", "t": "цитрусовая цедра, мандарин, тропические фрукты, ваниль", "i": "a39"}, {"f": "gourmand", "n": "Груша в карамели", "t": "ванильный сахар, груша дюшес, красное яблоко, мята, жасмин, карамель", "i": "a03"}, {"f": "gourmand", "n": "Тыквенное суфле", "t": "цедра лимона, тростниковый сахар, тыква, кленовый сироп, корица, ваниль", "i": "a07"}, {"f": "gourmand", "n": "Сливочная солёная ириска", "t": "ваниль, морская соль, топлёное молоко, ириска, макадамия, мёд, сливки", "i": "a10"}, {"f": "gourmand", "n": "Карамельный попкорн", "t": "сливочное масло, морская соль, попкорн, кокос, ваниль, карамель", "i": "a23"}, {"f": "gourmand", "n": "Мамино какао", "t": "шоколадный пломбир, марципан, маршмеллоу, сливки, ваниль, брауни", "i": "a26"}, {"f": "gourmand", "n": "Абрикосовый конфитюр", "t": "розовая вода, табачный лист, тутовник, белая слива, абрикос, липа", "i": "a27"}, {"f": "gourmand", "n": "Лимонный тарт", "t": "цедра лимона, лайм, цукаты, дамасская роза, карамель, сливки", "i": "a29"}, {"f": "gourmand", "n": "Bubble gum", "t": "клубника, персик, дюшес, ананас, жасмин, карибская ваниль", "i": "a31"}, {"f": "gourmand", "n": "Горячий хлеб", "t": "кумин, корочка хлеба, роза, хлеб на гриле, прожаренный тост", "i": "a32"}, {"f": "gourmand", "n": "Булочка с корицей", "t": "свежая булочка, молоко, ваниль, тростниковый сахар, корица", "i": "a37"}, {"f": "gourmand", "n": "Кленовый пекан", "t": "жареный пекан, кленовый сироп, сливочное масло, ирис, морская соль, пало санто", "i": "a43"}, {"f": "gourmand", "n": "Карамельный сникерс", "t": "топлёная карамель, молочный шоколад, ваниль, арахисовая паста, бобы тонка", "i": "a44"}, {"f": "gourmand", "n": "Клубничная жвачка со сливками", "t": "алоэ вера, липа, клубника, сахарная вата, бурбонская ваниль, сливки", "i": "a45"}, {"f": "gourmand", "n": "Vanila", "t": "бурбонская ваниль, заварной крем, маршмеллоу, кокосовое молоко, сливки, сандал", "i": "a47"}, {"f": "gourmand", "n": "Бобы тонка и ваниль", "t": "бурбонская ваниль, сандал, кокосовая вода, ветивер, бобы тонка, сливки", "i": "a22"}, {"f": "gourmand", "n": "Кола и вишня", "t": "лайм, десертная вишня, ваниль, листья коки, мускатный орех", "i": "a18"}, {"f": "fruit", "n": "Розовое шампанское", "t": "бергамот, дамасская роза, фиалка, гвоздика, кедр", "i": "a02"}, {"f": "fruit", "n": "Сочное манго", "t": "белый персик, лимон, манго, чернослив, плюмерия, гвоздика, ваниль", "i": "a13"}, {"f": "fruit", "n": "Белый персик", "t": "белый персик, лимонная цедра, манго, груша, морская соль, ванильный сахар", "i": "a24"}, {"f": "fruit", "n": "Ванильный персик", "t": "бергамот, чёрная смородина, цветы, миндаль, персик, мускус, ваниль", "i": "a49"}, {"f": "fruit", "n": "Просекко и гуава", "t": "гуава, ананас, грейпфрут, просекко, цветы акации, малина, мускус", "i": "a50"}, {"f": "fruit", "n": "Малина", "t": "спелая малина", "i": "a42"}, {"f": "fruit", "n": "Тосканский виноградник", "t": "яблочный сок, изабелла, мускат, табачный лист, кора", "i": "a46"}, {"f": "fruit", "n": "Просто хочу тюльпанов", "t": "цедра лимона, герань, тюльпановые поля, ландыш, элеми, бадьян", "i": "a17"}, {"f": "fruit", "n": "Сирень", "t": "листья фиалки, сирень, мёд, глициния, бадьян", "i": "a25"}, {"f": "fruit", "n": "Мокрые цветы", "t": "цветочный магазин, тюльпан, мокрая трава, полевые цветы", "i": "a36"}, {"f": "fruit", "n": "Дикая жимолость", "t": "зелёные листья, бергамот, жимолость, жасмин, амирис, сандал", "i": "a41"}, {"f": "fresh", "n": "Дыня и огурец", "t": "огуречная вода, мята, нектарин, меловая дыня, ваниль, морская соль", "i": "a05"}, {"f": "fresh", "n": "Мох и папоротник", "t": "кипарисовый мох, мята, папоротник, бамбук, огурец, морская соль, кедр", "i": "a06"}, {"f": "fresh", "n": "Шалфей и морская соль", "t": "грейпфрут, эвкалипт, бергамот, шалфей, можжевельник, амбра, морская соль", "i": "a08"}, {"f": "fresh", "n": "Свежескошенная трава", "t": "трава, огурец, алоэ, мох, кактус, лемонграсс, сено, кипрей", "i": "a12"}, {"f": "fresh", "n": "Томатный лист", "t": "цедра лимона, сельдерей, томатный лист, ветвь лаванды", "i": "a15"}, {"f": "fresh", "n": "Чистый хлопок", "t": "лайм, липа, лаванда, сандал, огуречная вода, морская соль, хлопок", "i": "a20"}, {"f": "fresh", "n": "Сладкая соль Босфора", "t": "цедра бергамота, морская соль, йод, амбра, мох", "i": "a30"}, {"f": "fresh", "n": "Бергамот", "t": "бергамот, лист инжира, фрезия, зелёный мох, амирис", "i": "a33"}, {"f": "fresh", "n": "Лондонский дождь", "t": "базилик, зелёные листья, озон, лилия, роза, жасмин, сандал, бобы тонка", "i": "a35"}, {"f": "fresh", "n": "Пляжное бельё", "t": "озон, хлопковый цветок, лён, апельсиновый цвет, ваниль, пудра, сандал", "i": "a51"}, {"f": "fresh", "n": "Земля в тумане", "t": "озон, влажная земля, полынь, одуванчики, мокрый асфальт, сухая листва", "i": "a52"}, {"f": "wood", "n": "Чёрный перец и кожа", "t": "горький апельсин, чёрный перец, морская соль, розмарин, лаванда, кожа", "i": "a04"}, {"f": "wood", "n": "Кожа и сандал", "t": "бергамот, кедровая ветвь, элеми, сандал, кожа", "i": "a14"}, {"f": "wood", "n": "Кожа и гранат", "t": "красная смородина, мята, кожура граната, табачный лист, кедр, кожа", "i": "a48"}, {"f": "wood", "n": "Антикварная библиотека", "t": "ягоды можжевельника, пачули, табачный лист, роза, сандал, кожа", "i": "a21"}, {"f": "wood", "n": "Parfumerie", "t": "мох, бергамот, розовый перец, пачули, ландыш, кожа, ладан, шалфей", "i": "a28"}, {"f": "wood", "n": "Сумеречный лес", "t": "влажный лес, ветивер, амбра, сандал, уд, шафран, кардамон, розмарин", "i": "a34"}, {"f": "wood", "n": "Ветивер", "t": "бергамот, цедра лимона, кедр, конопля, ветивер, тёмный мускус, амбра", "i": "a38"}];
+let aFam="all", chosenAroma=null, viewing=null;
+try{chosenAroma=localStorage.getItem("bs-aroma")}catch(_){}
+const aCard=a=>`<button class="a-card${chosenAroma===a.n?" on":""}" type="button" data-aroma="${a.n}"><img src="img/aroma/${a.i}.jpg" alt="Аромат «${a.n}»: ${a.t}" loading="lazy"><span class="a-name">${a.n}</span></button>`;
 function renderAromas(){
-  $("#aromaN").textContent=AROMAS.length;
+  $("#aromaN").textContent=AROMAS.length; $("#aromaN2").textContent="("+AROMAS.length+")"; $("#aromaN3").textContent=AROMAS.length+" ароматов";
+  $("#aromaStrip").innerHTML=AROMAS.slice(0,10).map(aCard).join("");
   $("#aromaChips").innerHTML=AROMA_FAM.map(([k,l])=>`<button class="chip" type="button" data-afam="${k}" aria-pressed="${aFam===k}">${l}</button>`).join("");
-  $("#aromaGrid").innerHTML=AROMAS.filter(a=>aFam==="all"||a.f===aFam).map(a=>`<div class="aroma"><b>${a.n}</b><span>${a.t}</span></div>`).join("");
+  $("#aromaGrid").innerHTML=AROMAS.filter(a=>aFam==="all"||a.f===aFam).map(aCard).join("");
+  const c=$("#aromaChosen"); c.hidden=!chosenAroma; if(chosenAroma) c.textContent="Выбран аромат: «"+chosenAroma+"»";
 }
+function openRoom(){ $("#aromaRoom").hidden=false; document.body.style.overflow="hidden"; $("#closeAromas").focus(); }
+function closeRoom(){ $("#aromaRoom").hidden=true; document.body.style.overflow=""; }
+function viewAroma(n){ const a=AROMAS.find(x=>x.n===n); if(!a) return; viewing=a; $("#aviewImg").src="img/aroma/"+a.i+".jpg"; $("#aviewImg").alt="Аромат «"+a.n+"»: "+a.t; $("#aviewPick").textContent=chosenAroma===a.n?"Аромат выбран ✓":"Выбрать этот аромат"; try{$("#aromaView").showModal()}catch(e){$("#aromaView").setAttribute("open","")} }
 function renderFeat(){const b=document.querySelector('#irisy-new .add'); if(b){const on=picked.has("irisy"); b.setAttribute("aria-pressed",on); b.textContent=on?"В заказе ✓":"В заказ";}}
 function renderMagic(){renderFeat();
   $("#magicList").innerHTML=ITEMS.filter(i=>i.cat==="magic").map(it=>`<div class="mg${it.id==="m-clean"?" first":""}">${it.img?`<img class="mg-img" src="img/${it.img}.jpg" alt="${it.name}" loading="lazy">`:""}<div class="mg-t"><b>${it.name}</b>${it.d?`<span>${it.d}</span>`:""}${it.long?`<details class="mg-more"><summary>Подробнее</summary><p>${it.long}</p></details>`:""}</div><button class="add" type="button" data-id="${it.id}" aria-pressed="${picked.has(it.id)}">${picked.has(it.id)?"В заказе ✓":"999 ₽ · В заказ"}</button></div>`).join("");
@@ -756,7 +803,7 @@ function renderTray(){
   try{localStorage.setItem("bs-order",JSON.stringify([...picked.values()]))}catch(_){}
 }
 function orderText(){
-  const lines=[...picked.values()].map((q,n)=>{const it=ITEMS.find(i=>i.id===q.id);return `${n+1}. ${it.name}, ${q.qty} шт., цвет: базовый, аромат: ${it.cat==="magic"?"по набору":"на выбор"}${it.price!=null?", "+rub(it.price*q.qty):""}`});
+  const lines=[...picked.values()].map((q,n)=>{const it=ITEMS.find(i=>i.id===q.id);return `${n+1}. ${it.name}, ${q.qty} шт., цвет: базовый, аромат: ${it.cat==="magic"?"по набору":(chosenAroma||"на выбор")}${it.price!=null?", "+rub(it.price*q.qty):""}`});
   const {s}=total();
   return `Здравствуйте! Хочу заказать:\n${lines.join("\n")}\n${s?"Итого по прайсу: "+rub(s)+"\n":""}Город доставки: \nИмя: `;
 }
@@ -780,6 +827,7 @@ function showPol(k){$("#polBody").innerHTML=POL[k]+'<p style="margin-top:16px"><
 
 document.addEventListener("click",e=>{
   const af=e.target.closest("[data-afam]"); if(af){aFam=af.dataset.afam;renderAromas();return}
+  const ac=e.target.closest("[data-aroma]"); if(ac){viewAroma(ac.dataset.aroma);return}
   const cp=e.target.closest("[data-copy]"); if(cp){const v=cp.dataset.copy;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast("Скопировано"),()=>toast(v));return}
   const p=e.target.closest("[data-pol]"); if(p){e.preventDefault();showPol(p.dataset.pol);return}
   const c=e.target.closest("[data-cat]"); if(c){cat=c.dataset.cat;renderTiles();renderGrid();if(c.classList.contains("tile")||c.tagName==="A")document.getElementById("gridTitle").scrollIntoView({behavior:"smooth",block:"start"});return}
@@ -795,6 +843,10 @@ $("#sendBtn").onclick=$("#basketBtn").onclick=()=>{if(!picked.size){document.get
   const list=[...picked.values()].map(q=>{const it=ITEMS.find(i=>i.id===q.id);return `<div><span>${it.name} × ${q.qty}</span><b>${it.price==null?"по запросу":rub(it.price*q.qty)}</b></div>`}).join("");
   openDialog("Ваш заказ",orderText(),list)};
 $("#clearBtn").onclick=()=>{picked.clear();renderGrid();renderMagic();renderTray()};
+$("#openAromas").onclick=openRoom; $("#closeAromas").onclick=closeRoom;
+$("#aviewClose").onclick=()=>$("#aromaView").close();
+$("#aviewPick").onclick=()=>{chosenAroma=viewing.n; try{localStorage.setItem("bs-aroma",chosenAroma)}catch(_){} renderAromas(); $("#aromaView").close(); closeRoom(); toast("Аромат «"+chosenAroma+"» добавлен к заказу"); };
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#aromaRoom").hidden&&!$("#aromaView").open)closeRoom()});
 $("#cookieOk").onclick=()=>{$("#cookie").hidden=true;try{localStorage.setItem("bs-cookie","1")}catch(_){}};
 
 $("#stripFree").textContent="от "+rub(CONFIG.freeFrom);
@@ -806,6 +858,7 @@ $("#reviewsEmpty").hidden=REVIEWS.length>0;$("#facts").hidden=REVIEWS.length>0;$
 try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
 try{JSON.parse(localStorage.getItem("bs-order")||"[]").forEach(q=>{if(ITEMS.some(i=>i.id===q.id))picked.set(q.id,q)})}catch(_){}
 renderTiles();renderGrid();renderAromas();renderMagic();renderTray();
+if(location.hash==="#aromas-all")openRoom();
 if(/nitiforma/.test(location.hostname)||location.hash==="#nitiforma"){setTimeout(()=>document.getElementById("nitiforma").scrollIntoView({behavior:"smooth"}),300)}
 </script>
 
