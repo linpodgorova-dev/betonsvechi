@@ -91,7 +91,7 @@ nav.menu a.cta{background:var(--ink-btn);color:var(--ink-btn-fg)}
 .hero .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%;display:block}
 
 /* category tiles */
-.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .tile{position:relative;aspect-ratio:1/1.1;border-radius:var(--r);overflow:hidden;cursor:pointer;border:0;padding:0;background:var(--bg2);text-align:left;font-family:inherit;color:#fff}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .tile:hover img{transform:scale(1.04)}
@@ -193,6 +193,11 @@ footer{padding-block:36px 110px}
   padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .tray .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .tray .sum{font-family:var(--f-serif);font-size:18px}
+.tsum{display:flex;flex-direction:column;min-width:0}
+.tray-aroma{font-size:12px;color:var(--flame);text-decoration:underline;text-underline-offset:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile.sp::before{content:attr(data-tag);position:absolute;left:10px;top:10px;z-index:2;background:var(--flame);color:var(--dark);font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px}
+.tile.sp{outline:2px solid var(--flame);outline-offset:-2px}
+.tile.sp::after{background:linear-gradient(to top,rgba(26,19,16,.92) 15%,rgba(26,19,16,.35) 75%,rgba(26,19,16,.15))}
 .tray .names{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.75;font-size:13px}
 .tray .free{font-size:12px;color:var(--flame)}
 dialog{border:0;border-radius:var(--r);padding:0;max-width:min(560px,calc(100vw - 32px));width:100%;background:var(--card);color:var(--fg)}
@@ -284,7 +289,8 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   .tray .names{display:none}
   .tray .free{display:none}
   .tray #clearBtn{display:none}
-  .tray .sum{font-size:16px;flex:1;min-width:0}
+  .tray .sum{font-size:16px}
+  .tsum{flex:1}
   .tray .btn{padding:11px 16px}
   .cookie{padding:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px))}
   .cookie p{font-size:12px;min-width:0}
@@ -673,7 +679,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 </div>
 
 <div class="tray" id="tray" hidden><div class="wrap">
-  <span class="sum" id="traySum"></span>
+  <div class="tsum"><span class="sum" id="traySum"></span><a class="tray-aroma" id="trayAroma" href="#aromas-all"></a></div>
   <span class="names" id="trayNames"></span>
   <span class="free" id="trayFree"></span>
   <button class="btn ghost" type="button" id="clearBtn" style="color:var(--cream)">Очистить</button>
@@ -826,8 +832,10 @@ const POL={
 
 function badges(it){return it.badges?`<div class="badges">${it.badges.map(b=>`<span class="badge ${b==="Хит"?"hit":""}">${b}</span>`).join("")}</div>`:""}
 function price(it){return it.price==null?'<div class="price tbd">цена по запросу</div>':`<div class="price">${it.from?"от ":""}${rub(it.price)}<small>за шт.</small></div>`}
+const SPECIAL_TILES=[["magic-room","Магические свечи","magic2-8","9 наборов для ритуалов","раздел"],["aromas-all","Ароматы","aroma-tile","{N} ароматов, выбрать свой","выбрать"]];
 function renderTiles(){
-  $("#tiles").innerHTML=CATS.map(([k,l,img,sub])=>`<button class="tile" type="button" data-cat="${k}" aria-pressed="${cat===k}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub}</span></div></button>`).join("");
+  const sp=([h,l,img,sub,tag])=>`<a class="tile sp" href="#${h}" data-tag="${tag}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub.replace("{N}",AROMAS.length)}</span></div></a>`;
+  $("#tiles").innerHTML=sp(SPECIAL_TILES[0])+sp(SPECIAL_TILES[1])+CATS.map(([k,l,img,sub])=>`<button class="tile" type="button" data-cat="${k}" aria-pressed="${cat===k}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub}</span></div></button>`).join("");
   $("#chips").innerHTML=[["all","Всё"],...CATS.map(c=>[c[0],c[1]])].map(([k,l])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${cat===k}">${l}</button>`).join("");
   $("#gridTitle").textContent=cat==="all"?"Все изделия":CATS.find(c=>c[0]===cat)[1];
   $("#fCats").innerHTML=CATS.map(c=>`<li><a href="#catalog" data-cat="${c[0]}">${c[1]}</a></li>`).join("");
@@ -905,6 +913,8 @@ function closeTo(parent){ if(history.state&&history.state.room){history.back();r
 window.addEventListener("popstate",route); window.addEventListener("hashchange",route);
 function renderTray(){
   $("#tray").hidden=picked.size===0; $("#basketN").textContent=picked.size;
+  const needA=[...picked.values()].some(q=>{const it=ITEMS.find(i=>i.id===q.id);return it&&it.cat!=="magic"&&it.cat!=="decor"});
+  $("#trayAroma").hidden=!needA; $("#trayAroma").textContent=chosenAroma?"Аромат: «"+chosenAroma+"» · изменить":"Выбрать аромат →";
   const {s,unk}=total();
   $("#traySum").textContent=(s?rub(s):"")+(unk?(s?" + ":"")+unk+" поз. по запросу":"");
   $("#trayNames").textContent=[...picked.values()].map(q=>ITEMS.find(i=>i.id===q.id).name).join(", ");
@@ -957,7 +967,7 @@ $("#sendBtn").onclick=$("#basketBtn").onclick=()=>{if(!picked.size){document.get
 $("#clearBtn").onclick=()=>{picked.clear();renderGrid();renderMagic();renderTray()};
 $("#openAromas").onclick=()=>goRoom("aromas-all");
 $("#aviewClose").onclick=()=>$("#aromaView").close();
-$("#aviewPick").onclick=()=>{chosenAroma=viewing.n; try{localStorage.setItem("bs-aroma",chosenAroma)}catch(_){} renderAromas(); $("#aromaView").close(); closeTo(""); toast("Аромат «"+chosenAroma+"» добавлен к заказу"); };
+$("#aviewPick").onclick=()=>{chosenAroma=viewing.n; try{localStorage.setItem("bs-aroma",chosenAroma)}catch(_){} renderAromas(); renderTray(); $("#aromaView").close(); closeTo(""); toast("Аромат «"+chosenAroma+"» добавлен к заказу"); };
 document.addEventListener("keydown",e=>{if(e.key!=="Escape"||$("#aromaView").open||document.querySelector("dialog[open]"))return; const h=location.hash.slice(1); if(ROOM_RE.test(h))closeTo(h.startsWith("set-")?"magic-room":"")});
 $("#cookieOk").onclick=()=>{$("#cookie").hidden=true;try{localStorage.setItem("bs-cookie","1")}catch(_){}};
 
