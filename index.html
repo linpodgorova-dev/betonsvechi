@@ -322,10 +322,15 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
 
 <section class="band bg2" id="reviewsSec"><div class="wrap">
   <h2 class="h2">Нас выбирают за свечи, которые запоминают</h2>
-  <p class="lead">Отзывы покупателей из переписок и соцсетей. Когда появится карточка на Яндекс Картах, рейтинг подтянется сюда.</p>
+  <p class="lead">Что в этих свечах не как у всех. Отзывы покупателей из переписок добавим сюда же.</p>
   <div class="rating" id="ratingBox"><b>5,0</b><span class="stars">★★★★★</span><span>по отзывам в Instagram</span></div>
   <div class="reviews" id="reviews"></div>
-  <p class="lead" id="reviewsEmpty" hidden>Отзывы покупателей скоро появятся здесь. Пока их можно почитать в Instagram <b>@betonsvechi</b>.</p>
+  <div class="reviews" id="facts" hidden>
+    <div class="rev"><div class="who"><span class="av">9</span><div><b style="font-size:14px">Девять часов огня</b></div></div><p>Магазинная свеча за триста рублей горит около трёх часов. Свеча в бетоне горит девять, а стакан после неё остаётся: можно залить новую или поставить карандаши.</p><div class="src">Из поста «Почему свеча стоит 1 200, а не триста»</div></div>
+    <div class="rev"><div class="who"><span class="av">1</span><div><b style="font-size:14px">Таких больше нигде нет</b></div></div><p>Формы нарисованы самой Юлией и напечатаны на 3D-принтере. Каждая выдерживает ограниченное число заливок, потом делается заново. Поэтому повторить эти свечи никто не может.</p><div class="src">Из поста о формах и печати</div></div>
+    <div class="rev"><div class="who"><span class="av">✓</span><div><b style="font-size:14px">Только целые изделия</b></div></div><p>Часть отливок трескается или скалывается по краю. Такие к покупателю не едут. Каждый стакан сутки застывает и шлифуется руками.</p><div class="src">Из поста о производстве</div></div>
+  </div>
+  <p class="lead" id="reviewsEmpty" hidden style="margin-top:16px">Отзывы покупателей появятся здесь. Пока их можно почитать в Instagram <b>@betonsvechi</b>.</p>
 </div></section>
 
 <section id="nitiforma"><div class="wrap">
@@ -546,7 +551,7 @@ $("#stripFree").textContent="от "+rub(CONFIG.freeFrom);
 $("#freeText").textContent="от "+rub(CONFIG.freeFrom);
 $("#fWa").innerHTML=CONFIG.whatsapp?`WhatsApp: <span class="copy">+${CONFIG.whatsapp}</span>`:"WhatsApp: номер для заказов появится перед запуском";
 $("#fTg").innerHTML=CONFIG.telegram?`Telegram: @${CONFIG.telegram}`:"";
-$("#reviewsEmpty").hidden=REVIEWS.length>0;$("#ratingBox").hidden=REVIEWS.length===0;$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
+$("#reviewsEmpty").hidden=REVIEWS.length>0;$("#facts").hidden=REVIEWS.length>0;$("#ratingBox").hidden=REVIEWS.length===0;$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
 try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
 try{JSON.parse(localStorage.getItem("bs-order")||"[]").forEach(q=>{if(ITEMS.some(i=>i.id===q.id))picked.set(q.id,q)})}catch(_){}
 renderTiles();renderGrid();renderTray();
