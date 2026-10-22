@@ -454,6 +454,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     <div>
       <a class="logo" href="#top" style="margin-bottom:10px;display:block"><b>Beton Svechi</b><span>by Юлия Смирнова · Казань</span></a>
       <ul>
+        <li>Телефон: <a href="tel:+79270305366">+7 927 030-53-66</a></li>
         <li id="fWa"></li>
         <li id="fTg"></li>
         <li id="fMax"></li>
@@ -626,7 +627,7 @@ function openDialog(title,text,list){
   if(CONFIG.max)acts.push(`<a class="btn ink" href="${CONFIG.max}" target="_blank" rel="noopener">Открыть MAX</a>`);
   acts.push(`<button class="btn ghost" type="button" id="copyBtn">Скопировать текст</button>`);
   $("#dlgActs").innerHTML=acts.join("");
-  $("#dlgNote").textContent=CONFIG.whatsapp||CONFIG.telegram?"В Telegram текст не подставится сам: скопируйте и вставьте его в чат."+(CONFIG.maxPhone?" Удобнее MAX? Напишите на номер "+CONFIG.maxPhone+".":""):"Номер для заказов появится здесь перед запуском. Пока скопируйте текст и отправьте в директ @"+CONFIG.instagram+".";
+  $("#dlgNote").textContent=CONFIG.whatsapp||CONFIG.telegram?"В Telegram текст не подставится сам: скопируйте и вставьте его в чат."+(CONFIG.maxPhone?" Удобнее MAX? Напишите на номер "+CONFIG.maxPhone+" (только сообщения, звонки по основному номеру +7 927 030-53-66).":""):"Номер для заказов появится здесь перед запуском. Пока скопируйте текст и отправьте в директ @"+CONFIG.instagram+".";
   const wa=$("#waLink"); if(wa){const upd=()=>{wa.href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent($("#msg").value)};upd();$("#msg").oninput=upd;
     wa.onclick=e=>{if(!$("#agree").checked){e.preventDefault();toast("Поставьте галочку согласия")}}}
   $("#copyBtn").onclick=()=>{const v=$("#msg").value;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast("Скопировано"),()=>{$("#msg").select();toast("Выделите и скопируйте текст")})};
@@ -656,7 +657,7 @@ $("#cookieOk").onclick=()=>{$("#cookie").hidden=true;try{localStorage.setItem("b
 $("#stripFree").textContent="от "+rub(CONFIG.freeFrom);
 $("#freeText").textContent="от "+rub(CONFIG.freeFrom);
 $("#fWa").innerHTML=CONFIG.whatsapp?`WhatsApp: <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener">+7 927 030-53-66</a>`:"WhatsApp: номер для заказов появится перед запуском";
-$("#fMax").innerHTML=CONFIG.max?`MAX: <a href="${CONFIG.max}" target="_blank" rel="noopener">${CONFIG.maxPhone}</a>`:(CONFIG.maxPhone?`MAX: <span class="copy">${CONFIG.maxPhone} <button type="button" data-copy="${CONFIG.maxPhone}">копировать</button></span>`:"");
+$("#fMax").innerHTML=CONFIG.max?`MAX, только переписка: <a href="${CONFIG.max}" target="_blank" rel="noopener">${CONFIG.maxPhone}</a>`:(CONFIG.maxPhone?`MAX, только переписка: <span class="copy">${CONFIG.maxPhone} <button type="button" data-copy="${CONFIG.maxPhone}">копировать</button></span>`:"");
 $("#fTg").innerHTML=CONFIG.telegram?`Telegram: <a href="https://t.me/${CONFIG.telegram}" target="_blank" rel="noopener">${CONFIG.telegram.startsWith("+")?"+7 927 030-53-66":"@"+CONFIG.telegram}</a>`:"";
 $("#reviewsEmpty").hidden=REVIEWS.length>0;$("#facts").hidden=REVIEWS.length>0;$("#ratingBox").hidden=REVIEWS.length===0;$("#reviews").innerHTML=REVIEWS.map(r=>`<div class="rev"><div class="who"><span class="av">${r.n[0]}</span><div><b style="font-size:14px">${r.n}</b><div class="stars">★★★★★</div></div></div><p>${r.t}</p><div class="src">Источник: ${r.s}</div></div>`).join("");
 try{if(!localStorage.getItem("bs-cookie"))$("#cookie").hidden=false}catch(_){$("#cookie").hidden=false}
