@@ -755,31 +755,34 @@ const CATS = [
   ["decor","Декор из бетона","ladoni","подставки"]
 ];
 const ITEMS = [
-  {id:"nabor-ded-moroz",cat:"ny",name:"Набор «Дед Мороз»",d:"Гипсовый Дед Мороз, свечи-снежинки и пряник в крафтовой коробке с бантом.",price:null,badges:["Новинка","Набор"]},
-  {id:"ded-moroz-krasnyi",cat:"ny",name:"Дед Мороз в красной шапке",d:"Гипс, ручная роспись.",price:null,badges:["Хит"]},
-  {id:"ded-moroz-belyi",cat:"ny",name:"Дед Мороз белый",d:"Гипс без росписи.",price:null},
-  {id:"elki",cat:"ny",name:"Свечи-ёлки",d:"Высокие свечи-ёлки, зелёные и белые с золотом.",price:null,badges:["Хит"]},
-  {id:"snezhinki",cat:"ny",name:"Свечи-снежинки",d:"Плоские снежинки для стола и наборов.",price:null},
-  {id:"shar-bant",cat:"ny",name:"Свеча-шар с бантом",d:"Рифлёный шар с атласным бантом.",price:null},
-  {id:"banka-ny",cat:"ny",name:"Свеча в банке, зимний аромат",d:"Соевая свеча в тёмной банке с новогодней этикеткой.",price:null},
+  {id:"nabor-ded-moroz",ph:["nabor-ded-moroz", "g/g-nabor-ded-moroz-2", "g/g-nabor-ded-moroz-3", "g/g-nabor-ded-moroz-4", "g/g-nabor-ded-moroz-5"],cat:"ny",name:"Набор «Дед Мороз»",d:"Гипсовый Дед Мороз, свечи-снежинки и пряник в крафтовой коробке с бантом.",price:null,badges:["Новинка","Набор"]},
+  {id:"ded-moroz-krasnyi",ph:["ded-moroz-krasnyi", "g/g-ded-moroz-krasnyi-1", "g/g-ded-moroz-krasnyi-2"],cat:"ny",name:"Дед Мороз в красной шапке",d:"Гипс, ручная роспись.",price:null,badges:["Хит"]},
+  {id:"ded-moroz-belyi",ph:["ded-moroz-belyi", "g/g-ded-moroz-belyi-1", "g/g-ded-moroz-belyi-2", "g/g-ded-moroz-belyi-3", "g/g-ded-moroz-belyi-4"],cat:"ny",name:"Дед Мороз перламутровый",d:"Гипс, перламутровое покрытие.",price:null},
+  {id:"elki",unit:"за набор",img:"g/g-elki-1",ph:["g/g-elki-1", "g/g-elki-3", "elki", "g/g-elki-4"],cat:"ny",name:"Свечи-ёлки, набор из 3 шт.",d:"Набор из трёх свечей-ёлок, зелёные или белые с золотом. Красиво смотрятся в высоких подсвечниках и в подарочной упаковке.",price:999,badges:["Хит"]},
+  {id:"snezhinki",ph:["snezhinki", "g/g-snezhinki-1", "g/g-snezhinki-3"],cat:"ny",name:"Свечи-снежинки",d:"Плоские снежинки для стола и наборов.",price:null},
+  {id:"shar-bant",ph:["shar-bant", "g/g-shar-bant-1", "g/g-shar-bant-3", "g/g-shar-bant-4", "g/g-shar-bant-5"],cat:"ny",name:"Свеча-шар с бантом",d:"Рифлёный шар с атласным бантом.",price:null},
+  {id:"banka-ny",img:"g/g-banka-ny-1",ph:["g/g-banka-ny-1", "g/g-banka-ny-2", "g/g-banka-ny-3", "banka-ny", "g/g-banka-ny-5"],cat:"ny",name:"Свеча-адвент-календарь",d:"Новогодняя свеча в банке с календарём на этикетке и зимним ароматом. Особенно хороша в сервировке праздничного стола.",price:null},
   {id:"olen-zelenyi",cat:"ny",name:"Подсвечник «Олень»",d:"Плоский олень под чайную свечу.",price:null},
   {id:"irisy",cat:"beton",name:"Свеча «Ирисы»",d:"Большая свеча в бетоне с рельефом ирисов, 520 мл, три фитиля.",img:"irisy-main",ph:["irisy-main","irisy-1","irisy-3","irisy-2","irisy-6","irisy-4","irisy-5"],long:'<p class="feat-quote">«Я живу в лесу. И эта свеча — мой бетонный дневник. 520 мл и три огня. Холодная банка — и тёплый свет внутри. Как я. Как мой лес. Только для своих. Только вручную».</p><p>Это не свеча. Это мой разговор с землёй через бетон и огонь.</p><p>Огонь в ней не дрожит, он дышит. Глубоко, ровно.</p><p>Она стоит на столе и молчит. Но каждый, кто её видит, тянется рукой провести по этим ирисам. Потому что в бетоне, в трёх огнях и в ручной работе живёт магия, которую не купить в гипермаркете. Её можно только взять у той, кто живёт в лесу.</p><p>Это не просто большая свеча на три фитиля. Это частичка моего дома, которая согреет ваш.</p><p class="set-note">520 мл · 3 фитиля · бетон, ручная заливка · после свечи стакан служит кашпо</p>',price:2300,badges:["Новинка"]},
-  {id:"szhigai-mosty",cat:"beton",name:"«Сжигай мосты»",d:"Авторская форма: с одной стороны надпись «Сжигай мосты», с другой логотип Beton Svechi. Свеча в бетонном стакане.",ph:["szhigai-mosty","stakan-beton"],price:null,badges:["Хит","Авторская"]},
+  {id:"szhigai-mosty",ph:["szhigai-mosty", "stakan-beton", "g/g-szhigai-mosty-1", "g/g-szhigai-mosty-2", "g/g-szhigai-mosty-3"],cat:"beton",name:"«Сжигай мосты»",d:"Авторская форма: с одной стороны надпись «Сжигай мосты», с другой логотип Beton Svechi. Свеча в бетонном стакане.",price:null,badges:["Хит","Авторская"]},
   {id:"serdce-beton",cat:"wood",name:"Сердце в дереве",d:"Свеча в деревянной основе в форме сердца.",price:null},
-  {id:"rakushka",cat:"beton",name:"Ракушка",d:"Бетонная ракушка с воском.",price:null},
+  {id:"rakushka",ph:["rakushka", "g/g-rakushka-1"],cat:"beton",name:"Ракушка",d:"Бетонная ракушка с воском.",price:null},
+  {id:"leto",cat:"figure",name:"Набор «Летнее дыхание»",d:"Малина, лимон и клубника: формовые свечи одним летним набором.",img:"g/g-leto-1",ph:["g/g-leto-1", "g/g-leto-2", "g/g-leto-3", "g/g-leto-4", "g/g-leto-5", "g/g-leto-6", "g/g-leto-7", "g/g-leto-8", "g/g-leto-9"],price:null,badges:["Новинка","Набор"]},
   {id:"torsy",cat:"figure",name:"Свечи-торсы",d:"Шоколадные и молочные оттенки.",price:null,badges:["Хит"]},
-  {id:"narcissy",cat:"figure",name:"Нарциссы",d:"Свечи-цветы, горят как фонарики.",price:null},
+  {id:"narcissy",img:"g/g-narcissy-1",ph:["g/g-narcissy-1", "g/g-narcissy-2", "g/g-narcissy-3", "g/g-narcissy-4", "narcissy", "g/g-narcissy-6", "yabloki"],cat:"figure",name:"Нарциссы",d:"Свечи-цветы, горят как фонарики.",price:null},
   {id:"rozy",cat:"beton",name:"Розы",d:"Пудровые оттенки.",price:null},
-  {id:"popkorn",cat:"beton",name:"Попкорн",d:"Свеча в полосатом стаканчике.",price:null,badges:["Новинка"]},
-  {id:"chesnok",cat:"figure",name:"Чеснок",d:"Головки чеснока, очень похожие.",price:null},
+  {id:"popkorn",ph:["popkorn", "g/g-popkorn-2", "g/g-popkorn-3", "g/g-popkorn-4", "g/g-popkorn-5", "g/g-popkorn-6"],cat:"beton",name:"Попкорн",d:"Свеча в полосатом стаканчике.",price:null,badges:["Новинка"]},
+  {id:"chesnok",ph:["chesnok", "g/g-chesnok-1"],cat:"figure",name:"Чеснок",d:"Головки чеснока, очень похожие.",price:null},
   {id:"klubnika",cat:"figure",name:"Клубника",d:"Ягоды для летнего стола.",price:null},
-  {id:"yabloki",cat:"figure",name:"Яблоки",d:"Красиво горят группой.",price:null},
-  {id:"grushi",cat:"figure",name:"Груши",d:"Зелёные свечи-груши.",price:null},
+  {id:"yabloki",img:"g/g-yabloki-1",ph:["g/g-yabloki-1", "g/g-yabloki-2", "yabloki"],cat:"figure",name:"Черешни",d:"Формовые свечи-черешни. Красиво горят группой.",price:null},
+  {id:"grushi",ph:["grushi", "g/g-grushi-2"],cat:"figure",name:"Перцы",d:"Свечи-перцы, жёлтые и зелёные.",price:null},
   {id:"vitye-bant",cat:"table",name:"Витые свечи с бантом",d:"Молочные столовые свечи с бантами.",price:null,badges:["Хит"]},
   {id:"vitye",cat:"table",name:"Витые столовые",d:"Спокойные оттенки под любой подсвечник.",price:null},
   {id:"krasnye-stolovye",cat:"table",name:"Красные волнистые",d:"Акцент для праздничного стола.",price:null},
   {id:"konusnye",cat:"table",name:"Свечи-конусы",d:"Разные цвета под сервировку.",price:null},
-  {id:"serdechki",cat:"wedding",name:"Сердечки для гостей",d:"Мини-свечи в индивидуальной упаковке.",price:45,from:true,badges:["Опт"]},
+  {id:"serdechki",ph:["serdechki", "g/g-serdechki-1", "g/g-serdechki-2", "g/g-serdechki-3"],cat:"wedding",name:"Сердечки для гостей",d:"Мини-свечи в индивидуальной упаковке.",price:45,from:true,badges:["Опт"]},
+  {id:"zhest",cat:"wedding",name:"Свечи в золотистых жестянках",d:"Свечи в металлических баночках с золотой крышкой. Для оптовых заказов и комплиментов гостям.",img:"g/g-zhest-1",ph:["g/g-zhest-1", "g/g-zhest-2", "g/g-zhest-3", "g/g-zhest-4", "g/g-zhest-5"],price:null,badges:["Опт"]},
+  {id:"probka",cat:"wedding",name:"Свеча в баночке с пробкой",d:"Для свадеб и торжеств: стеклянная баночка с пробкой, лентой и биркой Beton Svechi.",img:"g/g-probka-1",ph:["g/g-probka-1", "g/g-probka-2", "g/g-probka-3"],price:null,badges:["Свадьба"]},
   {id:"kubiki",cat:"wedding",name:"Свечи-бабл",d:"Комплименты гостям под цвет праздника.",price:null},
   {id:"bonboniery",cat:"ny",name:"Свеча-игрушка",d:"Новогодняя коллекция: рифлёный гипсовый стакан со свечой и золотой крышкой.",price:null,badges:["Хит"]},
   {id:"m-calm",cat:"magic",name:"Умиротворение и внутренняя духовность",d:"спокойствие, которого нам так не хватает",price:999,badges:[]},
@@ -791,9 +794,9 @@ const ITEMS = [
   {id:"m-meditate",cat:"magic",name:"Медитация и гармония успокоения",d:"лимитированная серия",img:"magic-3",ph:["magic-3"],price:999,badges:["Лимит"],long:"Пожалуй, самая востребованная свеча в наше динамичное время. Всем нужно уметь остановиться, выдохнуть и насладиться моментом. Свеча вылита из пчелиного воска с травами и лавандой. Лучше всего зажигать вечером, перед сном, чтобы успокоить мысли и расслабиться после трудового дня."},
   {id:"m-rod",cat:"magic",name:"Сила рода",d:"лимитированная серия · сиреневые свечи, пламя, объединяющее поколения",img:"magic2-9",ph:["magic2-7","magic2-8","magic2-9"],price:999,badges:["Лимит"],long:'<p><b>«Сила Рода — пламя, объединяющее поколения»</b></p><p>В суете дней мы часто забываем о главном источнике нашей силы — о своем Роде. Наши предки — это корни, которые питают нас, защищают и направляют. Зажжение родовой свечи — это древний ритуал, позволяющий установить связь со своим родом, исцелить родовые сценарии и наполниться энергией своих предков.</p><p>Позвольте огню свечи осветить ваш путь к истокам и подарить чувство защищенности и опоры. Это невидимая опора, поддержка и энергия, которая идет к вам от ваших предков.</p><p>Считается, что наши предки живут в нас через гены, привычки и даже подсознательные реакции. Подключаясь к Силе Рода, человек может получить доступ к их мудрости и опыту. В трудную минуту словно чувствуется поддержка тех, кто жил до нас.</p><p><b>Зачем нужна Сила Рода?</b></p><ul><li><b>Дает защиту:</b> чувство, что ты не один в этом мире.</li><li><b>Наполняет силой:</b> человек, почитающий предков, чувствует прилив жизненных сил и уверенности.</li><li><b>Помогает в самореализации:</b> часто наши таланты — это подарок от рода.</li><li><b>Исцеляет судьбу:</b> прорабатывая родовые сценарии, можно разорвать порочный круг неудач.</li></ul><p>Если чувствуете, что вам не хватает опоры, словно вы боретесь в одиночку, или в жизни повторяются трудные семейные сценарии — это сигнал обратить внимание на Силу своего Рода.</p>'},
   {id:"m-balance",cat:"magic",name:"Набор «Баланс»",d:"все базовые наборы по 3 свечи, для пробы и знакомства",img:"magic2-1",ph:["magic2-1","magic2-3"],price:999,badges:[]},
-  {id:"blagovonia",cat:"decor",name:"Подставка для благовоний",d:"Гипс, округлые формы.",price:null},
+  {id:"blagovonia",ph:["blagovonia", "g/g-blagovonia-2"],cat:"decor",name:"Подставка для благовоний",d:"Гипс, округлые формы.",price:null},
   {id:"ladoni",cat:"decor",name:"Подставки-ладони",d:"Для колец и мелочей.",price:null},
-  {id:"lico-podsvechnik",cat:"beton",name:"Лесная фея-берегиня",d:"Свеча в бетоне.",price:null},
+  {id:"lico-podsvechnik",ph:["lico-podsvechnik", "g/g-lico-podsvechnik-1"],cat:"beton",name:"Лесная фея-берегиня",d:"Свеча в бетоне.",price:null},
   {id:"utka",cat:"beton",name:"Уточка",d:"Свеча в бетоне.",price:null},
   {id:"tulen",cat:"beton",name:"Тюлень",d:"Свеча в бетоне.",price:null},
   {id:"olen-belyi",cat:"figure",name:"Олень белый",d:"Формовая свеча.",price:null}
@@ -821,7 +824,7 @@ const POL={
 };
 
 function badges(it){return it.badges?`<div class="badges">${it.badges.map(b=>`<span class="badge ${b==="Хит"?"hit":""}">${b}</span>`).join("")}</div>`:""}
-function price(it){return it.price==null?'<div class="price tbd">цена по запросу</div>':`<div class="price">${it.from?"от ":""}${rub(it.price)}<small>за шт.</small></div>`}
+function price(it){return it.price==null?'<div class="price tbd">цена по запросу</div>':`<div class="price">${it.from?"от ":""}${rub(it.price)}<small>${it.unit||"за шт."}</small></div>`}
 const SPECIAL_TILES=[["magic-room","Магические свечи","magic2-8","9 наборов для ритуалов","раздел"],["aromas-all","Ароматы","aroma-tile","{N} ароматов, выбрать свой","выбрать"]];
 function renderTiles(){
   const sp=([h,l,img,sub,tag])=>`<a class="tile sp" href="#${h}" data-tag="${tag}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub.replace("{N}",AROMAS.length)}</span></div></a>`;
