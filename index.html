@@ -143,6 +143,11 @@ nav.menu a.cta{background:var(--ink-btn);color:var(--ink-btn-fg)}
 .story .txt{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px}
 .story .txt p{color:var(--muted);max-width:58ch}
 .story img{width:100%;height:100%;min-height:320px;object-fit:cover;border-radius:var(--r);max-width:100%}
+.fit-link{display:flex;gap:14px;align-items:center;margin:22px 0 10px;padding:12px;border:1px solid var(--line);border-radius:14px;color:inherit;text-decoration:none;background:var(--bg2,#fff)}.fit-link img{width:84px;height:84px;object-fit:cover;border-radius:10px;flex:none}.fit-link b{display:block;margin-bottom:2px}
+.wed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:22px}.wed-grid a{display:block;color:var(--wax);text-decoration:none;font-size:13px}.wed-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block;margin-bottom:6px}.wed-grid b{display:block;color:var(--flame)}
+.kurs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.kurs>div{border:1px solid var(--line);border-radius:12px;padding:14px 16px}.kurs h4{margin:0 0 4px;font-size:16px}.kurs .kp{font-size:20px;font-weight:600;color:var(--brown-mid);margin:6px 0}.kurs ul{margin:6px 0 0;padding-left:18px;font-size:13px}.kurs-all{grid-column:1/-1;background:rgba(200,140,60,.08)}
+.otz{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:14px;padding-bottom:6px}.otz img{height:360px;width:auto;border-radius:12px;scroll-snap-align:start;flex:none}
+@media(max-width:700px){.kurs{grid-template-columns:1fr}.otz img{height:300px}}
 .courses{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
 .courses div{border:1px dashed var(--line);border-radius:10px;padding:12px 14px;font-size:13px}
 .courses b{display:block;font-size:14px;margin-bottom:2px}
@@ -455,6 +460,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
       <a href="#wedding">Свадьбы и опт</a>
       <a href="#delivery">Доставка</a>
       <a href="#nitiforma">Нитиформа 3D</a>
+      <a href="#kursy">Курсы</a>
       <a href="#about">О мастере</a>
     </nav>
     <button class="basket" type="button" id="basketBtn">Заказ <span class="n" id="basketN">0</span></button>
@@ -547,8 +553,12 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
       </details>
       <button class="btn primary" type="button" data-custom="wedding">Рассчитать партию</button>
     </div>
-    <img src="img/bonboniery.jpg" alt="Свечи в рифлёных гипсовых стаканах с золотыми крышками" style="width:100%;border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;max-width:100%">
+    <img src="img/g/z-bubble-1.jpg" alt="Свеча-бабл на бетонной подставке с лентой, сухоцветами и именной биркой" style="width:100%;border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;max-width:100%">
   </div>
+  <h3 style="color:var(--wax);margin:34px 0 0;font-size:20px">Ассортимент для свадеб и опта</h3>
+  <p style="color:var(--wax);opacity:.8;margin:4px 0 0;font-size:14px">Цены мини-свечей указаны для опта от 50 штук. Нажмите на изделие, чтобы посмотреть фото.</p>
+  <div class="wed-grid" id="wedGrid"></div>
+  <p style="margin-top:16px"><a class="btn ghost" href="#cat-mini" style="color:var(--wax);border-color:rgba(247,240,228,.4)">Все мини-свечи →</a> <a class="btn ghost" href="#cat-wedding" style="color:var(--wax);border-color:rgba(247,240,228,.4)">Всё для свадьбы →</a></p>
 </div></section>
 
 <section id="magic"><div class="wrap">
@@ -580,15 +590,30 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
       <h2 class="h2">Мастерская Юлии Смирновой</h2>
       <p>Всё началось с одной формы, сделанной для себя. Сейчас в мастерской больше двух тысяч позиций и цветов: стаканы из бетона, формовые свечи, гипсовый декор и свечи с надписями, которые хочется подарить с намёком.</p>
       <p>Я сама изготавливаю формы и печатаю их на 3D-принтере, а бетон, гипс и воск заливаю вручную. Поэтому любую свечу можно повторить в другом цвете, а свадебную партию собрать под вашу палитру. В мастерской стоит профессиональное плавильное оборудование, так что большие объёмы и опт я заливаю быстро.</p>
-      <div class="courses">
-        <div><b>Курс по свечеварению</b>как варить и заливать свечи дома</div>
-        <div><b>Курс по гипсу и бетону</b>формы, заливка, обработка</div>
-      </div>
+      <div class="courses"><div><b>Курс по свечеварению «В огнях»</b>7 500 ₽</div><div><b>Курс «BetonSvechi» по гипсу и бетону</b>3 500 ₽</div></div>
+      <p style="margin-top:12px"><a class="btn ghost" href="#kursy">Подробнее о курсах и отзывы →</a></p>
     </div>
     <img src="img/master.jpg" alt="Юлия за рабочим столом со свечами">
   </div>
 </div></section>
 
+
+<section id="kursy" class="band bg2"><div class="wrap">
+  <p style="font-family:var(--f-script);color:var(--flame);font-size:40px;line-height:1;margin:0 0 6px">обучение</p>
+  <h2 class="h2">Курсы Юлии Смирновой</h2>
+  <p class="lead">Два онлайн-курса: по свечеварению и по работе с гипсом и бетоном. Теория, видеоуроки, база поставщиков и личная поддержка.</p>
+  <div class="kurs">
+    <div><h4>«В огнях»: свечеварение</h4><div class="kp">7 500 ₽</div>
+      <ul><li>Теория: какие бывают воски, чем воск отличается от парафина, где их купить</li><li>Видеоуроки по всем процессам: контейнерные, формовые, массажные свечи, аромасаше</li><li>Фитили, отдушки и аромамасла, красители, декорирование</li><li>Как удешевить процесс и на чём не стоит экономить</li><li>Полная база поставщиков, выгодная типография</li><li>Поддержка: первых учеников Юлия курирует лично</li></ul></div>
+    <div><h4>«BetonSvechi»: гипс и бетон</h4><div class="kp">3 500 ₽</div>
+      <ul><li>Материалы: гипс, гипсобетон, бетон и разница в работе с ними</li><li>Формы и молды для заливки</li><li>Эффект терраццо, 2 варианта</li><li>Обработка высохшего изделия и покрытие под заливку свечей</li><li>Как сделать завершённый вид: ножки, этикетка, оформление</li><li>База поставщиков по всем материалам</li></ul></div>
+    <div class="kurs-all"><h4>Оба курса вместе</h4><div class="kp">9 999 ₽</div><p style="margin:0;font-size:14px">«В огнях» и «BetonSvechi» одним пакетом.</p></div>
+  </div>
+  <button class="btn primary" type="button" data-custom="kurs" style="margin-top:16px">Записаться на курс</button>
+  <h3 style="margin:30px 0 0;font-size:20px">Что пишут ученицы</h3>
+  <p class="lead" style="font-size:14px">Скриншоты из сторис Юлии.</p>
+  <div class="otz"><img src="img/g/z-otz-3.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-otz-4.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-otz-5.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-otz-6.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-otz-7.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-otz-8.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-otz-9.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-otz-10.jpg" alt="Отзыв ученицы курса, скриншот" loading="lazy"><img src="img/g/z-kurs-1.jpg" alt="Описание курса BetonSvechi" loading="lazy"><img src="img/g/z-kurs-2.jpg" alt="Программа курса по бетону" loading="lazy"></div>
+</div></section>
 <section class="band bg2" id="reviewsSec"><div class="wrap">
   <h2 class="h2">Нас выбирают за свечи, которые запоминают</h2>
   <p class="lead">Отзывы покупателей из сторис, директа и Авито.</p>
@@ -641,7 +666,7 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
       <li><a href="#delivery">Доставка и оплата</a></li>
       <li><a href="#wedding">Свадьбы и опт</a></li>
       <li><a href="#" data-pol="care">Как ухаживать за свечой</a></li>
-      <li><a href="#about">Курсы</a></li>
+      <li><a href="#kursy">Курсы</a></li>
     </ul></div>
     <div><h4>Информация</h4><ul>
       <li><a href="#" data-pol="privacy">Политика конфиденциальности</a></li>
@@ -690,7 +715,8 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     </div>
     <div class="wrap"><div class="chips" id="aromaChips"></div></div>
   </div>
-  <div class="wrap aroom-body"><div class="a-grid" id="aromaGrid"></div></div>
+  <div class="wrap aroom-body"><div class="a-grid" id="aromaGrid"></div>
+    <a class="fit-link" href="#item-fitili"><img src="img/g/k-fitil-1.jpg" alt="" loading="lazy"><span><b>Деревянные фитили с рисунками</b>Снеговики, снежинки, надписи. Выберите к своей свече →</span></a></div>
 </div>
 <div class="aroom" id="magicRoom" hidden role="dialog" aria-modal="true" aria-labelledby="mroomTitle">
   <div class="aroom-head"><div class="aroom-bar wrap">
@@ -750,7 +776,8 @@ const CATS = [
   ["beton","Свечи в бетоне","szhigai-mosty","стаканы и надписи"],
   ["figure","Формовые свечи","narcissy","цветы, фрукты, фигуры"],
   ["table","Столовые свечи","vitye-bant","витые и конусы"],
-  ["wedding","Свадьба и гости","serdechki","комплименты от 45 ₽"],
+  ["wedding","Свадьба и гости","g/z-bubble-1","баночки, жестянки, камни"],
+  ["mini","Мини-свечи · опт","serdechki","от 45 ₽, цены опта от 50 шт."],
   ["wood","Свечи в дереве","serdce-beton","свеча в деревянной основе"],
   ["aroma","Свечи в банках и диффузоры","g/n-jar200-1","банки 200 мл, диффузоры, фитили"],
   ["easter","Пасхальный декор и свечи","g/y-yajca-1","подставки для яиц, наборы"],
@@ -758,71 +785,72 @@ const CATS = [
   ["decor","Декор из бетона","g/k-guby-1","подставки, кашпо"]
 ];
 const ITEMS = [
-  {id:"nabory-ny",cat:"ny",name:"Новогодние наборы на заказ",d:"Соберём набор под ваш бюджет и вкус. К Новому году все изделия упаковываем индивидуально: крафт, лента, открытка.",img:"g/n-nabory-ny-1",ph:["g/n-nabory-ny-1", "g/n-nabory-ny-2", "g/n-nabory-ny-3", "g/n-nabory-ny-4", "g/n-nabory-ny-5", "g/n-nabory-ny-6", "g/n-nabory-ny-7", "g/n-nabory-ny-8", "g/n-nabory-ny-9", "g/n-nabory-ny-10", "g/n-nabory-ny-11", "g/n-nabory-ny-12", "g/n-nabory-ny-13"],price:null,badges:["Набор"]},
-  {id:"korzina",cat:"ny",name:"Набор в корзинке",d:"Подарочный набор свечей в корзинке. Цену уточняйте.",img:"g/n-korzina-1",ph:["g/n-korzina-1", "g/n-korzina-2", "g/n-korzina-3"],price:null,badges:["Набор"]},
-  {id:"minipodarki",cat:"ny",name:"Мини-подарки к Новому году",d:"Маленькие свечи-снежинки и ёлочки в индивидуальной упаковке.",img:"g/y-minipodarki-1",ph:["g/y-minipodarki-1", "g/y-minipodarki-2", "g/y-minipodarki-3"],price:45,from:true},
-  {id:"medved",cat:"ny",name:"Мама-медведица и медвежонок",d:"Формовая свеча к Новому году.",img:"g/y-medved-1",ph:["g/y-medved-1", "g/y-medved-2"],price:null,badges:["Новинка"]},
-  {id:"nabor-ded-moroz",ph:["nabor-ded-moroz", "g/g-nabor-ded-moroz-2", "g/g-nabor-ded-moroz-3", "g/g-nabor-ded-moroz-4", "g/g-nabor-ded-moroz-5"],cat:"ny",name:"Набор «Дед Мороз»",d:"Гипсовый Дед Мороз, свечи-снежинки и пряник в крафтовой коробке с бантом.",price:null,badges:["Новинка","Набор"]},
-  {id:"ded-moroz-krasnyi",ph:["ded-moroz-krasnyi", "g/g-ded-moroz-krasnyi-1", "g/g-ded-moroz-krasnyi-2"],cat:"ny",name:"Дед Мороз в красной шапке",d:"Гипс, ручная роспись.",price:null,badges:["Хит"]},
-  {id:"ded-moroz-belyi",ph:["ded-moroz-belyi", "g/g-ded-moroz-belyi-1", "g/g-ded-moroz-belyi-2", "g/g-ded-moroz-belyi-3", "g/g-ded-moroz-belyi-4"],cat:"ny",name:"Дед Мороз перламутровый",d:"Гипс, перламутровое покрытие.",price:null},
+  {id:"nabory-ny",cat:"ny",name:"Новогодние наборы на заказ",d:"Зимние наборы собираем под запрос и под заказ: ваш бюджет и вкус. К Новому году все изделия упаковываем индивидуально: крафт, лента, открытка.",img:"g/n-nabory-ny-1",ph:["g/n-nabory-ny-1", "g/n-nabory-ny-2", "g/n-nabory-ny-3", "g/n-nabory-ny-4", "g/n-nabory-ny-5", "g/n-nabory-ny-6", "g/n-nabory-ny-7", "g/n-nabory-ny-8", "g/n-nabory-ny-9", "g/n-nabory-ny-10", "g/n-nabory-ny-11", "g/n-nabory-ny-12", "g/n-nabory-ny-13"],price:null,badges:["Набор"]},
+  {id:"korzina",cat:"ny",name:"Набор в корзинке",d:"Подарочный набор свечей в корзинке. Цену уточняйте.",img:"g/n-korzina-1",ph:["g/n-korzina-1", "g/n-korzina-2", "g/n-korzina-3"],price:1800,badges:["Набор"],unit:"за набор"},
+  {id:"minipodarki",cat:"mini",name:"Мини-подарки к Новому году",d:"Маленькие свечи-снежинки и ёлочки в индивидуальной упаковке.",img:"g/y-minipodarki-1",ph:["g/y-minipodarki-1", "g/y-minipodarki-2", "g/y-minipodarki-3"],price:45,from:true},
+  {id:"medved",cat:"ny",name:"Мама-медведица и медвежонок",d:"Формовая свеча к Новому году.",img:"g/y-medved-1",ph:["g/y-medved-1", "g/y-medved-2", "g/z-medved-1"],price:null,badges:["Новинка"]},
+  {id:"nabor-ded-moroz",ph:["nabor-ded-moroz", "g/g-nabor-ded-moroz-2", "g/g-nabor-ded-moroz-3", "g/g-nabor-ded-moroz-4", "g/g-nabor-ded-moroz-5"],cat:"ny",name:"Набор «Дед Мороз»",d:"Гипсовый Дед Мороз, свечи-снежинки и пряник в крафтовой коробке с бантом.",price:2000,badges:["Новинка","Набор"],unit:"за набор"},
+  {id:"ded-moroz-krasnyi",ph:["ded-moroz-krasnyi", "g/g-ded-moroz-krasnyi-1", "g/g-ded-moroz-krasnyi-2"],cat:"ny",name:"Дед Мороз в красной шапке",d:"Гипс, ручная роспись.",price:1500,badges:["Хит"]},
+  {id:"ded-moroz-belyi",ph:["ded-moroz-belyi", "g/g-ded-moroz-belyi-1", "g/g-ded-moroz-belyi-2", "g/g-ded-moroz-belyi-3", "g/g-ded-moroz-belyi-4"],cat:"ny",name:"Дед Мороз перламутровый",d:"Гипс, перламутровое покрытие.",price:1500},
   {id:"elki",img:"g/g-elki-1",ph:["g/g-elki-1", "g/g-elki-3", "elki", "g/g-elki-4", "g/y-elki2-1", "g/y-elki2-2", "g/y-elki2-3", "g/y-elki2-4", "g/y-elki2-5"],unit:"за набор",cat:"ny",name:"Свечи-ёлки, набор из 3 шт.",d:"Набор из трёх свечей-ёлок, зелёные или белые с золотом. Упаковываем в чёрный конверт с лентой.",price:999,badges:["Хит"]},
-  {id:"snezhinki",ph:["snezhinki", "g/g-snezhinki-1", "g/g-snezhinki-3", "g/n-snezh-1", "g/n-snezh-2", "g/n-snezh-3", "g/n-snezh-4", "g/n-snezh-5", "g/k-snezh3-1", "g/k-snezh3-2", "g/k-snezh3-3"],cat:"ny",name:"Свечи-снежинки",d:"Формовые свечи-снежинки к Новому году, 100 ₽ за штуку.",price:100},
-  {id:"shar-bant",ph:["shar-bant", "g/g-shar-bant-1", "g/g-shar-bant-3", "g/g-shar-bant-4", "g/g-shar-bant-5"],cat:"ny",name:"Свеча-шар с бантом",d:"Рифлёный шар с атласным бантом.",price:null},
-  {id:"banka-ny",img:"g/g-banka-ny-1",ph:["g/g-banka-ny-1", "g/g-banka-ny-2", "g/g-banka-ny-3", "banka-ny", "g/g-banka-ny-5", "g/k-advent-1", "g/k-advent-2", "g/k-advent-3", "g/k-advent-4", "g/k-advent-5", "g/k-advent-6"],cat:"ny",name:"Свеча-адвент-календарь",d:"Новогодняя свеча в банке с календарём на этикетке и зимним ароматом. Особенно хороша в сервировке праздничного стола.",price:null},
-  {id:"olen-zelenyi",ph:["olen-zelenyi", "g/k-olen-z-1", "g/k-olen-z-2"],cat:"ny",name:"Подсвечник «Олень»",d:"Плоский олень под чайную свечу, разные цвета: зелёный, белый.",price:null},
+  {id:"snezhinki",ph:["g/n-snezh-1", "snezhinki", "g/g-snezhinki-1", "g/g-snezhinki-3", "g/n-snezh-2", "g/n-snezh-3", "g/n-snezh-4", "g/n-snezh-5", "g/k-snezh3-1", "g/k-snezh3-2", "g/k-snezh3-3"],cat:"ny",name:"Свечи-снежинки",d:"Формовые свечи-снежинки к Новому году, 100 ₽ за штуку.",price:100,img:"g/n-snezh-1"},
+  {id:"shar-bant",ph:["g/g-shar-bant-5", "shar-bant", "g/g-shar-bant-1", "g/g-shar-bant-3", "g/g-shar-bant-4", "bonboniery"],cat:"ny",name:"Свеча-шар с бантом (свеча-игрушка)",d:"Рифлёный шар с атласным бантом, он же свеча-игрушка на ёлку и в подарок.",price:1000,img:"g/g-shar-bant-5"},
+  {id:"banka-ny",img:"g/g-banka-ny-1",ph:["g/g-banka-ny-1", "g/g-banka-ny-2", "g/g-banka-ny-3", "banka-ny", "g/g-banka-ny-5", "g/k-advent-1", "g/k-advent-2", "g/k-advent-3", "g/k-advent-4", "g/k-advent-5", "g/k-advent-6"],cat:"ny",name:"Свеча-адвент-календарь",d:"Новогодняя свеча в банке с календарём на этикетке и зимним ароматом. Особенно хороша в сервировке праздничного стола.",price:1200},
+  {id:"olen-zelenyi",ph:["olen-zelenyi", "g/k-olen-z-1", "g/k-olen-z-2"],cat:"ny",name:"Подсвечник «Олень»",d:"Плоский олень под чайную свечу, разные цвета: зелёный, белый.",price:300},
   {id:"irisy",cat:"beton",name:"Свеча «Ирисы»",d:"Большая свеча в бетоне с рельефом ирисов, 520 мл, три фитиля.",img:"irisy-main",ph:["irisy-main","irisy-1","irisy-3","irisy-2","irisy-6","irisy-4","irisy-5"],long:'<p class="feat-quote">«Я живу в лесу. И эта свеча — мой бетонный дневник. 520 мл и три огня. Холодная банка — и тёплый свет внутри. Как я. Как мой лес. Только для своих. Только вручную».</p><p>Это не свеча. Это мой разговор с землёй через бетон и огонь.</p><p>Огонь в ней не дрожит, он дышит. Глубоко, ровно.</p><p>Она стоит на столе и молчит. Но каждый, кто её видит, тянется рукой провести по этим ирисам. Потому что в бетоне, в трёх огнях и в ручной работе живёт магия, которую не купить в гипермаркете. Её можно только взять у той, кто живёт в лесу.</p><p>Это не просто большая свеча на три фитиля. Это частичка моего дома, которая согреет ваш.</p><p class="set-note">520 мл · 3 фитиля · бетон, ручная заливка · после свечи стакан служит кашпо</p>',price:2300,badges:["Новинка"]},
-  {id:"szhigai-mosty",ph:["szhigai-mosty", "stakan-beton", "g/g-szhigai-mosty-1", "g/g-szhigai-mosty-2", "g/g-szhigai-mosty-3"],cat:"beton",name:"«Сжигай мосты»",d:"Авторская форма: с одной стороны надпись «Сжигай мосты», с другой логотип Beton Svechi. Свеча в бетонном стакане.",price:null,badges:["Хит","Авторская"]},
-  {id:"serdce-beton",img:"serdce-beton",ph:["serdce-beton", "g/y-serdce2-1"],cat:"wood",name:"Сердце в дереве",d:"Свеча в деревянной основе в форме сердца.",price:null},
-  {id:"shlyapa",img:"g/n-shlyapa-1",ph:["g/n-shlyapa-1", "g/n-shlyapa-2", "g/n-shlyapa-3", "g/n-shlyapa-4", "g/n-shlyapa2-1", "g/n-shlyapa2-2"],cat:"beton",name:"Распределительная шляпа",d:"Свеча в гипсобетонном стакане с крышкой-шляпой. Можно взять набором из двух свечей: шляпа и грибочек.",price:null,badges:["Новинка"]},
-  {id:"grud-beton",cat:"beton",name:"Свеча «Грудь» в бетоне",d:"Свеча, залитая в бетонную форму, с деревянным фитилём.",img:"g/k-grud-1",ph:["g/k-grud-1", "g/k-grud-2", "g/k-grud-3", "g/k-grud-4", "g/k-grud-5", "g/k-grud-6", "g/k-grud-7", "g/k-grud-8"],price:null},
-  {id:"banka-beton",cat:"beton",name:"Свеча в бетонной банке с крышкой",d:"Круглая бетонная банка с крышкой и логотипом Beton Svechi, большой объём воска. Разные цвета.",img:"g/k-banka-1",ph:["g/k-banka-1", "g/k-banka-2"],price:null},
-  {id:"spasibo",cat:"beton",name:"«Спасибо, дура»",d:"Авторская форма: мастер-модель Юлия вылепила вручную. Свеча в бетонном стакане, есть чёрный вариант.",img:"g/y-spasibo-1",ph:["g/y-spasibo-1", "g/y-spasibo-2", "g/y-spasibo-3", "g/y-spasibo-4", "g/y-spasibo-5", "g/y-spasibo-6"],price:null,badges:["Авторская"]},
-  {id:"rakushka-paporotnik",cat:"beton",name:"Ракушка с папоротником",d:"Свеча в гипсобетонной ракушке, украшенная папоротником и цветами.",img:"g/y-rakushka2-1",ph:["g/y-rakushka2-1", "g/y-rakushka2-2"],price:null,badges:["Новинка"]},
+  {id:"szhigai-mosty",ph:["szhigai-mosty", "stakan-beton", "g/g-szhigai-mosty-1", "g/g-szhigai-mosty-2"],cat:"beton",name:"«Сжигай мосты»",d:"Авторская форма: с одной стороны надпись «Сжигай мосты», с другой логотип Beton Svechi. Свеча в бетонном стакане.",price:1400,badges:["Хит","Авторская"],img:"szhigai-mosty"},
+  {id:"serdce-beton",img:"serdce-beton",ph:["serdce-beton", "g/y-serdce2-1", "g/n-serdce-1"],cat:"wood",name:"Сердце в дереве",d:"Свеча в деревянной основе в форме сердца.",price:1300},
+  {id:"shlyapa",img:"g/n-shlyapa-2",ph:["g/n-shlyapa-2", "g/n-shlyapa-1", "g/n-shlyapa-3", "g/n-shlyapa-4", "g/n-shlyapa2-1", "g/n-shlyapa2-2"],cat:"beton",name:"Распределительная шляпа",d:"Свеча в гипсобетонном стакане с крышкой-шляпой. Можно взять набором из двух свечей: шляпа и грибочек.",price:700,badges:["Новинка"]},
+  {id:"grud-beton",cat:"beton",name:"Свеча «Грудь» в бетоне",d:"Свеча, залитая в бетонную форму, с деревянным фитилём.",img:"g/k-grud-5",ph:["g/k-grud-5", "g/k-grud-1", "g/k-grud-2", "g/k-grud-3", "g/k-grud-4", "g/k-grud-6", "g/k-grud-7", "g/k-grud-8"],price:500},
+  {id:"banka-beton",cat:"beton",name:"Свеча в бетонной банке с крышкой",d:"Круглая бетонная банка с крышкой и логотипом Beton Svechi, большой объём воска. Разные цвета.",img:"g/k-banka-1",ph:["g/k-banka-1", "g/k-banka-2"],price:1200},
+  {id:"spasibo",cat:"beton",name:"«Спасибо, дура»",d:"Авторская форма: мастер-модель Юлия вылепила вручную. Свеча в бетонном стакане, есть чёрный вариант.",img:"g/y-spasibo-1",ph:["g/y-spasibo-1", "g/y-spasibo-2", "g/y-spasibo-3", "g/y-spasibo-4", "g/y-spasibo-5", "g/y-spasibo-6"],price:1400,badges:["Авторская"]},
+  {id:"rakushka-paporotnik",cat:"beton",name:"Ракушка с папоротником",d:"Свеча в гипсобетонной ракушке, украшенная папоротником и цветами.",img:"g/y-rakushka2-1",ph:["g/y-rakushka2-1", "g/y-rakushka2-2"],price:1500,badges:["Новинка"]},
   {id:"rakushka",ph:["rakushka", "g/g-rakushka-1"],cat:"beton",name:"Ракушка",d:"Бетонная ракушка с воском.",price:null},
-  {id:"leto",cat:"figure",name:"Набор «Летнее дыхание»",d:"Малина, лимон и клубника: формовые свечи одним летним набором.",img:"g/g-leto-1",ph:["g/g-leto-1", "g/g-leto-2", "g/g-leto-3", "g/g-leto-4", "g/g-leto-5", "g/g-leto-6", "g/g-leto-7", "g/g-leto-8", "g/g-leto-9"],price:null,badges:["Новинка","Набор"]},
-  {id:"malina",img:"g/n-malina-1",ph:["g/n-malina-1", "g/n-malina-2", "g/n-malina-3", "g/n-malina-4", "g/n-malina-5", "g/n-babochki-1"],cat:"figure",name:"Малиновое варенье",d:"Свечи-малинки в стеклянном стакане, как баночка варенья.",price:null,badges:["Новинка"]},
-  {id:"cvety-podstavka",img:"g/k-cvety3-1",ph:["g/k-cvety3-1", "g/k-cvety3-2", "g/k-cvety3-3", "g/y-cvety4-1", "g/y-cvety4-2", "g/y-cvety4-3"],cat:"figure",name:"Формовые цветы на подставке",d:"Набор из трёх цветов на вытянутой подставке в коробке: 900 ₽. Один цветок на подставке: 300 ₽.",price:300,badges:["Набор"],from:true},
-  {id:"roza-pion",img:"g/k-rozapion-1",ph:["g/k-rozapion-1", "g/k-rozapion-2", "g/y-rozapion2-1", "g/y-rozapion2-2", "g/y-rozapion2-3", "g/y-rozapion2-4", "g/y-rozapion2-5"],cat:"figure",name:"Роза-пион на подставке",d:"Большая объёмная свеча-роза на подставке, разные цвета. Можно с логотипом Beton Svechi.",price:350},
-  {id:"bog",cat:"figure",name:"Греческий бог",d:"Формовая свеча в виде античного профиля.",img:"g/k-bog-1",ph:["g/k-bog-1", "g/k-bog-2"],price:null},
-  {id:"beremen",cat:"figure",name:"Свеча «Беременяшка»",d:"Формовая свеча, разные цвета.",img:"g/k-beremen-1",ph:["g/k-beremen-1", "g/k-beremen-2", "g/k-beremen-3"],price:null},
-  {id:"r18",cat:"figure",name:"Формовая свеча 18+",d:"Пикантная формовая свеча, разные цвета. Для взрослых.",img:"g/k-r18-1",ph:["g/k-r18-1", "g/k-r18-2"],price:null,badges:["18+"]},
+  {id:"leto",cat:"figure",name:"Набор «Летнее дыхание»",d:"Половинка лимона, малина и две клубники одним летним набором. Лимоны, малину и клубнику можно заказать и отдельно.",img:"g/g-leto-1",ph:["g/g-leto-1", "g/g-leto-2", "g/g-leto-3", "g/g-leto-4", "g/g-leto-5", "g/g-leto-6", "g/g-leto-7", "g/g-leto-8", "g/g-leto-9"],price:1500,badges:["Новинка","Набор"],unit:"за набор"},
+  {id:"malina",img:"g/n-malina-1",ph:["g/n-malina-1", "g/n-malina-2", "g/n-malina-3", "g/n-malina-4", "g/n-malina-5", "g/n-babochki-1", "g/z-malina-1", "g/z-malina-2"],cat:"figure",name:"Малиновое варенье",d:"Свечи-малинки в стеклянном стакане, как баночка варенья.",price:700,badges:["Новинка"]},
+  {id:"cvety-podstavka",img:"g/k-cvety3-1",ph:["g/k-cvety3-1", "g/k-cvety3-2", "g/k-cvety3-3", "g/y-cvety4-1", "g/y-cvety4-2", "g/y-cvety4-3"],cat:"figure",name:"Формовые цветы на подставке",d:"Три формовых цветка на подставке, набор. Можно заказать с логотипом.",price:900,badges:["Набор"],from:false,unit:"набор 3 цветка"},
+  {id:"roza-pion",img:"g/y-rozapion2-5",ph:["g/y-rozapion2-5", "g/y-rozapion2-4", "g/y-rozapion2-3", "g/y-rozapion2-2", "g/k-piony-1", "g/k-piony-2"],cat:"figure",name:"Роза-пион на подставке",d:"Большая объёмная свеча-роза на подставке, разные цвета.",price:350},
+  {id:"bog",cat:"figure",name:"Греческий бог",d:"Формовая свеча в виде античного профиля.",img:"g/k-bog-1",ph:["g/k-bog-1", "g/k-bog-2"],price:300},
+  {id:"beremen",cat:"figure",name:"Свеча «Беременяшка»",d:"Формовая свеча, разные цвета.",img:"g/k-beremen-1",ph:["g/k-beremen-1", "g/k-beremen-2", "g/k-beremen-3"],price:500},
+  {id:"r18",cat:"figure",name:"Формовая свеча 18+",d:"Пикантная формовая свеча, разные цвета. Для взрослых.",img:"g/k-r18-1",ph:["g/k-r18-1", "g/k-r18-2"],price:500,badges:["18+"]},
   {id:"jam",cat:"figure",name:"Клубничный джем",d:"Свечи-ягоды в стеклянном стакане, как баночка клубничного джема.",img:"g/y-jam-1",ph:["g/y-jam-1", "g/y-jam-2"],price:null,badges:["Новинка"]},
-  {id:"tykvy",cat:"figure",name:"Тыквы",d:"Формовые и контейнерные свечи-тыквы к осени.",img:"g/y-tykvy-1",ph:["g/y-tykvy-1", "g/y-tykvy-2", "g/y-tykvy-3"],price:null},
+  {id:"tykvy",cat:"figure",name:"Тыквы",d:"Формовые и контейнерные свечи-тыквы к осени.",img:"g/y-tykvy-1",ph:["g/y-tykvy-1", "g/y-tykvy-2", "g/y-tykvy-3", "g/z-tykvy-1", "g/z-tykvy-2"],price:null},
   {id:"osen",cat:"figure",name:"Осенние миниатюрки",d:"Маленькие осенние свечи: тыквы, листья, жёлуди. Из них собираем осенние наборы.",img:"g/y-osen-1",ph:["g/y-osen-1", "g/y-osen-2", "g/y-osen-3", "g/y-osen-4", "g/y-osen-5"],price:null,badges:["Набор"]},
   {id:"dino",cat:"figure",name:"Динозавр",d:"Фигура динозавра из гипса.",img:"g/y-dino-1",ph:["g/y-dino-1", "g/y-dino-2", "g/y-dino-3", "g/y-dino-4"],price:null},
   {id:"mramor",cat:"table",name:"Мраморные столовые свечи",d:"Столовые свечи с мраморным рисунком, любая форма и цвет.",img:"g/y-mramor-1",ph:["g/y-mramor-1", "g/y-mramor-2", "g/y-mramor-3", "g/y-mramor-4", "g/y-mramor-5", "g/y-mramor-6", "g/y-mramor-7", "g/y-mramor-8", "g/y-mramor-9"],price:null,badges:["Новинка"]},
-  {id:"torsy",img:"torsy",ph:["torsy", "g/n-torsy-1", "g/n-torsy-2", "g/k-torsy3-1", "g/k-torsy3-2", "g/k-torsy3-3", "g/k-torsy3-4", "g/k-torsy3-5", "g/k-torsy3-6", "g/k-torsy3-7", "g/k-torsy3-8", "g/k-torsy3-9", "g/k-torsy3-10", "g/k-torsy3-11", "g/k-torsy3-12", "g/k-torsy3-13", "g/k-torsy3-14", "g/k-torsy3-15", "g/k-torsy3-16", "g/k-torsy3-17", "g/y-torsy4-1"],cat:"figure",name:"Свечи-торсы",d:"Шоколадные и молочные оттенки.",price:null,badges:["Хит"]},
-  {id:"narcissy",img:"g/g-narcissy-1",ph:["g/g-narcissy-1", "g/g-narcissy-2", "g/g-narcissy-3", "g/g-narcissy-4", "narcissy", "g/g-narcissy-6", "yabloki"],cat:"figure",name:"Нарциссы",d:"Свечи-цветы, горят как фонарики.",price:null},
-  {id:"rozy",img:"g/n-rozy2-1",ph:["g/n-rozy2-1", "rozy", "g/n-rozy2-2", "g/n-rozy2-3", "g/n-rozy2-4", "g/n-rozy2-5", "g/n-rozy2-6", "g/n-rozy2-7", "g/n-rozy2-8", "g/n-rozy2-9", "g/n-rozy2-10", "g/n-rozy2-11", "g/n-rozy-1"],cat:"beton",name:"Розы",d:"Розы на декоративной подставке, каждая свеча упакована отдельно.",price:null},
-  {id:"popkorn",ph:["popkorn", "g/g-popkorn-2", "g/g-popkorn-3", "g/g-popkorn-4", "g/g-popkorn-5", "g/g-popkorn-6"],cat:"beton",name:"Попкорн",d:"Свеча в полосатом стаканчике.",price:null,badges:["Новинка"]},
-  {id:"chesnok",ph:["chesnok", "g/g-chesnok-1"],cat:"figure",name:"Чеснок",d:"Головки чеснока, очень похожие.",price:null},
-  {id:"klubnika",cat:"figure",name:"Клубника",d:"Ягоды для летнего стола.",price:null},
-  {id:"yabloki",img:"g/g-yabloki-1",ph:["g/g-yabloki-1", "g/g-yabloki-2", "yabloki"],cat:"figure",name:"Черешни",d:"Формовые свечи-черешни. Красиво горят группой.",price:null},
-  {id:"grushi",ph:["grushi", "g/g-grushi-2"],cat:"figure",name:"Перцы",d:"Свечи-перцы, жёлтые и зелёные.",price:null},
-  {id:"stolovye-assort",img:"g/n-stolovye-1",ph:["g/n-stolovye-1", "g/n-stolovye-2", "g/n-stolovye-3", "g/n-stolovye-4", "g/n-stolovye-5", "g/n-stolovye-6", "g/n-stolovye-7", "g/n-stol2-1", "g/n-stol2-2", "g/y-stol3-1", "g/y-stol3-2", "g/y-stol3-3"],cat:"table",name:"Столовые свечи: бусины и рифлёные",d:"Высокие столовые свечи разных форм и цветов: бусины, рифлёные, гладкие. Подойдут к любому подсвечнику.",price:null,badges:["Новинка"]},
-  {id:"vitye-bant",cat:"table",name:"Витые свечи с бантом",d:"Молочные столовые свечи с бантами.",price:null,badges:["Хит"]},
-  {id:"vitye",cat:"table",name:"Витые столовые",d:"Спокойные оттенки под любой подсвечник.",price:null},
-  {id:"krasnye-stolovye",cat:"table",name:"Красные волнистые",d:"Акцент для праздничного стола.",price:null},
-  {id:"konusnye",cat:"table",name:"Свечи-конусы",d:"Разные цвета под сервировку.",price:null},
-  {id:"serdechki",img:"serdechki",ph:["serdechki", "g/g-serdechki-1", "g/g-serdechki-2", "g/g-serdechki-3", "g/n-serd2-1", "g/n-serd2-2", "g/y-serd3-1", "g/y-serd3-2", "g/y-serd3-3", "g/y-serd3-4", "g/y-serd3-5", "g/y-serd3-6", "g/y-serd3-7"],cat:"wedding",name:"Сердечки для гостей",d:"Мини-свечи в индивидуальной упаковке.",price:45,from:true,badges:["Опт"]},
+  {id:"torsy",img:"torsy",ph:["torsy", "g/n-torsy-1", "g/n-torsy-2", "g/k-torsy3-1", "g/k-torsy3-2", "g/k-torsy3-3", "g/k-torsy3-4", "g/k-torsy3-5", "g/k-torsy3-6", "g/k-torsy3-7", "g/k-torsy3-8", "g/k-torsy3-9", "g/k-torsy3-10", "g/k-torsy3-11", "g/k-torsy3-12", "g/k-torsy3-13", "g/k-torsy3-14", "g/k-torsy3-15", "g/k-torsy3-16", "g/k-torsy3-17", "g/y-torsy4-1", "g/z-torsy-1", "g/z-torsy-2", "g/z-torsy-3", "g/z-torsy-4", "g/z-torsy-5"],cat:"figure",name:"Свечи-торсы",d:"Шоколадные и молочные оттенки. Цена за одну штуку, можно собрать набором.",price:550,badges:["Хит"]},
+  {id:"narcissy",img:"g/g-narcissy-1",ph:["g/g-narcissy-1", "g/g-narcissy-2", "g/g-narcissy-3", "g/g-narcissy-4", "narcissy", "g/g-narcissy-6", "yabloki"],cat:"figure",name:"Нарциссы",d:"Свечи-цветы, горят как фонарики. Набор из 3 штук.",price:700,unit:"набор 3 шт."},
+  {id:"rozy",img:"g/z-rozy-1",ph:["g/z-rozy-1", "g/n-rozy2-10", "g/n-rozy2-1", "g/n-rozy2-9", "g/n-rozy2-11"],cat:"beton",name:"Розы",d:"Розы на декоративной подставке, каждая свеча упакована отдельно.",price:600},
+  {id:"popkorn",ph:["popkorn", "g/g-popkorn-2", "g/g-popkorn-3", "g/g-popkorn-4", "g/g-popkorn-5", "g/g-popkorn-6"],cat:"beton",name:"Попкорн",d:"Свеча в полосатом стаканчике.",price:1000,badges:["Новинка"]},
+  {id:"chesnok",ph:["chesnok", "g/g-chesnok-1"],cat:"figure",name:"Чеснок",d:"Головки чеснока, очень похожие. Набор из 2–3 штук.",price:500,unit:"2–3 шт."},
+  {id:"klubnika",cat:"figure",name:"Клубника",d:"Ягоды для летнего стола. Набор из 3 штук.",price:300,unit:"3 шт."},
+  {id:"yabloki",img:"yabloki",ph:["yabloki", "g/g-yabloki-1", "g/g-yabloki-2"],cat:"figure",name:"Черешни",d:"Формовые свечи-черешни, набор из 9 штук. Можно поставить на торт вместо обычных свечей и зажечь.",price:700,unit:"набор 9 шт."},
+  {id:"grushi",ph:["grushi", "g/g-grushi-2"],cat:"figure",name:"Перцы",d:"Свечи-перцы, жёлтые и зелёные.",price:500},
+  {id:"perec-chesnok",cat:"figure",name:"Набор «Перец и чеснок»",d:"Перец и две головки чеснока одним набором.",img:"grushi",ph:["grushi", "chesnok"],price:1000,badges:["Набор"],unit:"за набор"},
+  {id:"stolovye-assort",img:"g/n-stolovye-1",ph:["g/n-stolovye-1", "g/n-stolovye-2", "g/n-stolovye-3", "g/n-stolovye-4", "g/n-stolovye-5", "g/n-stolovye-6", "g/n-stolovye-7", "g/n-stol2-1", "g/n-stol2-2", "g/y-stol3-1", "g/y-stol3-2", "g/y-stol3-3"],cat:"table",name:"Столовые свечи: бусины и рифлёные",d:"Толстые столовые свечи небольшого объёма, два вида, с бантом. Остальные столовые свечи 300 ₽ за штуку.",price:700,badges:["Новинка"],unit:"с бантом"},
+  {id:"vitye-bant",cat:"table",name:"Витые свечи с бантом",d:"Молочные столовые свечи с бантами.",price:300,badges:["Хит"]},
+  {id:"vitye",cat:"table",name:"Витые столовые",d:"Спокойные оттенки под любой подсвечник.",price:300},
+  {id:"krasnye-stolovye",cat:"table",name:"Красные волнистые",d:"Акцент для праздничного стола.",price:300},
+  {id:"konusnye",cat:"table",name:"Свечи-конусы",d:"Разные цвета под сервировку.",price:300},
+  {id:"serdechki",img:"serdechki",ph:["serdechki", "g/g-serdechki-1", "g/g-serdechki-2", "g/g-serdechki-3", "g/n-serd2-1", "g/n-serd2-2", "g/y-serd3-1", "g/y-serd3-2", "g/y-serd3-3", "g/y-serd3-4", "g/y-serd3-5", "g/y-serd3-6", "g/y-serd3-7"],cat:"mini",name:"Сердечки для гостей",d:"Мини-свечи в индивидуальной упаковке.",price:45,from:true,badges:["Опт"]},
   {id:"zhest",img:"g/g-zhest-1",ph:["g/g-zhest-1", "g/g-zhest-2", "g/g-zhest-3", "g/g-zhest-4", "g/g-zhest-5", "g/n-teal-1", "g/n-teal-2", "g/n-teal-3", "g/k-zhest3-1", "g/k-zhest3-2", "g/k-zhest3-3", "g/k-zhest3-4", "g/y-zhest4-1", "g/y-zhest4-2", "g/y-zhest4-3", "g/y-zhest4-4", "g/y-zhest4-5", "g/y-zhest4-6"],cat:"wedding",name:"Свечи в жестянках для опта",d:"Свечи в металлических баночках 50 мл: золотистые, розовое золото, чёрный металлик, голубые. Для опта и подарков гостям.",price:null,badges:["Опт"]},
   {id:"probka",cat:"wedding",name:"Свеча в баночке с пробкой",d:"Для свадеб и торжеств: стеклянная баночка с пробкой, лентой и биркой Beton Svechi.",img:"g/g-probka-1",ph:["g/g-probka-1", "g/g-probka-2", "g/g-probka-3"],price:null,badges:["Свадьба"]},
-  {id:"ploskie-rozy",cat:"wedding",name:"Плоские розы",d:"Комплименты гостям и мелкий опт, разные цвета и оттенки.",img:"g/n-ploskie-rozy-1",ph:["g/n-ploskie-rozy-1", "g/n-ploskie-rozy-2", "g/n-ploskie-rozy-3", "g/n-ploskie-rozy-4", "g/n-ploskie-rozy-5", "g/n-ploskie-rozy-6", "g/n-ploskie-rozy-7"],price:65,badges:["Опт"]},
-  {id:"babochki",img:"g/n-babochki2-1",ph:["g/n-babochki2-1", "g/n-babochki2-2"],cat:"wedding",name:"Свечи-бабочки в упаковке",d:"Для мелкого опта и торжеств.",price:null,badges:["Опт"]},
-  {id:"mart8",cat:"wedding",name:"Свечи к 8 Марта",d:"Малышки по 45 ₽ и большие восьмёрки. Собираем наборы к празднику.",img:"g/n-mart8-1",ph:["g/n-mart8-1"],price:45,from:true},
-  {id:"mini40",img:"g/k-mini40-1",ph:["g/k-mini40-1", "g/k-mini40-2", "g/k-mini40-3", "g/k-mini40-4", "g/y-mini40b-1"],cat:"wedding",name:"Мини-свечи в стекле 40 мл",d:"Маленькие свечи в стеклянных баночках, можно с камнями и сухоцветами. Для опта и торжеств.",price:null,badges:["Опт"]},
-  {id:"serdca-big",cat:"wedding",name:"Большие сердца",d:"Для торжеств, цвета в ассортименте.",img:"g/k-serdca100-1",ph:["g/k-serdca100-1", "g/k-serdca100-2"],price:100},
-  {id:"piony",cat:"wedding",name:"Формовые цветы на опт",d:"Пионы в белом и розовом цвете для комплиментов гостям.",img:"g/k-piony-1",ph:["g/k-piony-1", "g/k-piony-2", "g/k-piony-3"],price:90,badges:["Опт"]},
-  {id:"zmeiki",cat:"wedding",name:"Мини-свечи «Змейки»",d:"Для торжеств и подарков гостям, в индивидуальной упаковке.",img:"g/y-zmeiki-1",ph:["g/y-zmeiki-1", "g/y-zmeiki-2", "g/y-zmeiki-3"],price:65},
+  {id:"ploskie-rozy",cat:"mini",name:"Плоские розы",d:"Комплименты гостям и мелкий опт, разные цвета и оттенки.",img:"g/n-ploskie-rozy-1",ph:["g/n-ploskie-rozy-1", "g/n-ploskie-rozy-2", "g/n-ploskie-rozy-3", "g/n-ploskie-rozy-4", "g/n-ploskie-rozy-5", "g/n-ploskie-rozy-6", "g/n-ploskie-rozy-7", "g/n-rozy2-5", "g/n-rozy2-6", "g/n-rozy2-7", "g/n-rozy2-8"],price:65,badges:["Опт"]},
+  {id:"babochki",img:"g/n-babochki2-1",ph:["g/n-babochki2-1", "g/n-babochki2-2"],cat:"mini",name:"Свечи-бабочки в упаковке",d:"Для мелкого опта и торжеств.",price:null,badges:["Опт"]},
+  {id:"mart8",cat:"mini",name:"Свечи к 8 Марта",d:"Малышки по 45 ₽ и большие восьмёрки. Собираем наборы к празднику.",img:"g/n-mart8-1",ph:["g/n-mart8-1", "g/n-rozy-1"],price:45,from:true},
+  {id:"mini40",img:"g/k-mini40-1",ph:["g/k-mini40-1", "g/k-mini40-2", "g/k-mini40-3", "g/k-mini40-4", "g/y-mini40b-1"],cat:"mini",name:"Мини-свечи в стекле 40 мл",d:"Маленькие свечи в стеклянных баночках, можно с камнями и сухоцветами. Для опта и торжеств.",price:null,badges:["Опт"]},
+  {id:"serdca-big",cat:"mini",name:"Большие сердца",d:"Для торжеств, цвета в ассортименте.",img:"g/k-serdca100-1",ph:["g/k-serdca100-1", "g/k-serdca100-2"],price:100},
+  {id:"piony",cat:"mini",name:"Формовые цветы на опт",d:"Пионы в белом и розовом цвете для комплиментов гостям. Оптовая цена.",img:"g/k-piony-3",ph:["g/k-piony-3", "g/z-piony-1"],price:90,badges:["Опт"]},
+  {id:"cvetok-mini",cat:"mini",name:"Цветок на подставке",d:"Мини-свеча: один формовой цветок на своей подставке. Для гостей и мелкого опта.",img:"g/k-rozapion-2",ph:["g/k-rozapion-2", "g/k-rozapion-1", "g/y-rozapion2-1"],price:220,badges:["Мини"]},
+  {id:"zmeiki",cat:"mini",name:"Мини-свечи «Змейки»",d:"Для торжеств и подарков гостям, в индивидуальной упаковке.",img:"g/y-zmeiki-1",ph:["g/y-zmeiki-1", "g/y-zmeiki-2", "g/y-zmeiki-3"],price:65},
   {id:"kamni-gips",cat:"wedding",name:"Свечи с камнями в гипсе",d:"Небольшие свечи в гипсовых стаканах с камнями. Для опта и торжеств.",img:"g/y-kamgips-1",ph:["g/y-kamgips-1", "g/y-kamgips-2", "g/y-kamgips-3", "g/y-kamgips-4"],price:240,badges:["Опт"]},
-  {id:"kubiki",img:"kubiki",ph:["kubiki", "g/n-bubble-1", "g/n-bubble-2", "g/n-bubble-3", "g/n-bubble-4", "g/k-bubble3-1", "g/k-bubble3-2", "g/k-bubble3-3", "g/y-kubiki2-1", "g/y-kubiki2-2", "g/y-kubiki2-3", "g/y-kubiki2-4", "g/y-kubiki2-5", "g/y-kubiki2-6", "g/y-kubiki2-7", "g/y-kubiki2-8", "g/y-kubiki2-9"],from:true,cat:"wedding",name:"Свечи-бабл",d:"Комплименты гостям под цвет праздника. Без оформления 90 ₽, с оформлением (лента, бирка, сухоцветы) 125 ₽, опт.",price:90},
-  {id:"bonboniery",cat:"ny",name:"Свеча-игрушка",d:"Новогодняя коллекция: рифлёный гипсовый стакан со свечой и золотой крышкой.",price:null,badges:["Хит"]},
+  {id:"kubiki",img:"g/z-bubble-1",ph:["g/z-bubble-1", "kubiki", "g/n-bubble-1", "g/n-bubble-2", "g/n-bubble-3", "g/n-bubble-4", "g/k-bubble3-1", "g/k-bubble3-2", "g/k-bubble3-3", "g/y-kubiki2-1", "g/y-kubiki2-2", "g/y-kubiki2-3", "g/y-kubiki2-4", "g/y-kubiki2-5", "g/y-kubiki2-6", "g/y-kubiki2-7", "g/y-kubiki2-8", "g/y-kubiki2-9"],from:true,cat:"mini",name:"Свечи-бабл",d:"Комплименты гостям под цвет праздника. Без оформления 90 ₽, с оформлением (лента, бирка, сухоцветы, подставка) 125 ₽. Оптовая цена от 50 штук.",price:90},
   {id:"podstavka-yajca",cat:"easter",name:"Подставка для яиц",d:"Интерьерная подставка из гипсобетона: удобно на кухне и красиво к Пасхе.",img:"g/y-yajca-1",ph:["g/y-yajca-1", "g/y-yajca-2", "g/y-yajca-3", "g/y-yajca-4"],price:null,badges:["Новинка"]},
   {id:"pasha-nabor",cat:"easter",name:"Пасхальные наборы",d:"Наборы к Пасхе: яички, зайка, подставки. Упаковываем в коробку.",img:"g/y-pasha-1",ph:["g/y-pasha-1", "g/y-pasha-2", "g/y-pasha-3", "g/y-pasha-4"],price:null,badges:["Набор"]},
-  {id:"s-torsy",cat:"sets",name:"Торсы на подставке",d:"Пример набора. Соберём похожий под ваш повод и бюджет.",img:"g/k-s-torsy-1",ph:["g/k-s-torsy-1", "g/k-s-torsy-2", "g/k-s-torsy-3", "g/k-s-torsy-4", "g/k-s-torsy-5", "g/k-s-torsy-6", "g/k-s-torsy-7", "g/k-s-torsy-8"],price:null},
-  {id:"s-suho",cat:"sets",name:"Подставка и свечи с сухоцветами",d:"Пример набора. Соберём похожий под ваш повод и бюджет.",img:"g/k-s-suho-1",ph:["g/k-s-suho-1", "g/k-s-suho-2", "g/k-s-suho-3", "g/k-s-suho-4", "g/k-s-suho-5", "g/k-s-suho-6"],price:null},
-  {id:"s-pink",cat:"sets",name:"Розовый набор с баночкой",d:"Пример набора. Соберём похожий под ваш повод и бюджет.",img:"g/k-s-pink-1",ph:["g/k-s-pink-1", "g/k-s-pink-2", "g/k-s-pink-3", "g/k-s-pink-4", "g/k-s-pink-5"],price:null},
-  {id:"s-potal",cat:"sets",name:"Подставки с поталью",d:"Пример набора. Соберём похожий под ваш повод и бюджет.",img:"g/k-s-potal-1",ph:["g/k-s-potal-1", "g/k-s-potal-2", "g/k-s-potal-3", "g/k-s-potal-4"],price:null},
+  {id:"s-torsy",cat:"sets",name:"Торсы на подставке",d:"Набор: торсы на подставке. Свечи-торсы по отдельности 550 ₽ за штуку.",img:"g/k-s-torsy-1",ph:["g/k-s-torsy-1", "g/k-s-torsy-2", "g/k-s-torsy-3", "g/k-s-torsy-4", "g/k-s-torsy-5", "g/k-s-torsy-6", "g/k-s-torsy-7", "g/k-s-torsy-8"],price:1000,unit:"за набор"},
+  {id:"s-suho",cat:"sets",name:"Подставка и свечи с сухоцветами",d:"Подставка и 2 свечи. Соберём похожий набор под ваш повод.",img:"g/k-s-suho-1",ph:["g/k-s-suho-1", "g/k-s-suho-2", "g/k-s-suho-3", "g/k-s-suho-4", "g/k-s-suho-5", "g/k-s-suho-6"],price:600,unit:"за набор"},
+  {id:"s-pink",cat:"sets",name:"Розовый набор с баночкой",d:"Розовый набор с баночками. Соберём похожий под ваш повод.",img:"g/k-s-pink-1",ph:["g/k-s-pink-1", "g/k-s-pink-2", "g/k-s-pink-3", "g/k-s-pink-4", "g/k-s-pink-5"],price:600,unit:"за набор"},
+  {id:"s-potal",cat:"sets",name:"Подставки с поталью",d:"Две подставки с поталью. Соберём похожий набор под ваш повод.",img:"g/k-s-potal-1",ph:["g/k-s-potal-1", "g/k-s-potal-2", "g/k-s-potal-3", "g/k-s-potal-4"],price:600,unit:"за 2 шт."},
   {id:"s-podnos",cat:"sets",name:"Бетонный поднос и свечи",d:"Пример набора. Соберём похожий под ваш повод и бюджет.",img:"g/k-s-podnos-1",ph:["g/k-s-podnos-1", "g/k-s-podnos-2", "g/k-s-podnos-3", "g/k-s-podnos-4", "g/k-s-podnos-5", "g/k-s-podnos-6", "g/k-s-podnos-7"],price:null},
   {id:"s-luna",cat:"sets",name:"Наборы с луной",d:"Пример набора. Соберём похожий под ваш повод и бюджет. Луна продаётся только в наборах.",img:"g/k-s-luna-1",ph:["g/k-s-luna-1", "g/k-s-luna-2", "g/k-s-luna-3"],price:null},
   {id:"m-calm",img:"g/y-mcalm-1",ph:["g/y-mcalm-1", "g/y-mcalm-2"],cat:"magic",name:"Умиротворение и внутренняя духовность",d:"спокойствие, которого нам так не хватает",price:999,badges:[]},
@@ -834,24 +862,22 @@ const ITEMS = [
   {id:"m-meditate",cat:"magic",name:"Медитация и гармония успокоения",d:"лимитированная серия",img:"magic-3",ph:["magic-3"],price:999,badges:["Лимит"],long:"Пожалуй, самая востребованная свеча в наше динамичное время. Всем нужно уметь остановиться, выдохнуть и насладиться моментом. Свеча вылита из пчелиного воска с травами и лавандой. Лучше всего зажигать вечером, перед сном, чтобы успокоить мысли и расслабиться после трудового дня."},
   {id:"m-rod",cat:"magic",name:"Сила рода",d:"лимитированная серия · сиреневые свечи, пламя, объединяющее поколения",img:"magic2-9",ph:["magic2-7","magic2-8","magic2-9"],price:999,badges:["Лимит"],long:'<p><b>«Сила Рода — пламя, объединяющее поколения»</b></p><p>В суете дней мы часто забываем о главном источнике нашей силы — о своем Роде. Наши предки — это корни, которые питают нас, защищают и направляют. Зажжение родовой свечи — это древний ритуал, позволяющий установить связь со своим родом, исцелить родовые сценарии и наполниться энергией своих предков.</p><p>Позвольте огню свечи осветить ваш путь к истокам и подарить чувство защищенности и опоры. Это невидимая опора, поддержка и энергия, которая идет к вам от ваших предков.</p><p>Считается, что наши предки живут в нас через гены, привычки и даже подсознательные реакции. Подключаясь к Силе Рода, человек может получить доступ к их мудрости и опыту. В трудную минуту словно чувствуется поддержка тех, кто жил до нас.</p><p><b>Зачем нужна Сила Рода?</b></p><ul><li><b>Дает защиту:</b> чувство, что ты не один в этом мире.</li><li><b>Наполняет силой:</b> человек, почитающий предков, чувствует прилив жизненных сил и уверенности.</li><li><b>Помогает в самореализации:</b> часто наши таланты — это подарок от рода.</li><li><b>Исцеляет судьбу:</b> прорабатывая родовые сценарии, можно разорвать порочный круг неудач.</li></ul><p>Если чувствуете, что вам не хватает опоры, словно вы боретесь в одиночку, или в жизни повторяются трудные семейные сценарии — это сигнал обратить внимание на Силу своего Рода.</p>'},
   {id:"m-balance",cat:"magic",name:"Набор «Баланс»",d:"все базовые наборы по 3 свечи, для пробы и знакомства",img:"magic2-1",ph:["magic2-1","magic2-3"],price:999,badges:[]},
-  {id:"jar200",img:"g/n-jar2-1",ph:["g/n-jar2-1", "g/n-jar200-1", "g/n-jar200-2", "g/k-jar3-1", "g/k-jar3-2", "g/k-jar3-3", "g/k-jar3-4", "g/y-jarhorse-1", "g/y-jarhorse-2", "g/y-jarhorse-3"],cat:"aroma",name:"Свеча в банке 200 мл",d:"Ароматическая свеча с деревянным фитилём в большой банке 200 мл. Аромат на выбор.",price:null},
-  {id:"diffuzor",img:"g/n-diffuzor-1",ph:["g/n-diffuzor-1", "g/n-diffuzor-2", "g/n-diffuzor-3", "g/y-diff2-1", "g/y-diff2-2", "g/y-diff2-3", "g/y-diff2-4", "g/y-diff2-5", "g/y-diff2-6", "g/y-diff2-7", "g/y-diff2-8"],cat:"aroma",name:"Диффузоры",d:"Ароматические диффузоры во флаконах и в металлических баночках 50 г (розовое золото, чёрный). Подходят для опта.",price:null,badges:["Опт"]},
-  {id:"konteyner",img:"g/k-konteyner-1",ph:["g/k-konteyner-1", "g/k-konteyner-2", "g/k-konteyner-3", "g/k-konteyner-4", "g/k-konteyner-5", "g/k-konteyner-6", "g/k-konteyner-7", "g/k-konteyner-8", "g/k-konteyner-9", "g/k-konteyner-10", "g/k-konteyner-11", "g/y-kont2-1", "g/y-kont2-2", "g/y-kont2-3", "g/y-kont2-4", "g/y-kont2-5", "g/y-kont2-6", "g/y-kont2-7"],cat:"aroma",name:"Контейнерная свеча с цветком",d:"Свеча в металлическом контейнере 120 мл, сверху формовой цветок. Можно украсить любую свечу.",price:null,badges:["Новинка"]},
+  {id:"jar200",img:"g/n-jar2-1",ph:["g/n-jar2-1", "g/n-jar200-1", "g/n-jar200-2", "g/k-jar3-1", "g/k-jar3-2", "g/k-jar3-3", "g/k-jar3-4", "g/y-jarhorse-1", "g/y-jarhorse-2", "g/y-jarhorse-3"],cat:"aroma",name:"Свеча в банке 200 мл",d:"Ароматическая свеча в банке из коричневого стекла 200 мл, аромат на выбор. Цена с обычным фитилём; с деревянным фитилём +100 ₽.",price:900},
+  {id:"diffuzor",img:"g/n-diffuzor-1",ph:["g/n-diffuzor-1", "g/n-diffuzor-2", "g/n-diffuzor-3", "g/y-diff2-1", "g/y-diff2-2", "g/y-diff2-3", "g/y-diff2-4", "g/y-diff2-5", "g/y-diff2-6", "g/y-diff2-7", "g/y-diff2-8"],cat:"aroma",name:"Диффузоры",d:"Ароматические диффузоры: 50 мл 600 ₽, 100 мл 1000 ₽. Флаконы и металлические баночки (розовое золото, чёрный).",price:600,from:true},
+  {id:"konteyner",img:"g/k-konteyner-1",ph:["g/k-konteyner-1", "g/k-konteyner-2", "g/k-konteyner-3", "g/k-konteyner-4", "g/k-konteyner-5", "g/k-konteyner-6", "g/k-konteyner-7", "g/k-konteyner-8", "g/k-konteyner-9", "g/k-konteyner-10", "g/k-konteyner-11", "g/y-kont2-1", "g/y-kont2-2", "g/y-kont2-3", "g/y-kont2-4", "g/y-kont2-5", "g/y-kont2-6", "g/y-kont2-7"],cat:"aroma",name:"Контейнерная свеча с цветком",d:"Свеча в металлической банке 120 мл, сверху формовой цветок.",price:700,badges:["Новинка"]},
   {id:"sashe",cat:"aroma",name:"Арома-саше",d:"Для белья и гардероба, в индивидуальной упаковке. Опт.",img:"g/k-sashe-1",ph:["g/k-sashe-1", "g/k-sashe-2", "g/k-sashe-3", "g/k-sashe-4"],price:90,badges:["Опт"]},
   {id:"latte",cat:"aroma",name:"Свеча «Латте со льдом»",d:"Контейнерная свеча в стекле, сверху «кубики льда» из воска.",img:"g/y-latte-1",ph:["g/y-latte-1", "g/y-latte-2", "g/y-latte-3"],price:null,badges:["Новинка"]},
   {id:"zmeya",cat:"aroma",name:"Свеча-змея «Для любимой подруги»",d:"Свеча в форме змеи, разные цвета, в том числе чёрный.",img:"g/y-zmeya-1",ph:["g/y-zmeya-1"],price:null},
-  {id:"fitili",img:"g/k-fitil-1",ph:["g/k-fitil-1", "g/n-fitili-1", "g/n-fitili-2", "g/n-fitili-3", "g/n-fitili-4", "g/n-fitili-5"],cat:"aroma",name:"Деревянные фитили с рисунками",d:"Можно выбрать к свече: снеговики, снежинки, надписи «Для мамы», «Любовь» и другие.",price:null},
-  {id:"neon",img:"g/n-neon2-3",ph:["g/n-neon-1", "g/n-neon2-1", "g/n-neon2-2", "g/n-neon2-3"],cat:"decor",name:"Гипсобетон в неоновых цветах",d:"Новое: яркие флуоресцентные оттенки для подставок и декора.",price:null,badges:["Новинка"]},
-  {id:"kameshek",img:"g/k-kamni-1",ph:["g/k-kamni-1", "g/k-kamni-2", "g/k-kamni-3", "g/k-kamni-4", "g/k-kamni-5", "g/k-kamni-6", "g/k-kamni-7", "g/k-kamni-8", "g/n-kamen-1", "g/n-kamen-2", "g/y-kamni2-1", "g/y-kamni2-2", "g/y-kamni2-3", "g/y-kamni2-4"],cat:"decor",name:"Набор «Камешек»",d:"Свечи-камешки в гипсобетоне, разные оттенки серого. Делаю на опт и в наборы. Цену уточняйте.",price:null,badges:["Новинка"]},
-  {id:"podsvechniki",cat:"decor",name:"Подсвечники из бетона",d:"Два вида бетонных подсвечников под столовые свечи.",img:"g/n-podsv-1",ph:["g/n-podsv-1"],price:null,badges:["Новинка"]},
-  {id:"guby",img:"g/k-guby-1",ph:["g/k-guby-1", "g/k-guby-2", "g/k-guby-3", "g/k-guby-4", "g/k-guby-5", "g/k-guby-6", "g/k-guby-7", "g/k-guby-8", "g/k-guby-9", "g/k-guby-10", "g/k-guby-11", "g/k-guby-12", "g/k-guby-13", "g/k-guby-14", "g/k-guby-15", "g/k-guby-16", "g/y-blago2-1", "g/y-blago2-2"],cat:"decor",name:"Подставка «Губы» для благовоний",d:"Подставка из гипса и бетона в разных цветах. В наборе с благовониями 800 ₽.",price:800,badges:["Хит"],unit:"за набор"},
-  {id:"kashpo",img:"g/y-kashpo2-1",ph:["g/y-kashpo2-1", "g/y-kashpo2-2", "g/k-kashpo-1", "g/k-kashpo-2"],cat:"decor",name:"Кашпо «Грудь»",d:"Гипсовое кашпо, свеча не заливается. Подойдёт под цветы, кисти, ручки или зубные щётки. Разные цвета.",price:550},
+  {id:"fitili",img:"g/k-fitil-1",ph:["g/k-fitil-1", "g/n-fitili-1", "g/n-fitili-2", "g/n-fitili-3", "g/n-fitili-4", "g/n-fitili-5"],cat:"fitili",name:"Деревянные фитили с рисунками",d:"Можно выбрать к свече: снеговики, снежинки, надписи «Для мамы», «Любовь» и другие.",price:null},
+  {id:"kameshek",img:"g/k-kamni-1",ph:["g/k-kamni-1", "g/k-kamni-2", "g/k-kamni-3", "g/k-kamni-4", "g/k-kamni-5", "g/k-kamni-6", "g/k-kamni-7", "g/k-kamni-8", "g/n-kamen-1", "g/n-kamen-2", "g/y-kamni2-1", "g/y-kamni2-2", "g/y-kamni2-3", "g/y-kamni2-4"],cat:"beton",name:"Свечи-камешки",d:"Свечи-камешки в бетоне, разные оттенки серого. Делаю на опт и в наборы.",price:300,badges:["Новинка"]},
+  {id:"podsvechniki",cat:"decor",name:"Подсвечники из бетона",d:"Подсвечники разных форм и цветов, не только из бетона. Большой выбор, цена от 100 ₽ в зависимости от модели.",img:"g/n-podsv-1",ph:["g/n-podsv-1"],price:100,badges:["Новинка"],from:true},
+  {id:"guby",img:"g/k-guby-1",ph:["g/k-guby-1", "g/k-guby-2", "g/k-guby-3", "g/k-guby-4", "g/k-guby-5", "g/k-guby-6", "g/k-guby-7", "g/k-guby-8", "g/k-guby-9", "g/k-guby-10", "g/k-guby-11", "g/k-guby-12", "g/k-guby-13", "g/k-guby-14", "g/k-guby-15", "g/k-guby-16", "g/y-blago2-1", "g/y-blago2-2", "g/n-blago-1", "g/n-blago-2", "blagovonia", "g/g-blagovonia-2", "g/z-blago-1"],cat:"decor",name:"Подставки для благовоний: «Губы» и другие",d:"Подставки из гипса и бетона в разных цветах и формах: губы, ладошки, классические. В наборе с благовониями 800 ₽.",price:800,badges:["Хит"],unit:"за набор"},
+  {id:"kashpo",img:"g/y-kashpo2-1",ph:["g/y-kashpo2-1", "g/y-kashpo2-2", "g/k-kashpo-1", "g/k-kashpo-2"],cat:"decor",name:"Кашпо «Грудь»",d:"Гипсовое кашпо, свеча не заливается. Подойдёт под цветы, кисти, ручки или зубные щётки. Разные цвета.",price:600},
   {id:"pupyrka",cat:"decor",name:"Пупырчатая подставка",d:"Массивная тяжёлая подставка из бетона под мелочи и бижутерию. Есть такая же форма со свечой внутри.",img:"g/y-pupyr-1",ph:["g/y-pupyr-1", "g/y-pupyr-2", "g/y-pupyr-3", "g/y-pupyr-4", "g/y-pupyr-5", "g/y-pupyr-6", "g/y-pupyrsv-1", "g/y-pupyrsv-2"],price:null},
-  {id:"blagovonia",img:"g/n-blago-1",ph:["g/n-blago-1", "g/n-blago-2", "blagovonia", "g/g-blagovonia-2"],cat:"decor",name:"Подставка для благовоний",d:"Подставка для благовоний из гипсобетона. С неё мастерская начиналась.",price:null},
-  {id:"lico-podsvechnik",ph:["lico-podsvechnik", "g/g-lico-podsvechnik-1"],cat:"beton",name:"Лесная фея-берегиня",d:"Свеча в бетоне.",price:null},
-  {id:"utka",cat:"beton",name:"Уточка",d:"Свеча в бетоне.",price:null},
-  {id:"tulen",img:"tulen",ph:["tulen", "g/y-tulen2-1", "g/y-tulen2-2"],cat:"beton",name:"Тюлень",d:"Свеча в бетоне.",price:null},
-  {id:"olen-belyi",ph:["olen-belyi", "g/k-olen-b-1"],cat:"figure",name:"Олень белый",d:"Формовая свеча.",price:null}
+  {id:"lico-podsvechnik",ph:["lico-podsvechnik", "g/g-lico-podsvechnik-1"],cat:"beton",name:"Лесная фея-берегиня",d:"Свеча в бетоне.",price:1300},
+  {id:"utka",cat:"beton",name:"Уточка",d:"Свеча в бетоне.",price:1200},
+  {id:"tulen",img:"tulen",ph:["tulen", "g/y-tulen2-1", "g/y-tulen2-2"],cat:"beton",name:"Тюлень",d:"Свеча в бетоне.",price:1200},
+  {id:"olen-belyi",ph:["olen-belyi", "g/k-olen-b-1"],cat:"figure",name:"Олень белый",d:"Формовая свеча.",price:400}
 ];
 /* Отзывы: примеры формата. Заменить на реальные из переписок. */
 /* Реальные отзывы из сторис и директа @betonsvechi. Формат: {n:"Имя", t:"текст", s:"источник"} */
@@ -877,10 +903,10 @@ const POL={
 
 function badges(it){return it.badges?`<div class="badges">${it.badges.map(b=>`<span class="badge ${b==="Хит"?"hit":""}">${b}</span>`).join("")}</div>`:""}
 function price(it){return it.price==null?'<div class="price tbd">цена по запросу</div>':`<div class="price">${it.from?"от ":""}${rub(it.price)}<small>${it.unit||"за шт."}</small></div>`}
-const SPECIAL_TILES=[["magic-room","Магические свечи","magic2-8","9 наборов для ритуалов","раздел"],["aromas-all","Ароматы","aroma-tile","{N} ароматов, выбрать свой","выбрать"]];
+const SPECIAL_TILES=[["magic-room","Магические свечи","magic2-8","9 наборов для ритуалов","раздел"],["aromas-all","Ароматы","aroma-tile","{N} ароматов, выбрать свой","выбрать"],["item-fitili","Деревянные фитили","g/k-fitil-1","с рисунками, к любой свече","выбрать"]];
 function renderTiles(){
   const sp=([h,l,img,sub,tag])=>`<a class="tile sp" href="#${h}" data-tag="${tag}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub.replace("{N}",AROMAS.length)}</span></div></a>`;
-  $("#tiles").innerHTML=sp(SPECIAL_TILES[0])+sp(SPECIAL_TILES[1])+CATS.map(([k,l,img,sub])=>`<button class="tile" type="button" data-cat="${k}" aria-pressed="${cat===k}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub}</span></div></button>`).join("");
+  $("#tiles").innerHTML=SPECIAL_TILES.map(sp).join("")+CATS.map(([k,l,img,sub])=>`<button class="tile" type="button" data-cat="${k}" aria-pressed="${cat===k}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub}</span></div></button>`).join("");
   $("#chips").innerHTML=[["all","Всё"],...CATS.map(c=>[c[0],c[1]])].map(([k,l])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${cat===k}">${l}</button>`).join("");
   $("#gridTitle").textContent=cat==="all"?"Все изделия":CATS.find(c=>c[0]===cat)[1];
   $("#fCats").innerHTML=CATS.map(c=>`<li><a href="#catalog" data-cat="${c[0]}">${c[1]}</a></li>`).join("");
@@ -893,7 +919,8 @@ const cardHTML=it=>`
      <span class="stock">${it.price==null?"под заказ, 5–10 дней":"в наличии и под заказ"}</span>
      <button class="add" type="button" data-id="${it.id}" aria-pressed="${picked.has(it.id)}">${picked.has(it.id)?"В заказе ✓":"В заказ"}</button>
    </article>`;
-function renderGrid(){
+function renderWed(){const g=$("#wedGrid"); if(!g) return; g.innerHTML=ITEMS.filter(i=>i.cat==="mini"||i.cat==="wedding").map(i=>`<a href="#item-${i.id}"><img src="img/${i.img||i.id}.jpg" alt="${i.name}" loading="lazy"><b>${i.price==null?"по запросу":(i.from?"от ":"")+rub(i.price)}</b>${i.name}</a>`).join("");}
+function renderGrid(){ renderWed();
   $("#grid").innerHTML=ITEMS.filter(i=>i.cat!=="magic"&&(cat==="all"||i.cat===cat)).map(cardHTML).join("");
   renderCatRoom(); if(openItem) renderItem(openItem);
 }
@@ -914,7 +941,7 @@ function openRoom(){ $("#aromaRoom").hidden=false; document.body.style.overflow=
 function closeRoom(){ $("#aromaRoom").hidden=true; document.body.style.overflow=""; }
 function viewAroma(n){ const a=AROMAS.find(x=>x.n===n); if(!a) return; viewing=a; $("#aviewImg").src="img/aroma/"+a.i+".jpg"; $("#aviewImg").alt="Аромат «"+a.n+"»: "+a.t; $("#aviewPick").textContent=chosenAroma===a.n?"Аромат выбран ✓":"Выбрать этот аромат"; try{$("#aromaView").showModal()}catch(e){$("#aromaView").setAttribute("open","")} }
 function renderFeat(){const b=document.querySelector('#irisy-new .add'); if(b){const on=picked.has("irisy"); b.setAttribute("aria-pressed",on); b.textContent=on?"В заказе ✓":"В заказ";}}
-const MAGIC_GAL=[["g/y-mlove-1","Любовь: красные свечи"],["g/y-magicpack-1","Упаковка наборов"],["g/y-magicpack-2","Упаковка наборов"],["g/y-magicpack-3","Коробки с логотипом"],["g/y-magicpack-4","Коробки с логотипом"],["g/y-magicpack-5","Коробки с логотипом"],["g/y-magicpack-6","Наборы разных цветов"],["g/y-magicpack-7","Наборы разных цветов"],["g/y-magicpack-8","Свечи для набора"],["g/y-magicpack-9","Большая свеча с луной"],["magic2-8","Сила рода: две свечи, сплетённые вручную"],["magic2-6","Деньги и удача"],["magic-3","Медитация"],["magic2-1","Набор «Баланс»"],["magic2-2","Каждый набор подписан"],["magic2-4","Подставки и свечи до сборки"],["magic-2","Так набор приходит к вам"]];
+const MAGIC_GAL=[["g/g-szhigai-mosty-3","Упаковка с бусинами от сглаза"],["g/y-mlove-1","Любовь: красные свечи"],["g/y-magicpack-1","Упаковка наборов"],["g/y-magicpack-2","Упаковка наборов"],["g/y-magicpack-3","Коробки с логотипом"],["g/y-magicpack-4","Коробки с логотипом"],["g/y-magicpack-5","Коробки с логотипом"],["g/y-magicpack-6","Наборы разных цветов"],["g/y-magicpack-7","Наборы разных цветов"],["g/y-magicpack-8","Свечи для набора"],["g/y-magicpack-9","Большая свеча с луной"],["magic2-8","Сила рода: две свечи, сплетённые вручную"],["magic2-6","Деньги и удача"],["magic-3","Медитация"],["magic2-1","Набор «Баланс»"],["magic2-2","Каждый набор подписан"],["magic2-4","Подставки и свечи до сборки"],["magic-2","Так набор приходит к вам"]];
 const MAGIC_FALLBACK=[["magic-2","Так набор приходит к вам. Фото именно этого набора скоро добавим"],["magic2-2","Каждая коробка подписана"]];
 const MAGIC_INC=["18 тонких свечей с травами","камни","подставка","описание полной работы с набором"];
 const fig=([f,c])=>`<figure><img src="img/${f}.jpg" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`;
@@ -1018,8 +1045,8 @@ document.addEventListener("click",e=>{
   const a=e.target.closest(".add"); if(a){const id=a.dataset.id;picked.has(id)?picked.delete(id):picked.set(id,{id,qty:1});renderGrid();renderMagic();renderTray();return}
   const cu=e.target.closest("[data-custom]"); if(cu){
     const k=cu.dataset.custom;
-    openDialog(k==="wedding"?"Расчёт партии":"Индивидуальный заказ",
-      k==="wedding"?"Здравствуйте! Нужна партия для события.\nДата: \nКоличество гостей: \nЧто нужно (комплименты, свечи на стол, подсвечники): \nЦвета праздника: \nГород: ":"Здравствуйте! Хочу заказать печать на 3D-принтере.\nЧто нужно: \nРазмер: \nЦвет: \n(картинку пришлю в переписке)");
+    openDialog(k==="wedding"?"Расчёт партии":k==="kurs"?"Запись на курс":"Индивидуальный заказ",
+      k==="kurs"?"Здравствуйте, Юлия! Хочу на курс.\nКакой курс: «В огнях» / «BetonSvechi» / оба\nИмя: ":k==="wedding"?"Здравствуйте! Нужна партия для события.\nДата: \nКоличество гостей: \nЧто нужно (комплименты, свечи на стол, подсвечники): \nЦвета праздника: \nГород: ":"Здравствуйте! Хочу заказать печать на 3D-принтере.\nЧто нужно: \nРазмер: \nЦвет: \n(картинку пришлю в переписке)");
     return}
 });
 (()=>{const b=$("#burger"),m=$("#mainMenu");b.onclick=()=>{const o=!m.classList.contains("open");m.classList.toggle("open",o);b.setAttribute("aria-expanded",o);b.setAttribute("aria-label",o?"Закрыть меню":"Открыть меню")};m.addEventListener("click",e=>{if(e.target.closest("a")){m.classList.remove("open");b.setAttribute("aria-expanded","false")}})})();
