@@ -71,6 +71,8 @@ header.top .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding
 nav.menu{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
 nav.menu a{text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:999px}
 nav.menu a:hover{background:var(--bg2)}
+nav.menu .msub{display:none;flex-direction:column;padding:0 0 6px 14px;border-bottom:1px solid var(--line)}
+nav.menu .msub a{font-size:15px;font-weight:400;padding:10px 4px;border-bottom:0;color:var(--muted)}
 nav.menu a.cta{background:var(--ink-btn);color:var(--ink-btn-fg)}
 .basket{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;background:transparent;border:1px solid var(--line);
   border-radius:999px;padding:8px 14px;cursor:pointer;color:var(--fg);font-family:inherit}
@@ -261,7 +263,10 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
   .burger{display:inline-flex}
   nav.menu{display:none;position:absolute;left:0;right:0;top:100%;margin:0;width:auto;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(26,19,16,.12);
     padding:6px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
-  nav.menu.open{display:flex}
+  nav.menu.open{display:flex;flex-wrap:nowrap;max-height:calc(100vh - 70px);overflow-y:auto}
+  nav.menu .msub a{flex:none}
+  nav.menu .msub{display:flex}
+  nav.menu a.mdup{display:none}
   nav.menu a{padding:14px 4px;border-radius:0;border-bottom:1px solid var(--line);font-size:16px}
   nav.menu a:last-child{border-bottom:0}
   header.top{position:sticky}
@@ -455,9 +460,10 @@ dialog::backdrop{background:rgba(26,19,16,.6)}
     <a class="logo" href="#top"><b>Beton Svechi</b><span>by Юлия Смирнова · Казань</span></a>
     <nav class="menu" id="mainMenu" aria-label="Разделы">
       <a href="#catalog">Каталог</a>
-      <a href="#aromas-all">Ароматы</a>
-      <a href="#magic-room">Магические свечи</a>
-      <a href="#cat-ny">Новый год</a>
+      <div class="msub" id="menuCats"></div>
+      <a class="mdup" href="#aromas-all">Ароматы</a>
+      <a class="mdup" href="#magic-room">Магические свечи</a>
+      <a class="mdup" href="#cat-ny">Новый год</a>
       <a href="#wedding">Свадьбы и опт</a>
       <a href="#delivery">Доставка</a>
       <a href="#nitiforma">Нитиформа 3D</a>
@@ -849,7 +855,7 @@ const ITEMS = [
   {id:"zhest",img:"g/g-zhest-1",ph:["g/g-zhest-1", "g/g-zhest-2", "g/g-zhest-3", "g/g-zhest-4", "g/g-zhest-5", "g/n-teal-1", "g/n-teal-2", "g/n-teal-3", "g/k-zhest3-1", "g/k-zhest3-2", "g/k-zhest3-3", "g/k-zhest3-4", "g/y-zhest4-1", "g/y-zhest4-2", "g/y-zhest4-3", "g/y-zhest4-4", "g/y-zhest4-5", "g/y-zhest4-6"],cat:"wedding",name:"Свечи в жестянках для опта",d:"Свечи в металлических баночках 50 мл: золотистые, розовое золото, чёрный металлик, голубые. Для опта и подарков гостям.",price:null,badges:["Опт"]},
   {id:"probka",cat:"wedding",name:"Свеча в баночке с пробкой",d:"Мини-свеча в стеклянной баночке с пробкой, 125 ₽ при заказе оптом.",img:"g/g-probka-1",ph:["g/g-probka-1", "g/g-probka-2", "g/g-probka-3"],price:125,badges:["Свадьба"],unit:"опт"},
   {id:"ploskie-rozy",cat:"mini",name:"Плоские розы",d:"Комплименты гостям и мелкий опт, разные цвета и оттенки.",img:"g/n-ploskie-rozy-1",ph:["g/n-ploskie-rozy-1", "g/n-ploskie-rozy-2", "g/n-ploskie-rozy-3", "g/n-ploskie-rozy-4", "g/n-ploskie-rozy-5", "g/n-ploskie-rozy-6", "g/n-ploskie-rozy-7", "g/n-rozy2-5", "g/n-rozy2-6", "g/n-rozy2-7", "g/n-rozy2-8"],price:65,badges:["Опт"]},
-  {id:"babochki",img:"g/n-babochki2-1",ph:["g/n-babochki2-1", "g/n-babochki2-2"],cat:"mini",name:"Свечи-бабочки в упаковке",d:"Для мелкого опта и торжеств.",price:null,badges:["Опт"]},
+  {id:"babochki",img:"g/n-babochki2-1",ph:["g/n-babochki2-1", "g/n-babochki2-2"],cat:"mini",name:"Свечи-бабочки в упаковке",d:"Для мелкого опта и торжеств.",price:45,badges:["Опт"]},
   {id:"mart8",cat:"mini",name:"Свечи к 8 Марта",d:"Малышки по 45 ₽ и большие восьмёрки. Собираем наборы к празднику.",img:"g/n-mart8-1",ph:["g/n-mart8-1", "g/n-rozy-1"],price:45,from:true},
   {id:"mini40",img:"g/k-mini40-1",ph:["g/k-mini40-1", "g/k-mini40-2", "g/k-mini40-3", "g/k-mini40-4", "g/y-mini40b-1"],cat:"mini",name:"Мини-свечи в стекле 40 мл",d:"Маленькие свечи в стеклянных баночках, можно с камнями и сухоцветами. Для опта и торжеств.",price:null,badges:["Опт"]},
   {id:"serdca-big",cat:"mini",name:"Большие сердца",d:"Для торжеств, цвета в ассортименте.",img:"g/k-serdca100-1",ph:["g/k-serdca100-1", "g/k-serdca100-2"],price:100,also:["wedding"]},
@@ -923,6 +929,7 @@ function renderTiles(){
   $("#tiles").innerHTML=SPECIAL_TILES.map(sp).join("")+CATS.map(([k,l,img,sub])=>`<button class="tile" type="button" data-cat="${k}" aria-pressed="${cat===k}"><img src="img/${img}.jpg" alt=""><div class="t"><b>${l}</b><span>${sub}</span></div></button>`).join("");
   $("#chips").innerHTML=[["all","Всё"],...CATS.map(c=>[c[0],c[1]])].map(([k,l])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${cat===k}">${l}</button>`).join("");
   $("#gridTitle").textContent=cat==="all"?"Все изделия":CATS.find(c=>c[0]===cat)[1];
+  if($("#menuCats")) $("#menuCats").innerHTML=[["#aromas-all","Ароматы"],["#magic-room","Магические свечи"],...CATS.map(c=>["#cat-"+c[0],c[1]]),["#item-fitili","Деревянные фитили"]].map(([h,l])=>`<a href="${h}">${l}</a>`).join("");
   $("#fCats").innerHTML=CATS.map(c=>`<li><a href="#catalog" data-cat="${c[0]}">${c[1]}</a></li>`).join("");
 }
 const cardHTML=it=>`
